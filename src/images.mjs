@@ -2,7 +2,7 @@
 // (.jpg). Enquanto o arquivo não existir, o site mostra um espaço reservado com a descrição.
 export const IMAGES = {
   kordena: {
-    owner: { file: 'gestor.jpg', alt: 'Proprietário de restaurante acompanhando o negócio em tempo real em uma tela', brief: 'Proprietário/gestor sentado, olhando uma tela com painel de gestão (pedidos, estoque, financeiro), sem números legíveis' },
+    owner: { file: 'gestor.jpg', pos: '72% 50%', alt: 'Proprietário de restaurante acompanhando o negócio em tempo real em uma tela', brief: 'Proprietário/gestor sentado, olhando uma tela com painel de gestão (pedidos, estoque, financeiro), sem números legíveis' },
     owner_text: { kicker: 'Visão do proprietário', title: 'Quem decide precisa ver o negócio inteiro, agora.', lead: 'Faturamento, estoque, pedidos e custos na mesma tela, em tempo real. O proprietário acompanha a operação sem depender de planilhas e de conferências manuais.', bullets: ['Resultado do dia sem esperar o fechamento', 'Riscos de falta e perda antes de virarem prejuízo', 'Decisões com a informação à frente'] },
     kitchen: { file: 'cozinha.jpg', alt: 'Responsável acompanhando a produção no sistema, no balcão da cozinha', brief: 'Equipe na cozinha usando o sistema de produção (KDS)',
       kicker: 'Cozinha conectada', title: 'A cozinha sabe o que fazer, e quando.', lead: 'Mesas, comandas, pedidos, KDS e expedição organizados para dar clareza à equipe em cada etapa, do preparo à saída do pedido.',

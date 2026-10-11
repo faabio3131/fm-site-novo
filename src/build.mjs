@@ -91,7 +91,7 @@ function section(s, p, c) {
 const fig = (slug, im, cls = '') => {
   const has = fs.existsSync(path.join('assets/img', slug, im.file));
   return has
-    ? `<figure class="ph ${cls}"><img src="@UP@assets/img/${slug}/${im.file}" alt="${esc(im.alt)}" loading="lazy">${CREDITS[slug + '/' + im.file] ? `<figcaption class="credit">Foto: <a href="${CREDITS[slug + '/' + im.file].by_url}" target="_blank" rel="noopener">${esc(CREDITS[slug + '/' + im.file].by)}</a> · <a href="https://unsplash.com/?utm_source=fm_tecnologia&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption>` : ''}</figure>`
+    ? `<figure class="ph ${cls}"><img src="@UP@assets/img/${slug}/${im.file}" alt="${esc(im.alt)}" loading="lazy"${im.pos ? ` style="object-position:${im.pos}"` : ''}>${CREDITS[slug + '/' + im.file]?.note ? `<figcaption class="credit">${esc(CREDITS[slug + '/' + im.file].note)}</figcaption>` : CREDITS[slug + '/' + im.file] ? `<figcaption class="credit">Foto: <a href="${CREDITS[slug + '/' + im.file].by_url}" target="_blank" rel="noopener">${esc(CREDITS[slug + '/' + im.file].by)}</a> · <a href="https://unsplash.com/?utm_source=fm_tecnologia&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption>` : ''}</figure>`
     : `<figure class="ph empty ${cls}"><figcaption><b>Imagem em preparação</b><span>${esc(im.brief)}</span></figcaption></figure>`;
 };
 function photoSections(p, c) {

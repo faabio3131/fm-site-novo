@@ -25,5 +25,5 @@ em telas, sem clientes inventados. Mostrar as opções à aprovação antes de a
 | atendevendeia | loja.jpg | small shop owner customer |
 | atendevendeia | atendimento.jpg | customer service phone messaging |
 
-## Pendências
-- Registrar o download de kordena/gestor.jpg (Bench Accounting, id C3V88BOoRoM) no Unsplash: o ping falhou por limite de 50 pedidos/hora.
+
+Observação: kordena/gestor.jpg é imagem ilustrativa gerada no Canva (aprovada pelo Fábio).
