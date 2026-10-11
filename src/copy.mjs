@@ -3,12 +3,12 @@
 export const COPY = {
   kordena: {
     title: 'Do pedido ao lucro, tudo no mesmo lugar.',
-    lead: 'Vendas, atendimento, cozinha, estoque, clientes, marketing e financeiro conectados em uma única plataforma, com delivery próprio e arquitetura preparada para plataformas de delivery. No centro, o Gerente IA Core: ele observa, relaciona e recomenda. Quem decide é você.',
+    lead: 'Vendas, atendimento, cozinha, estoque, clientes, marketing e financeiro conectados em uma única plataforma, com delivery próprio e integração com iFood e 99Food. No centro, o Gerente IA Core: ele observa, relaciona e recomenda. Quem decide é você.',
     before: [
       { kind: 'contrast', id: 'desafio', kicker: 'O desafio de quem administra', title: 'Um restaurante tem muitas frentes. O Kordena junta todas.',
         lead: 'Pedidos vindo de vários canais, estoque que acaba na hora errada, faturamento que não vira lucro, controles paralelos. O Kordena foi pensado para tirar o proprietário do escuro.',
         items: [
-          ['Pedidos chegando por vários canais', 'Salão, balcão, delivery próprio e WhatsApp na mesma Central de Pedidos, com arquitetura preparada para plataformas externas de delivery.'],
+          ['Pedidos chegando por vários canais', 'Salão, balcão, delivery próprio, WhatsApp, iFood e 99Food na mesma Central de Pedidos.'],
           ['Estoque que só se descobre vazio na hora do aperto', 'Cada pedido dá baixa automática nos insumos, a validade é acompanhada e o sistema avisa antes de faltar ou vencer.'],
           ['Faturamento bom, lucro que ninguém enxerga', 'Faturamento, custos, valor em estoque e margem de lucro lado a lado, com a margem sob controle.'],
           ['Planilhas e conferências paralelas', 'Conferências, relatórios e monitoramento operacional centralizados em um só sistema.'],

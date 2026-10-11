@@ -6,7 +6,7 @@ Esta tabela é uma proposta do redator e precisa de confirmação do diretor. N�
 
 ## Esclarecimento do diretor (11/10/2026)
 No repositório, "pendente de homologação" em WhatsApp/Meta, PagBank, Mercado Pago, Google e similares **não significa função incompleta**. Essas integrações foram feitas configuráveis de propósito: cada cliente novo informa as próprias credenciais (chaves, tokens, contas), sem que a FM tenha acesso e sem mexer no código. O diretor testou e aprovou cada uma com as suas credenciais. Por isso o site as descreve como funcionais, "com as credenciais do seu negócio".
-Isso NÃO foi estendido a iFood, Keeta e 99Food (dependem de APIs, contratos e parceria), que seguem como "em homologação" e "prevista" até o diretor dizer o contrário.
+Em 11/10/2026 o diretor também confirmou iFood e 99Food como funcionais. O Keeta depende de homologação da plataforma e segue como "em homologação".
 
 | Função | Classe | Como o site descreve |
 |---|---|---|
@@ -22,8 +22,8 @@ Isso NÃO foi estendido a iFood, Keeta e 99Food (dependem de APIs, contratos e p
 | Campanha sugerida a partir de produto perto do vencimento, com permissão do dono | 4 | Peças existem (aviso, rascunho, aprovação); cadeia ponta a ponta não comprovada |
 | Campanhas e rascunhos para aprovação | 1/2 | Sem promessa de publicação automática em Instagram/Facebook |
 | Pix: PagBank e Mercado Pago (credenciais do cliente) | 1 | Descrito como funcional, com as credenciais do negócio |
-| iFood | 2 | "Conector em desenvolvimento, homologação externa em andamento" |
-| Keeta e 99Food | 3 | "Integração prevista, conforme APIs, contratos e parcerias" |
+| iFood e 99Food | 1 | Descritos como integrados (confirmado pelo diretor) |
+| Keeta | 2 | "Em andamento, dependente de homologação da plataforma" |
 | Gerente IA (consulta, sugestão, confirmação humana, auditoria) | 1/2 | Descrito; sem poder de decisão sozinho |
 | Emissão fiscal (NFC-e/NF-e) | não existe | Nunca prometer |
 | Lucro líquido, previsões financeiras, relatórios exportáveis | 4 | Não anunciar |
