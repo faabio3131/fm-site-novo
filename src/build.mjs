@@ -4,6 +4,7 @@ import { SITE, STATUS, wa } from './config.mjs';
 import { PRODUCTS, bySlug } from './products.mjs';
 import { ic } from './icons.mjs';
 import { IMAGES } from './images.mjs';
+import { VIDEOS } from './videos.mjs';
 
 const EXT = process.env.LINKEXT ?? '';         // '' em produção, '.html' no preview local
 const OUT = process.env.OUT ?? 'docs';
@@ -48,7 +49,7 @@ function page(route, { title, desc, active, body }) {
   fs.writeFileSync(file, html);
 }
 
-const SHORT = { core: 'Core', recursos: 'Recursos', estoque: 'Estoque', financeiro: 'Financeiro', 'core-acao': 'Core em ação', integracoes: 'Integrações', seguranca: 'Segurança', planos: 'Planos', duvidas: 'Dúvidas', gestao: 'Gestão', aluno: 'Aluno', equipamentos: 'Equipamentos', inteligencia: 'Inteligência', hub: 'Hub', autoridade: 'Autoridade', capacidades: 'Capacidades', disponibilidade: 'Disponibilidade', arquitetura: 'Arquitetura', governanca: 'Governança', kordena: 'Kordena', rotina: 'Rotina' };
+const SHORT = { demo: 'Demonstração', visao: 'Visão', ambiente: 'Ambiente', core: 'Core', recursos: 'Recursos', estoque: 'Estoque', financeiro: 'Financeiro', 'core-acao': 'Core em ação', integracoes: 'Integrações', seguranca: 'Segurança', planos: 'Planos', duvidas: 'Dúvidas', gestao: 'Gestão', aluno: 'Aluno', equipamentos: 'Equipamentos', inteligencia: 'Inteligência', hub: 'Hub', autoridade: 'Autoridade', capacidades: 'Capacidades', disponibilidade: 'Disponibilidade', arquitetura: 'Arquitetura', governanca: 'Governança', kordena: 'Kordena', rotina: 'Rotina' };
 const pill = (p) => { const s = STATUS[p.status]; return `<span class="pill ${s.tone}">${s.label}</span>`; };
 const head = (kick, title, lead, center) => `<div class="sh ${center ? 'center' : ''}"><span class="kick">${kick}</span><h2>${title}</h2>${lead ? `<p class="sub">${lead}</p>` : ''}</div>`;
 
@@ -100,6 +101,16 @@ function photoSections(p, c) {
   return (own + amb).replaceAll('@UP@', c.up);
 }
 
+function videoSection(p, c) {
+  const V = VIDEOS[p.slug]; if (!V) return '';
+  const has = (f) => fs.existsSync(path.join('assets/video', p.slug, f + '.mp4'));
+  const base = `${c.up}assets/video/${p.slug}/`;
+  const player = (f, label, cls = '') => has(f)
+    ? `<figure class="vid ${cls}"><video controls preload="none" playsinline poster="${base}${f}.jpg" aria-label="${esc(label)}"><source src="${base}${f}.mp4" type="video/mp4"></video></figure>`
+    : `<figure class="vid empty ${cls}"><figcaption><b>Vídeo em preparação</b><span>${esc(label)}</span></figcaption></figure>`;
+  return `<section class="sec dark" id="demo"><div class="wrap">${head(V.kicker, V.title, V.lead, true)}<div style="margin-top:44px">${player(V.main.file, V.main.label, 'main')}</div>${V.clips.length ? `<div class="grid ${V.clips.length % 3 === 0 ? 'g3' : 'g4'}" style="margin-top:24px">${V.clips.map((k) => `<div class="clip">${player(k.file, k.title)}<h3>${esc(k.title)}</h3><p>${esc(k.text)}</p></div>`).join('')}</div>` : ''}</div></section>`;
+}
+
 function productPage(p) {
   const route = 'produtos/' + p.slug;
   const k = ctas(p);
@@ -110,6 +121,7 @@ function productPage(p) {
       const hero = `<section class="phero"><div class="wrap"><a class="crumb" href="${c.href('produtos')}">← Todos os produtos</a><div class="${p.window ? 'pg' : ''}"><div><span class="eb"><i></i>${esc(p.eyebrow)}</span> ${pill(p)}<h1>${p.minimal ? esc(p.name) : esc(p.title)}</h1><p class="lead">${esc(p.lead)}</p>${k.primary ? `<div class="b">${k.primary}${k.secondary}</div>` : ''}<p class="note">${esc(p.trial.note)}</p></div>${p.window ? windowOf(p) : ''}</div></div></section>`;
       const parts = p.sections.map((s) => section(s, p, c));
       if (IMAGES[p.slug]) parts.splice(1, 0, photoSections(p, c));
+      if (VIDEOS[p.slug]) parts.splice(1, 0, videoSection(p, c));
       const body = parts.join('');
       const final = p.minimal ? '' : `<section class="sec"><div class="wrap"><div class="cta"><div><h2>${esc(p.name)}</h2><p>${esc(p.short)}</p></div><div class="b"><a class="btn w l" href="${k.url}">${esc(k.label)}</a><a class="btn gh l" href="mailto:${SITE.email}">Falar por e-mail</a></div></div></div></section>`;
       return subnav + hero + body + final;
