@@ -33,7 +33,7 @@ export const PRODUCTS = [
           { name: 'Atendimento e vendas', items: [
             ['chat', 'Atendente IA', 'Atende no WhatsApp, entende texto e áudio, monta o pedido e sugere complementos. O pedido só é fechado com a confirmação do cliente, e na dúvida chama uma pessoa.'],
             ['flow', 'Central de Pedidos', 'Salão, balcão, delivery e WhatsApp em uma lista só, com filtros, alertas e situação do pagamento.'],
-            ['card', 'PDV e pagamentos', 'Frente de caixa com carrinho, troco, cashback e Pix. Dinheiro, crédito, débito e voucher.'],
+            ['card', 'PDV e pagamentos', 'Frente de caixa com carrinho, troco, cashback e Pix, pelo PagBank ou Mercado Pago do seu negócio. Dinheiro, crédito, débito e voucher.'],
           ] },
           { name: 'Salão e cozinha', items: [
             ['store', 'Mesas e comandas', 'Mapa de mesas e comanda digital, com transferência, junção, divisão da conta e pagamento misto.'],
@@ -76,9 +76,16 @@ export const PRODUCTS = [
       { kind: 'questions', id: 'core-acao', kicker: 'Core em ação', title: 'Informação útil no momento de decidir.',
         lead: 'Exemplos de perguntas que representam a experiência do Kordena, sempre apoiada pelos dados da operação e com as decisões sob controle humano.',
         items: ['Quais produtos apresentam maior risco de perda?', 'Quais insumos estão próximos do vencimento?', 'Qual o valor financeiro atual do meu estoque?', 'Como está meu faturamento hoje?', 'Qual está sendo a minha margem?', 'Existe algum pedido atrasado?', 'Quais clientes estão há mais tempo sem comprar?', 'Existe oportunidade de promoção baseada no estoque atual?'] },
-      { kind: 'cards', id: 'integracoes', kicker: 'Integrações e ecossistema', title: 'Uma arquitetura preparada para conectar o seu negócio.',
-        lead: 'O Kordena tem arquitetura preparada para integrações com plataformas externas de delivery, conforme a disponibilidade de APIs, contratos e homologações. A ativação acontece conforme a implantação de cada operação.',
-        items: [['plug', 'iFood', 'Conector em desenvolvimento, com homologação externa em andamento.', 'Em homologação'], ['plug', 'Keeta e 99Food', 'Integração prevista, conforme APIs, contratos e parcerias.', 'Prevista'], ['map', 'Google Maps', 'Distância, prazo e taxa de entrega calculados a partir do endereço do cliente.'], ['chat', 'WhatsApp', 'Atendimento ao cliente e ações de relacionamento, sempre com consentimento.']] },
+      { kind: 'cards', id: 'integracoes', kicker: 'Integrações e ecossistema', title: 'Conectado às suas contas, com as suas chaves.',
+        lead: 'O Kordena é configurável: cada estabelecimento conecta as próprias contas (WhatsApp pela Meta, PagBank, Mercado Pago, Google Maps) com as suas credenciais, sem que a FM tenha acesso a elas. Plataformas externas de delivery dependem de APIs, contratos e homologações.',
+        items: [
+          ['chat', 'WhatsApp (Meta)', 'Atendimento ao cliente e ações de relacionamento pela conta do seu negócio, sempre com consentimento.'],
+          ['card', 'Pix, PagBank e Mercado Pago', 'Receba com a conta do seu estabelecimento. Você configura as suas credenciais.'],
+          ['map', 'Google Maps', 'Distância, prazo e taxa de entrega calculados a partir do endereço do cliente.'],
+          ['plug', 'iFood', 'Conector em desenvolvimento, com homologação externa em andamento.', 'Em homologação'],
+          ['plug', 'Keeta e 99Food', 'Integração prevista, conforme APIs, contratos e parcerias.', 'Prevista'],
+          ['lock', 'Suas chaves sob o seu controle', 'Cada cliente configura as próprias chaves e tokens. A FM não tem acesso a elas.'],
+        ] },
       { kind: 'cards', id: 'seguranca', dark: true, kicker: 'Segurança, confiança e governança', title: 'Inteligência com controle. Automação com responsabilidade.',
         items: [['eye', 'Controle humano', 'Alertas, análises e recomendações apoiam a equipe sem retirar das pessoas o controle sobre decisões importantes.'], ['users', 'Acessos e responsabilidades', 'Usuários e equipes trabalham conforme seus acessos, funções e responsabilidades.'], ['layers', 'Operação centralizada', 'Informações de áreas diferentes reunidas em uma mesma visão.'], ['shield', 'Inteligência governada', 'O Gerente IA Core respeita configuração, contexto e limites definidos para cada estabelecimento.']] },
       { kind: 'pricing', id: 'planos' },
