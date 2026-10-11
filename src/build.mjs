@@ -3,6 +3,7 @@ import path from 'node:path';
 import { SITE, STATUS, wa } from './config.mjs';
 import { PRODUCTS, bySlug } from './products.mjs';
 import { ic } from './icons.mjs';
+import { IMAGES } from './images.mjs';
 
 const EXT = process.env.LINKEXT ?? '';         // '' em produção, '.html' no preview local
 const OUT = process.env.OUT ?? 'docs';
@@ -84,6 +85,21 @@ function section(s, p, c) {
   return '';
 }
 
+
+const fig = (slug, im, cls = '') => {
+  const has = fs.existsSync(path.join('assets/img', slug, im.file));
+  return has
+    ? `<figure class="ph ${cls}"><img src="@UP@assets/img/${slug}/${im.file}" alt="${esc(im.alt)}" loading="lazy"></figure>`
+    : `<figure class="ph empty ${cls}"><figcaption><b>Imagem em preparação</b><span>${esc(im.brief)}</span></figcaption></figure>`;
+};
+function photoSections(p, c) {
+  const I = IMAGES[p.slug]; if (!I) return '';
+  const t = I.owner_text;
+  const own = `<section class="sec soft" id="visao"><div class="wrap"><div class="split flip"><div><span class="kick">${t.kicker}</span><h2 style="margin:14px 0 16px">${t.title}</h2><p class="sub">${t.lead}</p><ul>${t.bullets.map((b) => `<li>${ic('check')}<span>${esc(b)}</span></li>`).join('')}</ul></div>${fig(p.slug, I.owner, 'tall')}</div></div></section>`;
+  const amb = `<section class="sec" id="ambiente"><div class="wrap">${head('Ambiente', I.ambient_title, '', true)}<div class="grid ${I.ambient.length === 3 ? 'g3' : 'g2'}">${I.ambient.map((a) => fig(p.slug, a)).join('')}</div></div></section>`;
+  return (own + amb).replaceAll('@UP@', c.up);
+}
+
 function productPage(p) {
   const route = 'produtos/' + p.slug;
   const k = ctas(p);
@@ -92,7 +108,9 @@ function productPage(p) {
     body: (c) => {
       const subnav = p.sections.length ? `<div class="sn"><div class="wrap"><b>${p.name}</b><ul>${p.sections.map((s) => `<li><a href="#${s.id}">${esc(SHORT[s.id] || s.kicker)}</a></li>`).join('')}</ul>${k.primary ? `<a class="btn sm p" href="${k.url}">${k.label.length > 24 ? 'Testar grátis' : k.label}</a>` : ''}</div></div>` : '';
       const hero = `<section class="phero"><div class="wrap"><a class="crumb" href="${c.href('produtos')}">← Todos os produtos</a><div class="${p.window ? 'pg' : ''}"><div><span class="eb"><i></i>${esc(p.eyebrow)}</span> ${pill(p)}<h1>${p.minimal ? esc(p.name) : esc(p.title)}</h1><p class="lead">${esc(p.lead)}</p>${k.primary ? `<div class="b">${k.primary}${k.secondary}</div>` : ''}<p class="note">${esc(p.trial.note)}</p></div>${p.window ? windowOf(p) : ''}</div></div></section>`;
-      const body = p.sections.map((s) => section(s, p, c)).join('');
+      const parts = p.sections.map((s) => section(s, p, c));
+      if (IMAGES[p.slug]) parts.splice(1, 0, photoSections(p, c));
+      const body = parts.join('');
       const final = p.minimal ? '' : `<section class="sec"><div class="wrap"><div class="cta"><div><h2>${esc(p.name)}</h2><p>${esc(p.short)}</p></div><div class="b"><a class="btn w l" href="${k.url}">${esc(k.label)}</a><a class="btn gh l" href="mailto:${SITE.email}">Falar por e-mail</a></div></div></div></section>`;
       return subnav + hero + body + final;
     },
@@ -152,5 +170,6 @@ page('contato', { title: `Contato — ${SITE.name}`, desc: 'Vamos conversar.', a
 page('entrar', { title: `Entrar — ${SITE.name}`, desc: 'Acesse o seu produto.', active: '', body: (c) => `
 <section class="phero"><div class="wrap"><span class="kick">Entrar</span><h1>Acesse o seu produto.</h1><p class="lead" style="max-width:700px">Cada produto tem o seu próprio ambiente de acesso. Escolha abaixo.</p><div class="grid g2">${main.map((p) => { const url = p.external?.url || p.signupUrl; return `<div class="card"><h3 style="margin-top:0">${p.name}</h3><p>${url ? 'Acesse o ambiente do produto.' : 'Ambiente de acesso em preparação.'}</p><div style="margin-top:18px">${url ? `<a class="btn p" href="${url}">Entrar no ${p.name}</a>` : `<a class="btn" href="${wa(p.trialMsg)}">Quero ser avisado</a>`}</div></div>`; }).join('')}</div></div></section>` });
 
+fs.mkdirSync('assets/img', { recursive: true });
 fs.cpSync('assets', path.join(OUT, 'assets'), { recursive: true });
 console.log('ok', OUT);
