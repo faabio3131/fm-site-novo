@@ -24,3 +24,5 @@ O Command integra o checkout de pagamento: conecta o gateway e a conta bancária
 
 ## NFCore: página reescrita (11/10/2026)
 Base: capability matrix (05/10), matrizes de homologação NFC-e/NF-e/NFS-e, docs públicos e SDK TypeScript do `kordena-fiscal-engine-v2`. A página descreve NFC-e, NF-e e NFS-e, regras versionadas, emissão governada (idempotência, assinatura, XSD), consulta/cancelamento/inutilização, reconciliação, provedores configuráveis, certificados por referência, webhooks, portal, API e SDK. Aviso de disponibilidade: "Em uso no Kordena (testado e aprovado pelo diretor). Oferta avulsa ainda não liberada." O repositório registra COMMERCIAL_LIVE=NO, PRODUCTION_APPROVED=NO e homologação oficial externa não declarada; a afirmação de uso real no Kordena vem do diretor. Pendente: guardar a evidência de autorização real por modelo/UF/município.
+
+Esclarecimento do diretor (11/10/2026): os itens que o repositório fiscal marca como dependentes de homologação externa são configuração de cada cliente (tokens, chaves, certificado digital). O produto está funcionando. O site descreve assim, sem tratar como pendência do produto.

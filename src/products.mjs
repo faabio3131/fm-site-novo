@@ -231,9 +231,9 @@ export const PRODUCTS = [
           ['shield', 'Observabilidade', 'Saúde, métricas e registros para operar a infraestrutura com segurança.'],
         ] },
       { kind: 'cards', id: 'seguranca', dark: true, kicker: 'Segurança e governança', title: 'Fiscal exige precisão, evidência e autoridade clara.',
-        items: [['shield', 'Homologação real', 'Produção fiscal não é presumida. Cada cenário depende de credenciais, ambiente e evidência oficial.'], ['bot', 'Autoridade separada', 'IA apoia e coordena; serviços determinísticos validam e executam operações críticas.'], ['lock', 'Isolamento e acesso', 'Autenticação, RBAC, tenancy e escopo operacional permanecem autoridades técnicas do produto.'], ['layers', 'Evolução controlada', 'Mudanças preservam versionamento, testes e rastreabilidade.']] },
-      { kind: 'notice', id: 'disponibilidade', kicker: 'Disponibilidade', title: 'Em uso no Kordena. Oferta avulsa ainda não liberada.',
-        text: 'O NFCore já emite as notas do Kordena, e essa emissão foi testada e aprovada. A contratação e o teste do NFCore como produto avulso continuam fechados até a liberação oficial. Cada UF e município depende da configuração e da habilitação do próprio cliente.' },
+        items: [['shield', 'Configuração por cliente', 'Cada empresa conecta o seu certificado digital, os seus tokens e as suas chaves. Nada é compartilhado entre clientes.'], ['bot', 'Autoridade separada', 'IA apoia e coordena; serviços determinísticos validam e executam operações críticas.'], ['lock', 'Isolamento e acesso', 'Autenticação, RBAC, tenancy e escopo operacional permanecem autoridades técnicas do produto.'], ['layers', 'Evolução controlada', 'Mudanças preservam versionamento, testes e rastreabilidade.']] },
+      { kind: 'notice', id: 'disponibilidade', kicker: 'Disponibilidade', title: 'Funcionando no Kordena. Cada cliente ativa com as suas credenciais.',
+        text: 'O NFCore já emite as notas do Kordena, e essa emissão foi testada e aprovada. A contratação e o teste do NFCore como produto avulso ainda não estão abertos. Em cada cliente, a emissão é ativada com a configuração dele: os tokens, as chaves e o certificado digital da empresa, além da habilitação junto à SEFAZ e à prefeitura.' },
     ],
   },
   {
