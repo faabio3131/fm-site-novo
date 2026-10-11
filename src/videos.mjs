@@ -3,9 +3,9 @@
 export const VIDEOS = {
   kordena: {
     kicker: 'Demonstração do produto',
-    title: 'Veja o Kordena conectando a operação de ponta a ponta.',
-    lead: 'Filme demonstrativo com pedidos, produção, entrega e gestão financeira trabalhando conectados, com inteligência aplicada ao contexto do restaurante. Cenas ilustrativas.',
-    main: { file: 'demo', label: 'Filme demonstrativo do Kordena' },
+    title: 'Veja o Kordena na cozinha, em tempo real.',
+    lead: 'Pedidos chegando ao painel da cozinha, preparo acompanhado por etapa e expedição organizada. Cenas ilustrativas, em um filme demonstrativo provisório.',
+    main: { file: 'demo', label: 'Filme demonstrativo do Kordena: cozinha e expedição' },
     clips: [
       { file: 'pedidos', title: 'Pedidos e atendimento', text: 'Central de pedidos no salão, balcão e delivery.' },
       { file: 'cozinha', title: 'Produção e cozinha', text: 'Fila de preparo e KDS para a equipe.' },
