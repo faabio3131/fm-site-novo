@@ -30,3 +30,7 @@ Em 11/10/2026 o diretor também confirmou iFood e 99Food como funcionais. O Keet
 | Emissão fiscal (NFC-e/NF-e) | não existe | Nunca prometer |
 | Lucro líquido, previsões financeiras, relatórios exportáveis | 4 | Não anunciar |
 | Rastreamento de entregador em tempo real | 3/4 | Não anunciar |
+
+## Fiscal (NFCore integrado ao Kordena) — declaração do diretor em 11/10/2026
+O NFCore nasceu da função fiscal do Kordena, evoluiu e está integrado a ele. O site descreve as funções ao nível de capacidade (documento fiscal da venda, regras versionadas, classificação para restaurante, numeração, assinatura com certificado do cliente, consulta/cancelamento/inutilização, contingência, conciliação, arquivo/auditoria, IA como apoio). O documento "Kordena Fiscal — Arquitetura Mestre v0.1" (10/09/2026) ainda trazia o módulo como planejado.
+A CONFIRMAR pelo diretor antes da versão final: quais modelos de documento já operam (NFC-e, NF-e, NFS-e), em quais UFs, se a emissão já roda em produção ou só em homologação, e se contingência, cancelamento e inutilização já estão ativos. O site não cita nenhum modelo até essa confirmação.

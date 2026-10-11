@@ -49,7 +49,7 @@ export const PRODUCTS = [
             ['box', 'Estoque automático', 'Cada pedido dá baixa pelos insumos da receita. A quantidade fica sempre atualizada.'],
             ['calendar', 'Validade e alertas', 'Acompanha a validade de cada item e avisa o gerente quando algo está perto de vencer ou de faltar.'],
             ['file', 'Ficha técnica', 'Receita de cada prato com os insumos do estoque e o custo calculado.'],
-            ['eye', 'Leitura de notas pela câmera', 'Aponte a câmera para a nota fiscal de compra e a IA lê os itens, para lançar as mercadorias no estoque sem digitar tudo. É leitura de nota, não emissão fiscal.'],
+            ['eye', 'Leitura de notas pela câmera', 'Aponte a câmera para a nota fiscal de compra e a IA lê os itens, para lançar as mercadorias no estoque sem digitar tudo. É leitura de nota de compra para o estoque, não emissão de nota.'],
           ] },
           { name: 'Gestão e crescimento', items: [
             ['bot', 'Gerente IA', 'Consulta pedidos, atrasos e estoque, gera relatórios e prepara ações. Nada acontece sem o seu OK, e tudo fica registrado.'],
@@ -61,6 +61,14 @@ export const PRODUCTS = [
             ['mega', 'Campanhas no Facebook e Instagram', 'A IA cria campanhas orgânicas para as suas redes, a partir do cardápio e do estoque, pela conta do seu negócio e com a sua aprovação.'],
             ['chat', 'Disparos por WhatsApp', 'Envie ofertas e campanhas para a sua base de clientes pelo WhatsApp, com consentimento e opção de sair.'],
             ['users', 'Fidelização e resgate', 'Cashback e resgate de clientes que sumiram, com o consentimento do cliente.'],
+          ] },
+          { name: 'Fiscal, com o NFCore', items: [
+            ['file', 'Nota fiscal integrada à venda', 'A venda fechada no Kordena gera o documento fiscal, sem digitar de novo. Clique duplo ou falha de rede não geram duas notas.'],
+            ['layers', 'Regras fiscais sempre atualizadas', 'As regras tributárias são guardadas por vigência e a nota usa a regra da data da venda. O sistema entende o restaurante: prato preparado, bebida, combo, taxa de serviço e entrega.'],
+            ['lock', 'Numeração e assinatura seguras', 'Numeração controlada e documentos assinados com o certificado digital do seu negócio, guardado em cofre. A FM não tem acesso a ele.'],
+            ['check', 'Consulta, cancelamento e contingência', 'Acompanhe a situação de cada nota, cancele e inutilize numeração. Se o serviço da Receita falhar, a operação continua e o documento é reenviado depois.'],
+            ['eye', 'Conciliação e auditoria', 'Cruza vendas, pagamentos e notas e aponta venda sem nota, duplicidade e valor divergente. XML e protocolo ficam arquivados.'],
+            ['bot', 'IA apoia, regra decide', 'A IA ajuda a entender e a organizar. A validação e a execução fiscal ficam com regras determinísticas, nunca com a IA.'],
           ] },
           { name: 'Segurança', items: [
             ['lock', 'Controle e privacidade', 'Dados de cada loja isolados, permissões por função, PIN para ações sensíveis, auditoria e preparado para a LGPD.'],
@@ -81,6 +89,11 @@ export const PRODUCTS = [
       { kind: 'questions', id: 'core-acao', kicker: 'Core em ação', title: 'Informação útil no momento de decidir.',
         lead: 'Exemplos de perguntas que representam a experiência do Kordena, sempre apoiada pelos dados da operação e com as decisões sob controle humano.',
         items: ['Quais produtos apresentam maior risco de perda?', 'Quais insumos estão próximos do vencimento?', 'Qual o valor financeiro atual do meu estoque?', 'Como está meu faturamento hoje?', 'Qual está sendo a minha margem?', 'Existe algum pedido atrasado?', 'Quais clientes estão há mais tempo sem comprar?', 'Existe oportunidade de promoção baseada no estoque atual?'] },
+      { kind: 'split', id: 'fiscal', flip: true, kicker: 'Fiscal integrado', title: 'A venda vira nota fiscal sem retrabalho.',
+        lead: 'O NFCore, a infraestrutura fiscal da FM Tecnologia, nasceu da função fiscal do Kordena, evoluiu e hoje trabalha integrado a ele. A venda fechada segue para o fiscal com as regras certas, a numeração controlada e o certificado digital do seu negócio protegido.',
+        bullets: ['Documento fiscal gerado a partir da venda, sem digitar de novo', 'Regras tributárias versionadas, com a regra da data da venda', 'Numeração controlada e assinatura com o certificado do seu negócio', 'Consulta, cancelamento, inutilização e contingência', 'Conciliação entre venda, pagamento e nota, com auditoria'],
+        side: { title: 'Da venda ao arquivo fiscal', steps: ['Venda fechada no Kordena', 'Pagamento confirmado', 'Documento fiscal gerado', 'Assinado e enviado', 'Arquivado e conciliado'] },
+        ctaSlug: 'nfcore', ctaLabel: 'Conhecer o NFCore' },
       { kind: 'cards', id: 'integracoes', kicker: 'Integrações e ecossistema', title: 'Conectado às suas contas, com as suas chaves.',
         lead: 'O Kordena é configurável: cada estabelecimento conecta as próprias contas (Meta, para WhatsApp, Facebook e Instagram; PagBank; Mercado Pago; Google Maps; iFood e 99Food) com as suas credenciais, sem que a FM tenha acesso a elas. A integração com o Keeta depende de homologação da plataforma.',
         items: [
