@@ -18,3 +18,6 @@ Ver KORDENA_FUNCOES.md.
 - FM Command: o Visual Premium já foi publicado (o site pode citá-lo).
 - ERP Core: o repositório fm-next-gen-erp está em desenvolvimento; o site continua com "em desenvolvimento" e cita o foco inicial em estoque por lote e validade.
 - Fiscal do Kordena: NFC-e, NF-e e NFS-e testadas e aprovadas pelo diretor. Recomenda-se guardar a evidência (autorização real de cada modelo, UF/município) e atualizar os registros do repositório do motor fiscal, que ainda marcam produção como não aprovada.
+
+## FM Command: checkout de pagamento (declaração do diretor, 11/10/2026)
+O Command integra o checkout de pagamento: conecta o gateway e a conta bancária, gerencia e administra cobranças e recebimentos. No repositório isso é o módulo de billing central (checkout Pix via Asaas, vínculo imutável tenant/cliente/produto/fatura, conciliação) e as telas de cobrança e recebíveis por produto. O repositório registra "NOT PRODUCTION APPROVED / NO-GO para dinheiro real": homologação do Asaas Sandbox pendente e nenhum Pix real emitido. O site descreve a função com o selo "Em homologação". Atualizar quando houver a primeira cobrança real.
