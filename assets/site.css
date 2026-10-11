@@ -120,3 +120,5 @@ h3{font-size:21px;letter-spacing:-.015em;font-weight:700;line-height:1.25}
 .sn .btn{white-space:nowrap}
 @media(max-width:1000px){.c5{grid-template-columns:repeat(2,1fr)}.c5>*,.c5>*:nth-child(n+4){grid-column:auto}}
 @media(max-width:640px){.c5{grid-template-columns:1fr}}
+
+.gh{margin-top:44px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:700}.card.sm{padding:22px}.card.sm h3{font-size:18px;margin:14px 0 6px}.card.sm p{font-size:14.5px}
