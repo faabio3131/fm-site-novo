@@ -1,9 +1,4 @@
 {
- "kordena/gestor.jpg": {
-  "by": "SpotOn",
-  "by_url": "https://unsplash.com/@spotonpos?utm_source=fm_tecnologia&utm_medium=referral",
-  "page": "https://unsplash.com/photos/restaurant-worker-uses-a-touch-screen-in-a-professional-kitchen-mx9F9ptC5RA?utm_source=fm_tecnologia&utm_medium=referral"
- },
  "kordena/hamburgueria.jpg": {
   "by": "Jesson Mata",
   "by_url": "https://unsplash.com/@jessonmata?utm_source=fm_tecnologia&utm_medium=referral",
@@ -18,5 +13,15 @@
   "by": "hiding ninja",
   "by_url": "https://unsplash.com/@hidingninjatokyo?utm_source=fm_tecnologia&utm_medium=referral",
   "page": "https://unsplash.com/photos/a-bustling-restaurant-interior-with-a-bar-and-decorative-lighting-Rpw5dto_LP4?utm_source=fm_tecnologia&utm_medium=referral"
+ },
+ "kordena/cozinha.jpg": {
+  "by": "SpotOn",
+  "by_url": "https://unsplash.com/@spotonpos?utm_source=fm_tecnologia&utm_medium=referral",
+  "page": "https://unsplash.com/photos/restaurant-worker-uses-a-touch-screen-in-a-professional-kitchen-mx9F9ptC5RA?utm_source=fm_tecnologia&utm_medium=referral"
+ },
+ "kordena/gestor.jpg": {
+  "by": "Bench Accounting",
+  "by_url": "https://unsplash.com/@benchaccounting?utm_source=fm_tecnologia&utm_medium=referral",
+  "page": "https://unsplash.com/photos/man-operating-laptop-on-top-of-table-C3V88BOoRoM?utm_source=fm_tecnologia&utm_medium=referral"
  }
 }
