@@ -1,7 +1,7 @@
 // Seções da página do Iron Fit Core, escritas a partir da leitura dos repositórios iron-fit-backend e iron-fit-app.
 // Só afirma o que o código comprova; o que depende de parceiro ou de ativação aparece como tal.
 export const IRON_SECTIONS = [
-  { kind: 'flow', id: 'core', kicker: 'Core vertical FM Tecnologia', title: 'Um Core para conectar toda a operação da academia.',
+  { kind: 'flow', id: 'core', figure: { file: 'core.webp', alt: 'Iron Fit Core no centro, conectando aluno, treino, avaliação, equipamentos, agenda, acesso, financeiro e inteligência' }, kicker: 'Core vertical FM Tecnologia', title: 'Um Core para conectar toda a operação da academia.',
     lead: 'O Iron Fit Core organiza gestão, operação e experiência do aluno sobre o mesmo contexto, conectando módulos e dados para reduzir controles isolados.',
     items: [['01', 'Aluno'], ['02', 'Treino'], ['03', 'Avaliação'], ['04', 'Equipamentos'], ['05', 'Agenda'], ['06', 'Acesso'], ['07', 'Financeiro'], ['08', 'Inteligência']] },
   { kind: 'groups', id: 'recursos', kicker: 'O que o Iron Fit Core faz', title: 'Cada função, em poucas palavras.',
@@ -47,7 +47,7 @@ export const IRON_SECTIONS = [
     lead: 'O catálogo mestre evita cadastros repetitivos: a unidade seleciona os equipamentos que tem e o sistema relaciona os exercícios a esses aparelhos.',
     bullets: ['Catálogo mestre com cerca de 165 equipamentos', 'Inventário próprio de cada unidade', 'Relação entre exercício e equipamento', 'Sugestão de aparelhos novos, com revisão pela FM'],
     side: { title: 'Do catálogo ao treino', steps: ['Catálogo mestre', 'Inventário da unidade', 'Exercícios compatíveis', 'Treino'] } },
-  { kind: 'cards', id: 'inteligencia', kicker: 'Iron Intelligence · em ativação', title: 'Inteligência com governança desde o primeiro dia.',
+  { kind: 'cards', id: 'inteligencia', figure: { file: 'inteligencia.webp', alt: 'Iron Intelligence: contexto, insights, evolução e governança, com o profissional sempre no controle' }, kicker: 'Iron Intelligence · em ativação', title: 'Inteligência com governança desde o primeiro dia.',
     lead: 'A estrutura de IA do Iron Fit Core já nasce com as regras, e os recursos de IA são ativados conforme o provedor contratado. Sem eles, o produto continua completo.',
     items: [['check', 'Treino só com aprovação', 'Um treino sugerido pela IA sempre entra como "em revisão" e só vale depois que um profissional aprova.'], ['lock', 'Saúde só com consentimento', 'Dados de saúde só são usados se o aluno tiver consentido.'], ['eye', 'Dados sensíveis protegidos', 'Senhas, segredos e dados financeiros são removidos antes de qualquer envio.'], ['shield', 'Fora do acesso e do dinheiro', 'A IA não participa da decisão da catraca nem do financeiro.']] },
   { kind: 'split', id: 'hub', flip: true, kicker: 'Aggregator Hub', title: 'Preparado para receber alunos de plataformas fitness.',

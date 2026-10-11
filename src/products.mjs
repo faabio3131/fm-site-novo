@@ -200,7 +200,7 @@ export const PRODUCTS = [
         { h: 'Core Fiscal', p: 'O Core coordena. A autoridade crítica permanece determinística.', ai: true },
       ] },
     sections: [
-      { kind: 'flow', id: 'autoridade', kicker: 'Fluxo de autoridade', title: 'O Core coordena. A autoridade crítica permanece determinística.',
+      { kind: 'flow', id: 'autoridade', figure: { file: 'marca.webp', alt: 'NFCore, Infrastructure Mission Control' }, kicker: 'Fluxo de autoridade', title: 'O Core coordena. A autoridade crítica permanece determinística.',
         lead: 'Recomendação de IA não substitui validação, política, assinatura, autorização, homologação ou execução fiscal.',
         items: [['01', 'Contexto fiscal'], ['02', 'NFCore'], ['03', 'Serviços determinísticos'], ['04', 'Providers e autoridades'], ['05', 'Auditoria']] },
       { kind: 'cards', id: 'documentos', kicker: 'Documentos fiscais', title: 'NFC-e, NF-e e NFS-e na mesma infraestrutura.',

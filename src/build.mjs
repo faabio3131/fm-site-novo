@@ -70,6 +70,13 @@ function windowOf(p) {
 }
 
 function section(s, p, c) {
+  const html = sectionBase(s, p, c);
+  if (!s.figure || !fs.existsSync(path.join('assets/img', p.slug, s.figure.file))) return html;
+  const f = s.figure;
+  return html.replace(/<\/div><\/section>$/, `<figure class="dg"><img src="${c.up}assets/img/${p.slug}/${f.file}" alt="${esc(f.alt)}" loading="lazy"></figure></div></section>`);
+}
+
+function sectionBase(s, p, c) {
   const wrap = (inner, cls = '') => `<section class="sec ${s.dark ? 'dark' : cls}" id="${s.id}"><div class="wrap">${inner}</div></section>`;
   switch (s.kind) {
     case 'flow': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="flow">${s.items.map(([a, b]) => `<div>${/^\d+$/.test(a) ? `<b>${a}</b>` : `<b>${esc(a).toUpperCase()}</b>`}<span>${esc(b)}</span></div>`).join('')}</div>`, 'soft');
