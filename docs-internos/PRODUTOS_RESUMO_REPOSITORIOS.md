@@ -13,3 +13,8 @@ Comprovado em testes: atendimento WhatsApp oficial (Meta), vendedor IA com preç
 Hoje é um protótipo de controle de estoque por lote e validade (FEFO), multi-tenant, sem OCR, sem web e sem deploy. Não é ainda um ERP completo. O site diz apenas "em desenvolvimento" e cita o foco inicial.
 ## NFCore / fiscal (kordena-fiscal-engine-v2)
 Ver KORDENA_FUNCOES.md.
+
+## Confirmações do diretor (11/10/2026)
+- FM Command: o Visual Premium já foi publicado (o site pode citá-lo).
+- ERP Core: o repositório fm-next-gen-erp está em desenvolvimento; o site continua com "em desenvolvimento" e cita o foco inicial em estoque por lote e validade.
+- Fiscal do Kordena: NFC-e, NF-e e NFS-e testadas e aprovadas pelo diretor. Recomenda-se guardar a evidência (autorização real de cada modelo, UF/município) e atualizar os registros do repositório do motor fiscal, que ainda marcam produção como não aprovada.
