@@ -50,7 +50,7 @@ function page(route, { title, desc, active, body }) {
   fs.writeFileSync(file, html);
 }
 
-const SHORT = { salao: 'Salão', atendente: 'Atendente IA', cozinha: 'Cozinha', demo: 'Demonstração', visao: 'Visão', ambiente: 'Ambiente', core: 'Core', recursos: 'Recursos', estoque: 'Estoque', financeiro: 'Financeiro', 'core-acao': 'Core em ação', integracoes: 'Integrações', seguranca: 'Segurança', planos: 'Planos', duvidas: 'Dúvidas', gestao: 'Gestão', aluno: 'Aluno', equipamentos: 'Equipamentos', inteligencia: 'Inteligência', hub: 'Hub', autoridade: 'Autoridade', capacidades: 'Capacidades', disponibilidade: 'Disponibilidade', arquitetura: 'Arquitetura', governanca: 'Governança', kordena: 'Kordena', rotina: 'Rotina' };
+const SHORT = { desafio: 'Desafio', 'para-quem': 'Para quem', 'como-comecar': 'Como começar', salao: 'Salão', atendente: 'Atendente IA', cozinha: 'Cozinha', demo: 'Demonstração', visao: 'Visão', ambiente: 'Ambiente', core: 'Core', recursos: 'Recursos', estoque: 'Estoque', financeiro: 'Financeiro', 'core-acao': 'Core em ação', integracoes: 'Integrações', seguranca: 'Segurança', planos: 'Planos', duvidas: 'Dúvidas', gestao: 'Gestão', aluno: 'Aluno', equipamentos: 'Equipamentos', inteligencia: 'Inteligência', hub: 'Hub', autoridade: 'Autoridade', capacidades: 'Capacidades', disponibilidade: 'Disponibilidade', arquitetura: 'Arquitetura', governanca: 'Governança', kordena: 'Kordena', rotina: 'Rotina' };
 const pill = (p) => { const s = STATUS[p.status]; return `<span class="pill ${s.tone}">${s.label}</span>`; };
 const head = (kick, title, lead, center) => `<div class="sh ${center ? 'center' : ''}"><span class="kick">${kick}</span><h2>${title}</h2>${lead ? `<p class="sub">${lead}</p>` : ''}</div>`;
 
@@ -77,6 +77,8 @@ function section(s, p, c) {
     case 'split': return wrap(`<div class="split ${s.flip ? 'flip' : ''}"><div><span class="kick">${s.kicker}</span><h2 style="margin:14px 0 16px">${s.title}</h2><p class="sub">${s.lead}</p><ul>${s.bullets.map((b) => `<li>${ic('check')}<span>${esc(b)}</span></li>`).join('')}</ul></div><div class="panel"><h4>${esc(s.side.title)}</h4><div class="steps">${s.side.steps.map((x, i) => `<div><i>${i + 1}</i>${esc(x)}</div>`).join('')}</div></div></div>`, s.flip ? 'soft' : '');
     case 'questions': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="qs">${s.items.map((q) => `<div>“${esc(q)}”</div>`).join('')}</div>`, 'soft');
     case 'faq': return wrap(head('Antes de começar', 'Perguntas frequentes', '', true) + `<div class="faq">${s.items.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div>`);
+    case 'contrast': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="grid ${s.items.length === 4 ? 'g2' : s.items.length === 5 ? 'c5' : 'g3'} cgrid">${s.items.map(([pr, an]) => `<div class="card cc"><span class="cl">O desafio</span><h3>${esc(pr)}</h3><span class="cl ok">A resposta</span><p>${esc(an)}</p></div>`).join('')}</div>`);
+    case 'who': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="chips">${s.chips.map((c) => `<span>${esc(c)}</span>`).join('')}</div>`, 'soft');
     case 'notice': return wrap(head(s.kicker, s.title, '', true) + `<div class="notice">${esc(s.text)}</div>`);
     case 'pricing': {
       if (!p.pricing) return '';
@@ -130,8 +132,10 @@ function productPage(p) {
       const subnav = p.sections.length ? `<div class="sn"><div class="wrap"><b>${p.name}</b><ul>${p.sections.map((s) => `<li><a href="#${s.id}">${esc(SHORT[s.id] || s.kicker)}</a></li>`).join('')}</ul>${k.primary ? `<a class="btn sm p" href="${k.url}">${k.label.length > 24 ? 'Testar grátis' : k.label}</a>` : ''}</div></div>` : '';
       const hero = `<section class="phero"><div class="wrap"><a class="crumb" href="${c.href('produtos')}">← Todos os produtos</a><div class="${p.window ? 'pg' : ''}"><div><span class="eb"><i></i>${esc(p.eyebrow)}</span> ${pill(p)}<h1>${p.minimal ? esc(p.name) : esc(p.title)}</h1><p class="lead">${esc(p.lead)}</p>${k.primary ? `<div class="b">${k.primary}${k.secondary}</div>` : ''}<p class="note">${esc(p.trial.note)}</p></div>${p.window ? windowOf(p) : ''}</div></div></section>`;
       const parts = p.sections.map((s) => section(s, p, c));
-      if (IMAGES[p.slug]) parts.splice(1, 0, photoSections(p, c));
-      if (VIDEOS[p.slug]) parts.splice(1, 0, videoSection(p, c));
+      const flowAt = p.sections.findIndex((x) => x.kind === 'flow');
+      const at = flowAt >= 0 ? flowAt + 1 : 1;
+      parts.splice(at, 0, (VIDEOS[p.slug] ? videoSection(p, c) : '') + (IMAGES[p.slug] ? photoSections(p, c) : ''));
+      
       const body = parts.join('');
       const final = p.minimal ? '' : `<section class="sec"><div class="wrap"><div class="cta"><div><h2>${esc(p.name)}</h2><p>${esc(p.short)}</p></div><div class="b"><a class="btn w l" href="${k.url}">${esc(k.label)}</a><a class="btn gh l" href="mailto:${SITE.email}">Falar por e-mail</a></div></div></div></section>`;
       return subnav + hero + body + final;

@@ -1,4 +1,5 @@
 import { wa } from './config.mjs';
+import { COPY } from './copy.mjs';
 
 // Cada produto: status controla os botões. Quando o cadastro online existir,
 // preencha `signupUrl` e mude status para 'available'.
@@ -250,3 +251,16 @@ export const PRODUCTS = [
     trialMsg: '', talkMsg: 'Olá! Quero saber mais sobre a pesquisa da FM Tecnologia.', pricing: null, minimal: true, noCta: true, sections: [] },
 ];
 export const bySlug = (s) => PRODUCTS.find((p) => p.slug === s);
+
+// Mescla a camada de texto de marketing (src/copy.mjs) nos produtos.
+for (const p of PRODUCTS) {
+  const c = COPY[p.slug]; if (!c) continue;
+  if (c.title) p.title = c.title;
+  if (c.lead) p.lead = c.lead;
+  for (const sec of p.sections) { const o = c.overrides?.[sec.id]; if (o) Object.assign(sec, o); }
+  const faqAt = p.sections.findIndex((x) => x.kind === 'faq');
+  const planAt = p.sections.findIndex((x) => x.kind === 'pricing');
+  const insertAt = planAt >= 0 ? planAt : faqAt >= 0 ? faqAt : p.sections.length;
+  p.sections.splice(insertAt, 0, ...(c.after || []));
+  p.sections.unshift(...(c.before || []));
+}

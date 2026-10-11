@@ -113,3 +113,10 @@ h3{font-size:21px;letter-spacing:-.015em;font-weight:700;line-height:1.25}
 .core-side{display:flex;flex-direction:column;gap:8px;align-items:stretch;text-align:center}.chip-core{display:flex;gap:8px;justify-content:center;align-items:center;background:linear-gradient(135deg,#0f3fa8,#1f6df0);color:#fff;border-radius:14px;padding:14px;font-weight:700}.chip-core svg{width:20px;height:20px}
 .chip-s{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:11px;font-weight:600;font-size:14px}.arrow{color:var(--blue);font-weight:700;font-size:18px}.core-side small{color:var(--t3);font-size:12px;margin-top:6px}
 @media(max-width:640px){.chatmock{grid-template-columns:1fr;padding:18px}.phone{margin:0 auto}}
+
+.cgrid .cc{padding:26px;display:flex;flex-direction:column;gap:8px}.cgrid .cc h3{margin:2px 0 10px;font-size:19px}.cl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--t3)}.cl.ok{color:var(--blue);margin-top:auto}.cgrid .cc p{margin:0;color:var(--ink);font-size:15.5px}
+
+.c5{grid-template-columns:repeat(6,1fr)}.c5>*{grid-column:span 2}.c5>*:nth-child(n+4){grid-column:span 3}
+.sn .btn{white-space:nowrap}
+@media(max-width:1000px){.c5{grid-template-columns:repeat(2,1fr)}.c5>*,.c5>*:nth-child(n+4){grid-column:auto}}
+@media(max-width:640px){.c5{grid-template-columns:1fr}}

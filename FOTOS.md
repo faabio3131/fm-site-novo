@@ -1,29 +1,23 @@
-# Fotos do site (plano)
+# Imagens do site
 
-Fonte: Unsplash API (chave em `UNSPLASH_ACCESS_KEY`, nunca no repositório).
-Arquivos vão em `assets/img/<produto>/` com os nomes de `src/images.mjs`. Crédito do fotógrafo
-(nome e link) em cada foto, conforme as regras do Unsplash. Sem logos de terceiros, sem texto legível
-em telas, sem clientes inventados. Mostrar as opções à aprovação antes de aplicar.
+Decisão (Fábio): sem fotos genéricas de banco de imagens. Os espaços de imagem ficam reservados
+("Imagem em preparação") até haver imagens próprias, geradas no Gemini (cota a renovar) ou reais.
 
-| Produto | Arquivo | Busca sugerida |
+Para encaixar uma imagem: salvar em `assets/img/<produto>/<arquivo>.jpg` com o nome previsto em
+`src/images.mjs` e rodar `npm run build`. O site passa a mostrar a imagem sozinho.
+
+Aprovada e em uso: `kordena/gestor.jpg` (gerada no Canva, "Imagem ilustrativa").
+
+Regras: sem logos de terceiros, sem texto legível nas telas, sem clientes ou depoimentos inventados.
+Imagens geradas por IA levam o selo "Imagem ilustrativa" (campo `note` em `src/credits.json`).
+
+| Produto | Arquivo | Cena |
 |---|---|---|
-| kordena | gestor.jpg | restaurant owner laptop dashboard; manager looking at screen restaurant |
-| kordena | hamburgueria.jpg | burger restaurant kitchen grill |
-| kordena | pizzaria.jpg | pizzeria oven pizza chef |
-| kordena | restaurante.jpg | restaurant dining room waiter |
-| iron-fit | gestor.jpg | gym manager desk computer |
-| iron-fit | musculacao.jpg | gym weights equipment |
-| iron-fit | treino.jpg | personal trainer client workout |
-| iron-fit | recepcao.jpg | gym reception front desk |
-| nfcore | gestor.jpg | accountant computer documents office |
-| nfcore | escritorio.jpg | modern office finance team |
-| nfcore | equipe.jpg | team reviewing documents screen |
-| command | gestor.jpg | executive dashboard monitor office |
-| command | reuniao.jpg | boardroom meeting screen |
-| command | escritorio.jpg | modern executive office |
-| atendevendeia | gestor.jpg | small business owner smartphone chat |
-| atendevendeia | loja.jpg | small shop owner customer |
-| atendevendeia | atendimento.jpg | customer service phone messaging |
-
-
-Observação: kordena/gestor.jpg é imagem ilustrativa gerada no Canva (aprovada pelo Fábio).
+| kordena | gestor.jpg | (aprovada) proprietário com tablet em restaurante |
+| kordena | garcom.jpg | garçom com tablet tirando o pedido na mesa |
+| kordena | cozinha.jpg | equipe usando o painel de produção (KDS) |
+| kordena | hamburgueria.jpg, pizzaria.jpg, restaurante.jpg | ambientes do segmento |
+| iron-fit | gestor.jpg, musculacao.jpg, treino.jpg, recepcao.jpg | gestor de academia e ambientes |
+| nfcore | gestor.jpg, escritorio.jpg, equipe.jpg | responsável fiscal e escritório |
+| command | gestor.jpg, reuniao.jpg, escritorio.jpg | diretoria com painel executivo |
+| atendevendeia | gestor.jpg, loja.jpg, atendimento.jpg | empreendedor com WhatsApp e relatórios |
