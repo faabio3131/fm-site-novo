@@ -1,5 +1,6 @@
 import { wa } from './config.mjs';
 import { COPY } from './copy.mjs';
+import { IRON_SECTIONS } from './ironfit.mjs';
 
 // Cada produto: status controla os botões. Quando o cadastro online existir,
 // preencha `signupUrl` e mude status para 'available'.
@@ -138,9 +139,9 @@ export const PRODUCTS = [
       side: ['Alunos', 'Treinos', 'Avaliações', 'Agenda', 'Acesso', 'Equipamentos', 'Financeiro'],
       cards: [
         { h: 'Gestão da academia', p: 'Alunos, treinos, agenda, acessos, equipamentos e financeiro sobre a mesma base.' },
-        { h: 'Treinos e avaliações', p: 'Da avaliação à evolução, com aprovação profissional.' },
-        { h: 'Agenda e check-in', p: 'Reserva, presença e acesso conectados ao aluno.' },
-        { h: 'Iron Intelligence', p: 'Apoio à decisão. O profissional continua no controle.', ai: true },
+        { h: 'Treinos e avaliações', p: 'Da avaliação à evolução, com aprovação do profissional.' },
+        { h: 'Agenda e acesso', p: 'Reserva, check-in e controle de acesso por QR Code.' },
+        { h: 'Iron Intelligence', p: 'IA governada: o profissional aprova e continua no controle.', ai: true },
       ] },
     sections: [
       { kind: 'flow', id: 'core', kicker: 'Core vertical FM Tecnologia', title: 'Um Core para conectar toda a operação.',
@@ -218,7 +219,7 @@ export const PRODUCTS = [
     eyebrow: 'FM Command · Central executiva',
     title: 'Comande a empresa com dados governados e inteligência no centro.',
     lead: 'O FM Command consolida produtos, métricas, financeiro, crescimento, clientes, operações, alertas e inteligência executiva em uma única visão — sem inventar informação quando a fonte não existe.',
-    trial: { note: 'Base técnica certificada e Visual Premium concluído. Integrações externas são ativadas de forma governada por ambiente.' },
+    trial: { note: 'Em homologação: base técnica certificada em ambiente de testes. Integrações externas são ativadas de forma governada por cliente.' },
     trialMsg: 'Olá! Quero solicitar uma demonstração do FM Command.',
     talkMsg: 'Olá! Quero conversar sobre o FM Command.',
     ctaLabel: 'Solicitar demonstração',
@@ -234,16 +235,16 @@ export const PRODUCTS = [
     sections: [
       { kind: 'flow', id: 'arquitetura', kicker: 'Arquitetura executiva', title: 'O Command conecta. As fontes continuam sendo autoridade.',
         lead: 'A informação entra por contratos governados, passa pela malha de integrações e pelo motor determinístico de métricas, ganha proveniência e só então chega ao painel e ao Core.',
-        items: [['01', 'Fontes'], ['02', 'Integration Fabric'], ['03', 'Metric Engine'], ['04', 'Evidence Pack'], ['05', 'FM Cognitive Core'], ['06', 'Command']] },
+        items: [['01', 'Fontes'], ['02', 'Integration Fabric'], ['03', 'Metric Engine'], ['04', 'Proveniência e evidências'], ['05', 'FM Cognitive Core'], ['06', 'Command']] },
       { kind: 'cards', id: 'capacidades', kicker: 'Capacidades', title: 'Uma visão executiva sem perder o contexto.',
         lead: 'Cada módulo preserva a separação entre dado disponível, dado ausente, inferência e recomendação.',
         items: [['chart', 'Visão executiva', 'Indicadores governados em um painel único, com período, qualidade, atualidade e origem.'], ['layers', 'Inteligência por produto', 'Cada SaaS como escopo próprio, com comparação quando a semântica permitir.'], ['wallet', 'Financeiro', 'Faturamento, recorrência e demais métricas somente com fonte e definição aprovadas.'], ['mega', 'Growth e Comercial', 'Funil, conversão, trials, assinaturas e sinais comerciais de forma rastreável.'], ['cog', 'Operações e SRE', 'Sinais operacionais, saúde de integrações e evidências para investigar incidentes.'], ['users', 'Clientes, uso e suporte', 'Métricas de clientes, utilização, engajamento e suporte.'], ['eye', 'Alertas governados', 'Regras determinísticas, ocorrências e ações com idempotência, RBAC e auditoria.'], ['plug', 'Fontes e integrações', 'Contratos explícitos, source registry, proveniência e isolamento por organização e produto.']] },
       { kind: 'questions', id: 'core', kicker: 'FM Cognitive Vertical Core', title: 'Pergunte à empresa. O Core responde com o que consegue provar.',
         items: ['Quanto faturamos neste período?', 'Quais produtos exigem atenção agora?', 'Como está a conversão de trials?', 'Existem sinais operacionais fora do padrão?', 'Compare o desempenho dos produtos compatíveis.', 'Quais dados estão indisponíveis e por quê?'] },
       { kind: 'cards', id: 'governanca', dark: true, kicker: 'Governança por padrão', title: 'Controle, segurança e rastreabilidade fazem parte da arquitetura.',
-        items: [['eye', 'Dados ausentes', 'Indisponível, nunca zero inventado.'], ['lock', 'Tenant e produto', 'Escopo resolvido no servidor e bloqueio por padrão.'], ['bot', 'Core Executivo', 'Interpreta evidências; não substitui a autoridade determinística.'], ['shield', 'Ações críticas', 'Prévia, autorização e auditoria antes de qualquer efeito sensível.']] },
+        items: [['eye', 'Dados ausentes', 'Indisponível, nunca zero inventado. Métrica sem definição aprovada aparece como "semântica pendente".'], ['lock', 'Tenant e produto', 'Escopo resolvido no servidor e bloqueio por padrão.'], ['bot', 'Core Executivo', 'Interpreta evidências; não substitui a autoridade determinística.'], ['shield', 'Ações críticas', 'Prévia, autorização e auditoria antes de qualquer efeito sensível.']] },
       { kind: 'split', id: 'kordena', kicker: 'Integração entre produtos', title: 'O Kordena já prova o modelo de integração do Command.',
-        lead: 'O FM Command consome dados comerciais e de saúde do Kordena por contrato server-to-server, preservando a autoridade do Kordena e evitando acesso direto ao banco operacional.',
+        lead: 'O FM Command consome dados comerciais do Kordena por contrato server-to-server, preservando a autoridade do Kordena e evitando acesso direto ao banco operacional. Hoje o Kordena é a fonte conectada; Iron Fit Core, CampaIA e NFCore já estão cadastrados e entram como fontes na sequência.',
         bullets: ['Clientes e contas comerciais', 'Trials e conversão', 'Assinaturas e pagamentos', 'Proveniência e sincronização idempotente'],
         side: { title: 'Sem SQL direto', steps: ['Kordena', 'API governada', 'FM Command'] } },
       { kind: 'faq', id: 'duvidas', items: [
@@ -252,7 +253,8 @@ export const PRODUCTS = [
         ['Como o Core Executivo usa inteligência artificial?', 'O Core recebe fatos e evidências das fontes autorizadas, separa fatos, inferências e recomendações e utiliza o modelo externo como provider de capacidade cognitiva. O modelo não é a autoridade dos números.'],
         ['É possível acompanhar vários produtos no mesmo painel?', 'Sim. O Product Registry e o escopo por produto permitem acompanhar produtos individualmente e executar comparações somente quando métrica, unidade, moeda e período forem compatíveis.'],
         ['O Command executa automações sozinho?', 'Alertas e ações seguem governança. Ações sensíveis não são disparadas diretamente pelo Core; passam por regras, permissões, prévia e confirmação conforme o risco.'],
-        ['Qual é o estado de disponibilidade?', 'A base técnica e o Visual Premium estão concluídos. A ativação comercial final depende das configurações de runtime e integrações externas aplicáveis ao ambiente de produção.'],
+        ['Qual é o estado de disponibilidade?', 'Em homologação. A base técnica foi certificada em ambiente de testes, e a disponibilidade pública depende da publicação em produção e da conexão das fontes de cada cliente.'],
+        ['Os alertas avisam por e-mail ou WhatsApp?', 'Hoje os alertas e as notificações aparecem dentro do painel. Canais externos ainda não fazem parte da versão atual.'],
       ] },
     ],
   },
@@ -272,21 +274,42 @@ export const PRODUCTS = [
       cards: [
         { h: 'Atender', p: 'Resposta curta e cordial, em português, assim que o cliente escreve.' },
         { h: 'Levar ao pagamento', p: 'Da pergunta ao link de pagamento, na mesma conversa.' },
-        { h: 'Recuperar', p: 'Carrinho abandonado, Pix ou boleto sem pagamento e assinatura em atraso.' },
+        { h: 'Recuperar', p: 'Carrinho abandonado, Pix ou boleto sem pagamento, compra recusada e conversa que esfriou.' },
         { h: 'Passagem para pessoa', p: 'Desconto, negociação ou reclamação vão para a sua equipe.', ai: true },
       ] },
     sections: [
       { kind: 'flow', id: 'rotina', kicker: 'Da primeira mensagem ao pagamento', title: 'Conheça a rotina.',
         lead: 'Veja como uma conversa vira venda, e como a venda parada volta para a conversa, com a sua equipe no comando.',
         items: [['01', 'Atende o cliente no WhatsApp'], ['02', 'Apresenta a oferta e o link de pagamento'], ['03', 'Retoma a venda que esfriou']] },
-      { kind: 'cards', id: 'recursos', kicker: 'Recursos em foco', title: 'Controle e segurança desde o começo.', lead: 'Uma IA que vende precisa de limites claros.',
-        items: [['chat', 'Atendimento no WhatsApp', 'Responde na hora, com mensagens curtas e cordiais, pela API oficial do WhatsApp Business.'], ['card', 'Preço e link só do seu cadastro', 'Nome da oferta, preço e link de pagamento vêm sempre da lista que você cadastra. A IA não inventa condição.'], ['users', 'Passagem para uma pessoa', 'Desconto, negociação, reclamação, nota fiscal ou pedido de atendimento humano vão para a sua equipe.'], ['shield', 'Respeito a quem não quer receber', 'Quem responde SAIR deixa de receber mensagens.'], ['check', 'Consentimento declarado', 'A recuperação só fala com quem autorizou.'], ['bot', 'Assistente virtual identificado', 'A IA se apresenta como assistente virtual e nunca finge ser uma pessoa.'], ['chart', 'Relatórios e limite por plano', 'Conversas, vendas recuperadas e uso do plano, com limite mensal de respostas da IA por plano.'], ['lock', 'Segurança e privacidade', 'Dados de cada cliente isolados, credenciais cifradas e opção de exportar ou apagar os dados de uma pessoa.']] },
+      { kind: 'groups', id: 'recursos', kicker: 'O que o AtendeVendeIA faz', title: 'Controle e segurança desde o começo.', lead: 'Uma IA que vende precisa de limites claros. Cada função, em poucas palavras.',
+        groups: [
+          { name: 'Atender e vender', items: [
+            ['chat', 'Atendimento no WhatsApp', 'Responde na hora, com mensagens curtas e cordiais, pela API oficial do WhatsApp Business, da Meta. Também atende Messenger e Instagram, em fase de testes.'],
+            ['card', 'Preço e link só do seu cadastro', 'Nome da oferta, preço e link de pagamento vêm da lista que você cadastra. Um texto com preço ou link inventado é barrado, e a conversa vai para uma pessoa.'],
+            ['users', 'Passagem para uma pessoa', 'Desconto, negociação, reclamação, pedido de atendente, limite do plano ou qualquer dúvida passam para a sua equipe.'],
+          ] },
+          { name: 'Recuperar vendas', items: [
+            ['flow', 'Sequências de recuperação', 'Carrinho abandonado, Pix ou boleto sem pagamento, compra recusada, orçamento parado e conversa que esfriou, com mensagens que você ajusta.'],
+            ['check', 'Respeito a quem não quer receber', 'Quem pede para parar, com SAIR ou frases parecidas, deixa de receber, e as mensagens agendadas são canceladas.'],
+            ['eye', 'Consentimento declarado', 'A recuperação só fala com quem autorizou, e você declara o consentimento dos contatos antes de ligar.'],
+          ] },
+          { name: 'Acompanhar e controlar', items: [
+            ['chart', 'Relatórios e limite por plano', 'Funil, conversas, vendas recuperadas e uso do plano, com limite mensal de respostas da IA.'],
+            ['bot', 'Assistente identificado', 'A IA é orientada a se identificar como assistente virtual da loja e a nunca fingir ser uma pessoa.'],
+            ['plug', 'Checkouts conectados', 'Recebe os eventos de checkout da Cakto. A integração com a Hotmart está em validação.'],
+          ] },
+          { name: 'Segurança e privacidade', items: [
+            ['lock', 'Dados e credenciais protegidos', 'Dados de cada cliente isolados, credenciais cifradas e entrada pela conta Google.'],
+            ['shield', 'Direitos do titular', 'Exporte ou apague os dados de uma pessoa e configure por quanto tempo guardar as conversas.'],
+          ] },
+        ] },
       { kind: 'faq', id: 'duvidas', items: [
         ['A IA pode inventar preço ou condição?', 'Não. O preço, o nome da oferta e o link de pagamento vêm sempre da lista de ofertas que você cadastra. Se o cliente pede algo fora dela, a conversa passa para uma pessoa.'],
         ['Funciona com qual WhatsApp?', 'Com a API oficial do WhatsApp Business, da Meta. A conexão do número e das credenciais da conta é feita pelo cliente no painel, e a conta segue os requisitos da Meta.'],
         ['O AtendeVendeIA já está disponível?', 'Ainda não. O produto está em preparação para o lançamento. Fale com a FM para saber da disponibilidade.'],
         ['Quanto custa?', 'Os planos estão sendo finalizados e serão divulgados no lançamento.'],
-        ['A IA se passa por uma pessoa?', 'Não. Ela se apresenta como assistente virtual da loja e passa a conversa para uma pessoa quando necessário.'],
+        ['A IA se passa por uma pessoa?', 'Não. Ela é orientada a se identificar como assistente virtual da loja quando perguntarem, nunca finge ser uma pessoa e passa a conversa para a sua equipe quando necessário.'],
+        ['Com quais lojas ou checkouts funciona?', 'Hoje recebe os eventos de checkout da Cakto, e a integração com a Hotmart está em validação. Não há integração direta com lojas virtuais específicas.'],
       ] },
     ],
   },
@@ -296,7 +319,7 @@ export const PRODUCTS = [
     trialMsg: 'Olá! Quero ser avisado sobre o CampaIA.', talkMsg: 'Olá! Quero saber mais sobre o CampaIA.', pricing: null, minimal: true, sections: [] },
   { slug: 'erp-core', name: 'ERP Core', group: 'dev', status: 'dev', signupUrl: null, tag: 'Em desenvolvimento',
     short: 'Projeto em desenvolvimento pela FM Tecnologia.', eyebrow: 'Em desenvolvimento · Em breve', title: 'ERP Core',
-    lead: 'Projeto em desenvolvimento. Mais informações serão publicadas em breve.', trial: { note: 'Projeto em desenvolvimento pela FM Tecnologia.' },
+    lead: 'Projeto em desenvolvimento. O primeiro módulo em construção é o controle de estoque por lote e validade (FEFO), com arquitetura para vários clientes. Mais informações serão publicadas em breve.', trial: { note: 'Projeto em desenvolvimento pela FM Tecnologia.' },
     trialMsg: 'Olá! Quero ser avisado sobre o ERP Core.', talkMsg: 'Olá! Quero saber mais sobre o ERP Core.', pricing: null, minimal: true, sections: [] },
   { slug: 'super-core-extreme', name: 'Super Core Extreme', group: 'rnd', status: 'rnd', signupUrl: null, tag: 'Pesquisa e desenvolvimento',
     short: 'Pesquisa e desenvolvimento da FM Tecnologia. Sem oferta comercial nesta etapa.', eyebrow: 'Tecnologia & P&D · Em desenvolvimento',
@@ -306,6 +329,8 @@ export const PRODUCTS = [
 ];
 export const bySlug = (s) => PRODUCTS.find((p) => p.slug === s);
 
+// Iron Fit Core: seções vindas de src/ironfit.mjs (leitura dos repositórios do produto).
+PRODUCTS.find((x) => x.slug === 'iron-fit').sections = IRON_SECTIONS;
 // Mescla a camada de texto de marketing (src/copy.mjs) nos produtos.
 for (const p of PRODUCTS) {
   const c = COPY[p.slug]; if (!c) continue;
