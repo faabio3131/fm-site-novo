@@ -4,9 +4,18 @@ export const IMAGES = {
   kordena: {
     owner: { file: 'gestor.jpg', pos: '72% 50%', alt: 'Proprietário de restaurante acompanhando o negócio em tempo real em uma tela', brief: 'Proprietário/gestor sentado, olhando uma tela com painel de gestão (pedidos, estoque, financeiro), sem números legíveis' },
     owner_text: { kicker: 'Visão do proprietário', title: 'Quem decide precisa ver o negócio inteiro, agora.', lead: 'Faturamento, estoque, pedidos e custos na mesma tela, em tempo real. O proprietário acompanha a operação sem depender de planilhas e de conferências manuais.', bullets: ['Resultado do dia sem esperar o fechamento', 'Riscos de falta e perda antes de virarem prejuízo', 'Decisões com a informação à frente'] },
-    kitchen: { file: 'cozinha.jpg', alt: 'Responsável acompanhando a produção no sistema, no balcão da cozinha', brief: 'Equipe na cozinha usando o sistema de produção (KDS)',
-      kicker: 'Cozinha conectada', title: 'A cozinha sabe o que fazer, e quando.', lead: 'Mesas, comandas, pedidos, KDS e expedição organizados para dar clareza à equipe em cada etapa, do preparo à saída do pedido.',
-      bullets: ['Pedidos de salão, balcão e delivery na mesma fila', 'Acompanhamento do preparo e da expedição', 'Informação compartilhada entre as áreas'] },
+    splits: [
+      { id: 'salao', file: 'garcom.jpg', pos: '62% 50%', alt: 'Garçonete registrando o pedido da mesa em um tablet', brief: 'Garçom com tablet tirando o pedido na mesa',
+        kicker: 'Atendimento no salão', title: 'O pedido sai da mesa e vai direto para a produção.', lead: 'O garçom registra o pedido no tablet, sem papel e sem repassar de boca em boca. Mesas, comandas e PDV ficam conectados à produção organizada pelo KDS.',
+        bullets: ['Mesas, comandas e PDV na mesma base', 'Pedido encaminhado à produção sem retrabalho', 'Informação compartilhada entre salão, cozinha e caixa'] },
+      { id: 'cozinha', flip: true, file: 'cozinha.jpg', alt: 'Responsável acompanhando a produção no sistema, no balcão da cozinha', brief: 'Equipe na cozinha usando o sistema de produção (KDS)',
+        kicker: 'Cozinha conectada', title: 'A cozinha sabe o que fazer, e quando.', lead: 'Mesas, comandas, pedidos, KDS e expedição organizados para dar clareza à equipe em cada etapa, do preparo à saída do pedido.',
+        bullets: ['Pedidos de salão, balcão e delivery na mesma fila', 'Acompanhamento do preparo e da expedição', 'Informação compartilhada entre as áreas'] },
+      { id: 'atendente', file: 'atendente.jpg', pos: '55% 40%', alt: 'Cliente fazendo um pedido por mensagem no celular', brief: 'Cliente pedindo comida por mensagem no celular',
+        kicker: 'Atendente IA', title: 'Mais que um chatbot: um atendente conectado ao Core.', lead: 'O Atendente IA do Kordena não é uma caixa de respostas prontas. Ele faz parte do mesmo núcleo de inteligência que conecta a sua operação, e o pedido que ele organiza já nasce dentro do fluxo do negócio.',
+        bullets: ['Entende o que o cliente escreve ou fala, em texto e em áudio', 'Consulta o cardápio e organiza o pedido para confirmação', 'Pode ser personalizado para o jeito do seu estabelecimento', 'Conectado ao Gerente IA Core: o pedido segue para produção, estoque e financeiro', 'A equipe mantém o controle e decide o que for importante'],
+        flow: [['Cliente', 'Escreve ou envia um áudio'], ['Atendente IA', 'Interpreta e consulta o cardápio'], ['Pedido', 'Organizado para confirmação'], ['Core', 'Produção, estoque e financeiro']] },
+    ],
     ambient: [
       { file: 'hamburgueria.jpg', alt: 'Hamburgueria em operação', brief: 'Hamburgueria: chapa, equipe montando pedidos' },
       { file: 'pizzaria.jpg', alt: 'Pizzaria em operação', brief: 'Pizzaria: forno e pizzaiolo' },

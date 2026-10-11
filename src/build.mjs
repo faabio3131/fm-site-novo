@@ -50,7 +50,7 @@ function page(route, { title, desc, active, body }) {
   fs.writeFileSync(file, html);
 }
 
-const SHORT = { cozinha: 'Cozinha', demo: 'Demonstração', visao: 'Visão', ambiente: 'Ambiente', core: 'Core', recursos: 'Recursos', estoque: 'Estoque', financeiro: 'Financeiro', 'core-acao': 'Core em ação', integracoes: 'Integrações', seguranca: 'Segurança', planos: 'Planos', duvidas: 'Dúvidas', gestao: 'Gestão', aluno: 'Aluno', equipamentos: 'Equipamentos', inteligencia: 'Inteligência', hub: 'Hub', autoridade: 'Autoridade', capacidades: 'Capacidades', disponibilidade: 'Disponibilidade', arquitetura: 'Arquitetura', governanca: 'Governança', kordena: 'Kordena', rotina: 'Rotina' };
+const SHORT = { salao: 'Salão', atendente: 'Atendente IA', cozinha: 'Cozinha', demo: 'Demonstração', visao: 'Visão', ambiente: 'Ambiente', core: 'Core', recursos: 'Recursos', estoque: 'Estoque', financeiro: 'Financeiro', 'core-acao': 'Core em ação', integracoes: 'Integrações', seguranca: 'Segurança', planos: 'Planos', duvidas: 'Dúvidas', gestao: 'Gestão', aluno: 'Aluno', equipamentos: 'Equipamentos', inteligencia: 'Inteligência', hub: 'Hub', autoridade: 'Autoridade', capacidades: 'Capacidades', disponibilidade: 'Disponibilidade', arquitetura: 'Arquitetura', governanca: 'Governança', kordena: 'Kordena', rotina: 'Rotina' };
 const pill = (p) => { const s = STATUS[p.status]; return `<span class="pill ${s.tone}">${s.label}</span>`; };
 const head = (kick, title, lead, center) => `<div class="sh ${center ? 'center' : ''}"><span class="kick">${kick}</span><h2>${title}</h2>${lead ? `<p class="sub">${lead}</p>` : ''}</div>`;
 
@@ -99,8 +99,7 @@ function photoSections(p, c) {
   const t = I.owner_text;
   const own = `<section class="sec soft" id="visao"><div class="wrap"><div class="split flip"><div><span class="kick">${t.kicker}</span><h2 style="margin:14px 0 16px">${t.title}</h2><p class="sub">${t.lead}</p><ul>${t.bullets.map((b) => `<li>${ic('check')}<span>${esc(b)}</span></li>`).join('')}</ul></div>${fig(p.slug, I.owner, 'tall')}</div></div></section>`;
   const amb = `<section class="sec" id="ambiente"><div class="wrap">${head('Ambiente', I.ambient_title, '', true)}<div class="grid ${I.ambient.length === 3 ? 'g3' : 'g2'}">${I.ambient.map((a) => fig(p.slug, a)).join('')}</div></div></section>`;
-  const k = I.kitchen;
-  const kit = k ? `<section class="sec" id="cozinha"><div class="wrap"><div class="split"><div><span class="kick">${k.kicker}</span><h2 style="margin:14px 0 16px">${k.title}</h2><p class="sub">${k.lead}</p><ul>${k.bullets.map((b) => `<li>${ic('check')}<span>${esc(b)}</span></li>`).join('')}</ul></div>${fig(p.slug, k, 'tall')}</div></div></section>` : '';
+  const kit = (I.splits || []).map((k) => `<section class="sec${k.flip ? ' soft' : ''}" id="${k.id}"><div class="wrap"><div class="split ${k.flip ? 'flip' : ''}"><div><span class="kick">${k.kicker}</span><h2 style="margin:14px 0 16px">${k.title}</h2><p class="sub">${k.lead}</p><ul>${k.bullets.map((x) => `<li>${ic('check')}<span>${esc(x)}</span></li>`).join('')}</ul></div>${fig(p.slug, k, 'tall')}</div>${k.flow ? `<div class="flow">${k.flow.map(([a, t]) => `<div><b>${esc(a).toUpperCase()}</b><span>${esc(t)}</span></div>`).join('')}</div>` : ''}</div></section>`).join('');
   return (own + kit + amb).replaceAll('@UP@', c.up);
 }
 
