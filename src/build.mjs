@@ -1,0 +1,156 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { SITE, STATUS, wa } from './config.mjs';
+import { PRODUCTS, bySlug } from './products.mjs';
+import { ic } from './icons.mjs';
+
+const EXT = process.env.LINKEXT ?? '';         // '' em produção, '.html' no preview local
+const OUT = process.env.OUT ?? 'docs';
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const main = PRODUCTS.filter((p) => p.group === 'main');
+const dev = PRODUCTS.filter((p) => p.group === 'dev');
+const rnd = PRODUCTS.filter((p) => p.group === 'rnd');
+
+function ctx(route) {
+  const depth = route.split('/').length - 1;
+  const up = depth ? '../'.repeat(depth) : './';
+  const href = (r) => (r === '' ? up + (EXT ? 'index.html' : '') : up + r + EXT);
+  return { up, href };
+}
+
+function nav(c, active) {
+  const items = [['produtos', 'Produtos'], ['solucoes', 'Soluções'], ['precos', 'Preços'], ['recursos', 'Recursos'], ['empresa', 'Empresa']];
+  return `<header class="nav"><div class="wrap"><a class="brand" href="${c.href('')}"><span class="mark">FM</span><span>${SITE.name}<small>Software &amp; IA</small></span></a>
+<nav class="menu" id="menu" aria-label="Principal">${items.map(([r, t]) => `<a href="${c.href(r)}" class="${active === r ? 'on' : ''}">${t}</a>`).join('')}</nav>
+<div class="nr"><button class="theme" id="theme" aria-label="Alternar tema claro/escuro">${ic('sun')}</button><a class="btn sm" href="${c.href('entrar')}">Entrar</a><a class="btn sm k" href="${c.href('contato')}">Falar com especialista</a><button class="theme burger" id="burger" aria-label="Menu">☰</button></div></div></header>`;
+}
+
+function footer(c) {
+  const li = (arr) => arr.map(([t, h]) => `<li><a href="${h}">${t}</a></li>`).join('');
+  return `<footer class="foot"><div class="wrap"><div class="g">
+<div><a class="brand" href="${c.href('')}"><span class="mark">FM</span><span>${SITE.name}<small>Software &amp; IA</small></span></a><p>${SITE.signature} Software e inteligência artificial aplicados a negócios.</p></div>
+<div><h6>Produtos</h6><ul>${li(main.map((p) => [p.name, c.href('produtos/' + p.slug)]))}</ul></div>
+<div><h6>Em desenvolvimento</h6><ul>${li([...dev, ...rnd].map((p) => [p.name, c.href('produtos/' + p.slug)]))}</ul></div>
+<div><h6>Empresa</h6><ul>${li([['Sobre a FM', c.href('empresa')], ['Soluções', c.href('solucoes')], ['Preços', c.href('precos')], ['Recursos', c.href('recursos')], ['Contato', c.href('contato')]])}<li><a href="mailto:${SITE.email}">${SITE.email}</a></li><li><a href="${wa('Olá! Quero conversar sobre os produtos da FM Tecnologia.')}">WhatsApp ${SITE.whatsappLabel}</a></li></ul></div>
+</div><div class="fb"><span>© ${new Date().getFullYear()} ${SITE.name}. Todos os direitos reservados.</span><span>${SITE.domain}</span></div></div></footer>`;
+}
+
+function page(route, { title, desc, active, body }) {
+  const c = ctx(route);
+  const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(title)}</title><meta name="description" content="${esc(desc)}">
+<script>try{var t=localStorage.getItem('fm-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="${c.up}assets/site.css"></head><body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>${nav(c, active)}<main id="conteudo">${typeof body === 'function' ? body(c) : body}</main>${footer(c)}<script src="${c.up}assets/site.js"></script></body></html>`;
+  const file = path.join(OUT, route === '' ? 'index.html' : route + '.html');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, html);
+}
+
+const SHORT = { core: 'Core', recursos: 'Recursos', estoque: 'Estoque', financeiro: 'Financeiro', 'core-acao': 'Core em ação', integracoes: 'Integrações', seguranca: 'Segurança', planos: 'Planos', duvidas: 'Dúvidas', gestao: 'Gestão', aluno: 'Aluno', equipamentos: 'Equipamentos', inteligencia: 'Inteligência', hub: 'Hub', autoridade: 'Autoridade', capacidades: 'Capacidades', disponibilidade: 'Disponibilidade', arquitetura: 'Arquitetura', governanca: 'Governança', kordena: 'Kordena', rotina: 'Rotina' };
+const pill = (p) => { const s = STATUS[p.status]; return `<span class="pill ${s.tone}">${s.label}</span>`; };
+const head = (kick, title, lead, center) => `<div class="sh ${center ? 'center' : ''}"><span class="kick">${kick}</span><h2>${title}</h2>${lead ? `<p class="sub">${lead}</p>` : ''}</div>`;
+
+function ctas(p, c) {
+  if (p.noCta) return { primary: '', secondary: '' };
+  const available = p.status === 'available' && p.signupUrl;
+  const label = available ? 'Testar grátis' : p.ctaLabel || (p.trial?.days ? `Quero testar grátis por ${p.trial.days} dias` : p.group === 'dev' ? 'Quero ser avisado' : 'Falar com a FM');
+  const url = available ? p.signupUrl : wa(p.trialMsg);
+  return { label, url,
+    primary: `<a class="btn p l" href="${url}">${label}</a>`,
+    secondary: `<a class="btn l" href="${wa(p.talkMsg)}">Falar com a FM</a>` };
+}
+
+function windowOf(p) {
+  const w = p.window;
+  return `<div class="win"><div class="wb"><b></b><b></b><b></b><span>${esc(w.title)}</span></div><div class="wbody"><div class="side">${w.side.map((s) => `<div>${esc(s)}</div>`).join('')}</div><div class="wmain">${w.cards.map((x) => `<div class="wc ${x.ai ? 'ai' : ''}"><h5>${x.ai ? ic('bot') : ''}${esc(x.h)}</h5><p>${esc(x.p)}</p></div>`).join('')}</div></div></div>`;
+}
+
+function section(s, p, c) {
+  const wrap = (inner, cls = '') => `<section class="sec ${s.dark ? 'dark' : cls}" id="${s.id}"><div class="wrap">${inner}</div></section>`;
+  switch (s.kind) {
+    case 'flow': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="flow">${s.items.map(([a, b]) => `<div>${/^\d+$/.test(a) ? `<b>${a}</b>` : `<b>${esc(a).toUpperCase()}</b>`}<span>${esc(b)}</span></div>`).join('')}</div>`, 'soft');
+    case 'cards': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="grid ${s.items.length % 3 === 0 ? 'g3' : 'g4'}">${s.items.map(([i, t, d]) => `<div class="card"><div class="ic">${ic(i)}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div>`);
+    case 'split': return wrap(`<div class="split ${s.flip ? 'flip' : ''}"><div><span class="kick">${s.kicker}</span><h2 style="margin:14px 0 16px">${s.title}</h2><p class="sub">${s.lead}</p><ul>${s.bullets.map((b) => `<li>${ic('check')}<span>${esc(b)}</span></li>`).join('')}</ul></div><div class="panel"><h4>${esc(s.side.title)}</h4><div class="steps">${s.side.steps.map((x, i) => `<div><i>${i + 1}</i>${esc(x)}</div>`).join('')}</div></div></div>`, s.flip ? 'soft' : '');
+    case 'questions': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="qs">${s.items.map((q) => `<div>“${esc(q)}”</div>`).join('')}</div>`, 'soft');
+    case 'faq': return wrap(head('Antes de começar', 'Perguntas frequentes', '', true) + `<div class="faq">${s.items.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div>`);
+    case 'notice': return wrap(head(s.kicker, s.title, '', true) + `<div class="notice">${esc(s.text)}</div>`);
+    case 'pricing': {
+      if (!p.pricing) return '';
+      const pr = p.pricing; const k = ctas(p, c);
+      return wrap(head('Planos e condições', p.name, pr.note, true) + `<div class="price"><div class="card"><h3>Mensal</h3><div class="v">${pr.monthly}</div></div><div class="card"><h3>Anual</h3><div class="v">${pr.yearly}</div></div><div class="card"><h3>Enterprise</h3><div class="v">${pr.enterprise}</div></div></div><div class="center" style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">${k.primary}${k.secondary}</div>`, 'soft');
+    }
+  }
+  return '';
+}
+
+function productPage(p) {
+  const route = 'produtos/' + p.slug;
+  const k = ctas(p);
+  page(route, {
+    title: `${p.name} — ${SITE.name}`, desc: p.short, active: 'produtos',
+    body: (c) => {
+      const subnav = p.sections.length ? `<div class="sn"><div class="wrap"><b>${p.name}</b><ul>${p.sections.map((s) => `<li><a href="#${s.id}">${esc(SHORT[s.id] || s.kicker)}</a></li>`).join('')}</ul>${k.primary ? `<a class="btn sm p" href="${k.url}">${k.label.length > 24 ? 'Testar grátis' : k.label}</a>` : ''}</div></div>` : '';
+      const hero = `<section class="phero"><div class="wrap"><a class="crumb" href="${c.href('produtos')}">← Todos os produtos</a><div class="${p.window ? 'pg' : ''}"><div><span class="eb"><i></i>${esc(p.eyebrow)}</span> ${pill(p)}<h1>${p.minimal ? esc(p.name) : esc(p.title)}</h1><p class="lead">${esc(p.lead)}</p>${k.primary ? `<div class="b">${k.primary}${k.secondary}</div>` : ''}<p class="note">${esc(p.trial.note)}</p></div>${p.window ? windowOf(p) : ''}</div></div></section>`;
+      const body = p.sections.map((s) => section(s, p, c)).join('');
+      const final = p.minimal ? '' : `<section class="sec"><div class="wrap"><div class="cta"><div><h2>${esc(p.name)}</h2><p>${esc(p.short)}</p></div><div class="b"><a class="btn w l" href="${k.url}">${esc(k.label)}</a><a class="btn gh l" href="mailto:${SITE.email}">Falar por e-mail</a></div></div></div></section>`;
+      return subnav + hero + body + final;
+    },
+  });
+}
+
+// ---------- páginas ----------
+const MISSION = 'Criar tecnologias inteligentes, acessíveis, seguras e úteis, que gerem valor prático. Tecnologia não é feita só pela tecnologia.';
+const VISION = 'Um ecossistema tecnológico em que a IA é uma camada natural da operação empresarial.';
+const VALUES = [['Utilidade real', 'Tecnologia que resolve problemas de verdade.'], ['Inovação com propósito', 'Inovar para gerar valor, não para enfeitar.'], ['Evolução contínua', 'Produtos que melhoram a cada etapa.'], ['Qualidade', 'Testado, auditado, validado.'], ['Segurança e governança', 'Controle, acesso e rastreabilidade desde a arquitetura.'], ['Simplicidade', 'Complexidade tratada por dentro, clareza por fora.'], ['Transparência', 'Não prometer o que não existe.'], ['Responsabilidade', 'A IA apoia pessoas, não elimina responsabilidade.'], ['Foco no cliente', 'O negócio do cliente no centro da decisão.'], ['Visão de longo prazo', 'Construir hoje o que sustenta o amanhã.']];
+
+function productCard(p, c) {
+  return `<a class="card pcard" href="${c.href('produtos/' + p.slug)}">${pill(p)}<div class="ic">${ic({ kordena: 'store', 'iron-fit': 'flame', nfcore: 'file', command: 'chart', atendevendeia: 'chat', campaia: 'mega', 'erp-core': 'layers', 'super-core-extreme': 'cog' }[p.slug])}</div><h3>${p.name}</h3><p>${esc(p.short)}</p><span class="go">${p.group === 'rnd' ? 'Explorar pesquisa' : 'Conhecer produto'} →</span></a>`;
+}
+
+page('', { title: `${SITE.name} — ${SITE.signature}`, desc: 'Tecnologia que conecta operação, dados e inteligência. Produtos inteligentes para transformar processos, acelerar decisões e preparar operações para crescer.', active: '', body: (c) => `
+<section class="hero"><div class="wrap"><div class="t"><span class="eb"><i></i>${SITE.name} · IA · Automação · Software</span>
+<h1>Tecnologia que conecta <span class="grad">operação, dados e inteligência.</span></h1>
+<p class="lead">Desenvolvemos produtos inteligentes para transformar processos, acelerar decisões e preparar operações para crescer. A IA recomenda; você decide.</p>
+<div class="b"><a class="btn p l" href="${c.href('produtos')}">Conhecer produtos</a><a class="btn l" href="${c.href('contato')}">Falar com a FM</a></div><p class="note">${SITE.signature}</p></div>
+<div class="win"><div class="wb"><b></b><b></b><b></b><span>Ecossistema FM Tecnologia</span></div><div class="wbody"><div class="side">${[...main, ...dev].map((p) => `<div>${p.name}</div>`).join('')}</div><div class="eco"><div class="core"><span>Core cognitivo transversal<br><small>Conecta · Entende · Recomenda · Você decide</small></span>${ic('bot')}</div>${['Atendimento', 'Vendas', 'Estoque', 'Produção', 'Financeiro', 'Clientes'].map((a) => `<div class="wc"><h5>${a}</h5><p>Conectado ao mesmo contexto.</p></div>`).join('')}</div></div></div></div></section>
+<div class="wrap"><div class="band">${main.concat(dev).map((p) => `<a href="${c.href('produtos/' + p.slug)}">${p.name}</a>`).join('')}</div></div>
+<section class="sec"><div class="wrap">${head('Produtos principais', 'Soluções inteligentes para cada frente da operação.', 'Produtos especializados que conectam gestão, desempenho e fiscal dentro do ecossistema FM.', true)}<div class="grid g2">${main.map((p) => productCard(p, c)).join('')}</div></div></section>
+<section class="sec dark"><div class="wrap">${head('Core cognitivo transversal', 'Uma inteligência compartilhada por todos os produtos.', 'Mais que chatbots: uma camada que conecta dados, entende o contexto e apoia a decisão — sem tirar das pessoas a responsabilidade.', true)}<div class="flow">${[['01', 'Conecta'], ['02', 'Entende'], ['03', 'Recomenda'], ['04', 'Você decide']].map(([a, b]) => `<div><b>${a}</b><span>${b}</span></div>`).join('')}</div></div></section>
+<section class="sec"><div class="wrap">${head('O que estamos construindo', 'Produtos em desenvolvimento.', 'Clareza entre soluções principais, iniciativas em desenvolvimento e pesquisa.', true)}<div class="grid g3">${[...dev, ...rnd].map((p) => productCard(p, c)).join('')}</div></div></section>
+<section class="sec soft"><div class="wrap">${head('Por que existimos', 'Tecnologia com utilidade real.', MISSION, true)}<div class="chips">${['Utilidade real', 'Qualidade: testado, auditado, validado', 'Segurança e governança', 'Transparência', 'Responsabilidade'].map((v) => `<span>${v}</span>`).join('')}</div><div class="center" style="margin-top:36px"><a class="btn" href="${c.href('empresa')}">Conhecer a FM Tecnologia</a></div></div></section>
+<section class="sec"><div class="wrap"><div class="cta"><div><h2>Vamos conversar sobre a sua operação?</h2><p>Fale com a nossa equipe por WhatsApp ou e-mail.</p></div><div class="b"><a class="btn w l" href="${wa('Olá! Quero conversar sobre os produtos da FM Tecnologia.')}">WhatsApp</a><a class="btn gh l" href="${c.href('contato')}">Contato</a></div></div></div></section>` });
+
+page('produtos', { title: `Produtos — ${SITE.name}`, desc: 'Conheça o portfólio e o estágio de cada iniciativa da FM Tecnologia.', active: 'produtos', body: (c) => `
+<section class="phero"><div class="wrap"><span class="kick">Ecossistema FM</span><h1>Produtos com uma visão em comum.</h1><p class="lead" style="max-width:700px">Conheça o portfólio e o estágio de cada iniciativa da FM Tecnologia.</p></div></section>
+<section class="sec" style="padding-top:20px"><div class="wrap">${head('Produtos principais', '', '')}<div class="grid g2" style="margin-top:20px">${main.map((p) => productCard(p, c)).join('')}</div></div></section>
+<section class="sec soft"><div class="wrap">${head('Em desenvolvimento', 'O que vem por aí.', '')}<div class="grid g3">${[...dev, ...rnd].map((p) => productCard(p, c)).join('')}</div></div></section>` });
+
+PRODUCTS.forEach(productPage);
+
+page('solucoes', { title: `Soluções — ${SITE.name}`, desc: 'Tecnologia conectada ao movimento do negócio.', active: 'solucoes', body: (c) => `
+<section class="phero"><div class="wrap"><span class="kick">Soluções</span><h1>Tecnologia conectada ao movimento do negócio.</h1><p class="lead" style="max-width:700px">Estruturamos produtos para apoiar organização, inteligência e evolução operacional.</p></div></section>
+<section class="sec" style="padding-top:20px"><div class="wrap"><div class="grid g3" style="margin-top:0">${[['layers', 'Organizar', 'Bases digitais que ajudam a dar clareza às operações.'], ['flow', 'Evoluir', 'Produtos preparados para acompanhar novos contextos.'], ['plug', 'Conectar', 'Um ecossistema com visão tecnológica compartilhada.']].map(([i, t, d], n) => `<div class="card"><div class="ic">${ic(i)}</div><h3>0${n + 1} · ${t}</h3><p>${d}</p></div>`).join('')}</div></div></section>
+<section class="sec soft"><div class="wrap">${head('Por tipo de negócio', 'Qual solução combina com a sua operação?', '', true)}<div class="grid g2">${[['kordena', 'Restaurantes, hamburguerias, pizzarias, padarias e outros negócios do setor alimentício'], ['iron-fit', 'Academias e operações fitness'], ['nfcore', 'Gestão fiscal com governança'], ['command', 'Gestão executiva de produtos e operações'], ['atendevendeia', 'Quem vende pelo WhatsApp']].map(([s, t]) => { const p = bySlug(s); return `<a class="card pcard" href="${c.href('produtos/' + s)}">${pill(p)}<h3 style="margin-top:0;padding-right:150px">${esc(t)}</h3><p>${p.name}: ${esc(p.short)}</p><span class="go">Conhecer ${p.name} →</span></a>`; }).join('')}</div></div></section>` });
+
+page('precos', { title: `Preços — ${SITE.name}`, desc: 'Planos e condições comerciais.', active: 'precos', body: (c) => `
+<section class="phero"><div class="wrap"><span class="kick">Preços transparentes</span><h1>Planos e condições comerciais.</h1><p class="lead" style="max-width:700px">Conheça os valores de Kordena e Iron Fit Core e consulte as condições disponíveis para cada produto.</p></div></section>
+<section class="sec" style="padding-top:20px"><div class="wrap"><div class="grid g2" style="margin-top:0">${['kordena', 'iron-fit'].map((s) => { const p = bySlug(s); const k = ctas(p); return `<div class="card"><span class="pill">Produto principal</span><h3 style="font-size:28px;margin:16px 0 4px">${p.name}</h3><div style="font-size:40px;font-weight:800;letter-spacing:-.03em">${p.pricing.monthly}</div><p style="color:var(--t3);margin-bottom:14px">ou ${p.pricing.yearly}</p><p style="color:var(--t2);font-size:15px">${esc(p.pricing.note)}</p><p style="color:var(--t2);font-size:15px;margin:8px 0 22px"><b>Enterprise:</b> ${p.pricing.enterprise}</p><div style="display:flex;gap:10px;flex-wrap:wrap">${k.primary.replace('btn p l', 'btn p')}<a class="btn" href="${c.href('produtos/' + s)}">Ver produto</a></div></div>`; }).join('')}</div><p class="note center" style="margin-top:28px;color:var(--t3);font-size:14px">A ativação do teste depende da liberação comercial de cada produto.</p></div></section>` });
+
+page('recursos', { title: `Recursos — ${SITE.name}`, desc: 'Conhecimento para decisões melhores.', active: 'recursos', body: () => `
+<section class="phero"><div class="wrap"><span class="kick">Recursos</span><h1>Conhecimento para decisões melhores.</h1><p class="lead" style="max-width:700px">Esta é a fundação da central de recursos da FM Tecnologia.</p><div class="notice" style="max-width:700px">Em construção — conteúdos serão publicados com validação, à medida que forem aprovados.</div></div></section>` });
+
+page('empresa', { title: `Empresa — ${SITE.name}`, desc: SITE.signature, active: 'empresa', body: (c) => `
+<section class="phero"><div class="wrap"><span class="kick">Empresa</span><h1>${SITE.signature}</h1><p class="lead" style="max-width:760px">Tecnologia inteligente para transformar operações, decisões e resultados. Um portfólio, uma visão tecnológica.</p></div></section>
+<section class="sec" style="padding-top:20px"><div class="wrap"><div class="grid g2" style="margin-top:0"><div class="card"><div class="ic">${ic('flow')}</div><h3>Missão</h3><p>${MISSION}</p></div><div class="card"><div class="ic">${ic('eye')}</div><h3>Visão</h3><p>${VISION}</p></div></div></div></section>
+<section class="sec soft"><div class="wrap">${head('Valores', 'O que guia cada decisão.', '', true)}<div class="val">${VALUES.map(([t, d], i) => `<div><b>${String(i + 1).padStart(2, '0')}</b><span>${t}</span><p style="font-size:13.5px;color:var(--t2);margin-top:6px">${d}</p></div>`).join('')}</div></div></section>
+<section class="sec">${'<div class="wrap">'}${head('Nossa direção', 'Um portfólio. Uma visão tecnológica.', 'Desenvolvemos produtos e tecnologias com arquitetura preparada para crescer, mantendo clareza entre soluções principais, iniciativas em desenvolvimento e pesquisa.', true)}<div class="grid g3">${[['bot', 'IA como camada', 'A IA gera valor quando está integrada corretamente ao negócio, junto de software, dados, regras, integrações, segurança e governança.'], ['shield', 'Controle humano', 'A IA recomenda; a decisão é de quem gere o negócio.'], ['check', 'Qualidade verificável', 'Testado, auditado, validado — sem apresentar certificações externas não comprovadas.']].map(([i, t, d]) => `<div class="card"><div class="ic">${ic(i)}</div><h3>${t}</h3><p>${d}</p></div>`).join('')}</div></div></section>` });
+
+page('contato', { title: `Contato — ${SITE.name}`, desc: 'Vamos conversar.', active: '', body: () => `
+<section class="phero"><div class="wrap"><span class="kick">Contato</span><h1>Vamos conversar.</h1><p class="lead" style="max-width:700px">Entre em contato por e-mail ou WhatsApp para conversar sobre os produtos da FM Tecnologia.</p><div class="b" style="display:flex;gap:12px;margin-top:30px;flex-wrap:wrap"><a class="btn p l" href="${wa('Olá! Quero conversar sobre os produtos da FM Tecnologia.')}">Conversar pelo WhatsApp</a><a class="btn l" href="mailto:${SITE.email}">Escrever e-mail</a></div><p class="note" style="margin-top:18px;color:var(--t3)">Contato comercial: ${SITE.email} · WhatsApp ${SITE.whatsappLabel}. O botão de e-mail abre o seu aplicativo; a mensagem só é enviada quando você confirmar.</p></div></section>` });
+
+page('entrar', { title: `Entrar — ${SITE.name}`, desc: 'Acesse o seu produto.', active: '', body: (c) => `
+<section class="phero"><div class="wrap"><span class="kick">Entrar</span><h1>Acesse o seu produto.</h1><p class="lead" style="max-width:700px">Cada produto tem o seu próprio ambiente de acesso. Escolha abaixo.</p><div class="grid g2">${main.map((p) => { const url = p.external?.url || p.signupUrl; return `<div class="card"><h3 style="margin-top:0">${p.name}</h3><p>${url ? 'Acesse o ambiente do produto.' : 'Ambiente de acesso em preparação.'}</p><div style="margin-top:18px">${url ? `<a class="btn p" href="${url}">Entrar no ${p.name}</a>` : `<a class="btn" href="${wa(p.trialMsg)}">Quero ser avisado</a>`}</div></div>`; }).join('')}</div></div></section>` });
+
+fs.cpSync('assets', path.join(OUT, 'assets'), { recursive: true });
+console.log('ok', OUT);

@@ -1,0 +1,9 @@
+{
+  "name": "fm-site-novo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "build:preview": "LINKEXT=.html OUT=preview node src/build.mjs"
+  }
+}
