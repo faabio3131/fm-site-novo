@@ -5,6 +5,7 @@ import { PRODUCTS, bySlug } from './products.mjs';
 import { ic } from './icons.mjs';
 import { IMAGES } from './images.mjs';
 import { VIDEOS } from './videos.mjs';
+const CREDITS = fs.existsSync('src/credits.json') ? JSON.parse(fs.readFileSync('src/credits.json', 'utf8')) : {};
 
 const EXT = process.env.LINKEXT ?? '';         // '' em produção, '.html' no preview local
 const OUT = process.env.OUT ?? 'docs';
@@ -90,7 +91,7 @@ function section(s, p, c) {
 const fig = (slug, im, cls = '') => {
   const has = fs.existsSync(path.join('assets/img', slug, im.file));
   return has
-    ? `<figure class="ph ${cls}"><img src="@UP@assets/img/${slug}/${im.file}" alt="${esc(im.alt)}" loading="lazy"></figure>`
+    ? `<figure class="ph ${cls}"><img src="@UP@assets/img/${slug}/${im.file}" alt="${esc(im.alt)}" loading="lazy">${CREDITS[slug + '/' + im.file] ? `<figcaption class="credit">Foto: <a href="${CREDITS[slug + '/' + im.file].by_url}" target="_blank" rel="noopener">${esc(CREDITS[slug + '/' + im.file].by)}</a> · <a href="https://unsplash.com/?utm_source=fm_tecnologia&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption>` : ''}</figure>`
     : `<figure class="ph empty ${cls}"><figcaption><b>Imagem em preparação</b><span>${esc(im.brief)}</span></figcaption></figure>`;
 };
 function photoSections(p, c) {
