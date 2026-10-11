@@ -20,7 +20,9 @@ Em 11/10/2026 o diretor também confirmou iFood e 99Food como funcionais. O Keet
 | Atendente IA no WhatsApp (texto e áudio, confirmação do cliente; conta Meta do cliente) | 1 | Descrito como funcional |
 | Upsell/cross-sell no Atendente de WhatsApp | 4 | "Sugere complementos" (ficha do produto); código só mostra upsell no PDV |
 | Campanha sugerida a partir de produto perto do vencimento, com permissão do dono | 4 | Peças existem (aviso, rascunho, aprovação); cadeia ponta a ponta não comprovada |
-| Campanhas e rascunhos para aprovação | 1/2 | Sem promessa de publicação automática em Instagram/Facebook |
+| Cardápio com IA: sobe arquivo, monta o cardápio e escreve as descrições | 1 | Descrito (código mostra importação por foto/PDF/texto com IA) |
+| Campanhas orgânicas no Facebook e Instagram (conta Meta do cliente, com aprovação) | 1 | Descrito como funcional por declaração do diretor em 11/10/2026; o código lido não mostra a publicação ponta a ponta, confirmar |
+| Disparos por WhatsApp para a base de clientes, com consentimento | 1 | Descrito; consentimento e opt-out comprovados no código |
 | Pix: PagBank e Mercado Pago (credenciais do cliente) | 1 | Descrito como funcional, com as credenciais do negócio |
 | iFood e 99Food | 1 | Descritos como integrados (confirmado pelo diretor) |
 | Keeta | 2 | "Em andamento, dependente de homologação da plataforma" |
