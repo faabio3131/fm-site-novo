@@ -100,8 +100,8 @@ const fig = (slug, im, cls = '') => {
 function chatMock() {
   const bars = [6, 12, 18, 10, 22, 14, 8, 20, 16, 9, 13, 18, 7].map((h) => `<i style="height:${h}px"></i>`).join('');
   return `<figure class="chatmock" aria-label="Exemplo ilustrativo do Atendente IA"><div class="phone"><div class="ph-head"><span class="av">${ic('bot')}</span><div><b>Atendente IA</b><small>Kordena · online</small></div></div>
-<div class="msgs"><div class="m c">Oi! Quero fazer um pedido.</div><div class="m a">Olá! Posso te mostrar o cardápio ou você já sabe o que quer?</div><div class="m c aud"><span class="play">▶</span><span class="wave">${bars}</span><small>0:08</small></div><div class="m a">Entendi o seu áudio. Anotei o pedido, confira:<div class="ord"><span>${ic('check')} Itens do pedido</span><span>${ic('check')} Observações do cliente</span><span>${ic('check')} Endereço de entrega</span><em>Confirmar pedido</em></div></div></div></div>
-<div class="core-side"><div class="chip-core">${ic('bot')}<span>Gerente IA Core</span></div><div class="arrow">↓</div><div class="chip-s">Produção · KDS</div><div class="chip-s">Estoque</div><div class="chip-s">Financeiro</div><small>Exemplo ilustrativo</small></div></figure>`;
+<div class="msgs"><div class="m c">Oi! Quero fazer um pedido.</div><div class="m a">Olá! Posso te mostrar o cardápio ou você já sabe o que quer?</div><div class="m c aud"><span class="play">▶</span><span class="wave">${bars}</span><small>0:08</small></div><div class="m a">Entendi o seu áudio e anotei o pedido. Quer incluir uma bebida ou sobremesa?<div class="ord"><span>${ic('check')} Itens do pedido</span><span>${ic('check')} Complementos sugeridos</span><span>${ic('check')} Endereço de entrega</span><em>Confirmar pedido</em></div></div></div></div>
+<div class="core-side"><div class="chip-core">${ic('bot')}<span>Gerente IA Core</span></div><div class="arrow">↓</div><div class="chip-s">PDV e cozinha (KDS)</div><div class="chip-s">Estoque</div><div class="chip-s">Financeiro</div><small>Exemplo ilustrativo</small></div></figure>`;
 }
 
 function photoSections(p, c) {

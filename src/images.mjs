@@ -12,9 +12,9 @@ export const IMAGES = {
         kicker: 'Cozinha conectada', title: 'A cozinha sabe o que fazer, e quando.', lead: 'Mesas, comandas, pedidos, KDS e expedição organizados para dar clareza à equipe em cada etapa, do preparo à saída do pedido.',
         bullets: ['Pedidos de salão, balcão e delivery na mesma fila', 'Acompanhamento do preparo e da expedição', 'Informação compartilhada entre as áreas'] },
       { id: 'atendente', ui: 'chat',
-        kicker: 'Atendente IA', title: 'Mais que um chatbot: um atendente conectado ao Core.', lead: 'O Atendente IA do Kordena não é uma caixa de respostas prontas. Ele faz parte do mesmo núcleo de inteligência que conecta a sua operação, e o pedido que ele organiza já nasce dentro do fluxo do negócio.',
-        bullets: ['Entende o que o cliente escreve ou fala, em texto e em áudio', 'Consulta o cardápio e organiza o pedido para confirmação', 'Pode ser personalizado para o jeito do seu estabelecimento', 'Conectado ao Gerente IA Core: o pedido segue para produção, estoque e financeiro', 'A equipe mantém o controle e decide o que for importante'],
-        flow: [['Cliente', 'Escreve ou envia um áudio'], ['Atendente IA', 'Interpreta e consulta o cardápio'], ['Pedido', 'Organizado para confirmação'], ['Core', 'Produção, estoque e financeiro']] },
+        kicker: 'Atendente IA', title: 'Mais que um chatbot: um gerente de atendimento.', lead: 'O Atendente IA do Kordena atende o seu cliente no WhatsApp, entende o pedido e ainda sugere complementos, com upsell e cross-sell na hora certa. O pedido cai direto no PDV e na cozinha, e faz parte do mesmo núcleo de inteligência que conecta a sua operação.',
+        bullets: ['Atende no WhatsApp e entende o que o cliente escreve ou fala', 'Consulta o cardápio e organiza o pedido', 'Sugere complementos, como bebida e sobremesa', 'O pedido cai direto no PDV e na cozinha, sem digitar de novo', 'Pode ser personalizado para o jeito do seu estabelecimento', 'A equipe mantém o controle e decide o que for importante'],
+        flow: [['Cliente', 'Pede pelo WhatsApp, em texto ou áudio'], ['Atendente IA', 'Entende o pedido e sugere complementos'], ['PDV e cozinha', 'O pedido cai direto, sem redigitar'], ['Core', 'Estoque, financeiro e gestão']] },
     ],
     ambient: [
       { file: 'hamburgueria.jpg', alt: 'Hamburgueria em operação', brief: 'Hamburgueria: chapa, equipe montando pedidos' },

@@ -9,8 +9,8 @@ export const COPY = {
         lead: 'Pedidos vindo de vários canais, estoque que acaba na hora errada, faturamento que não vira lucro, controles paralelos. O Kordena foi pensado para tirar o proprietário do escuro.',
         items: [
           ['Pedidos chegando por vários canais', 'Salão, balcão, delivery próprio, iFood, Keeta e 99Food reunidos em uma única visão operacional.'],
-          ['Estoque que só se descobre vazio na hora do aperto', 'Inventário, mínimos, reservas e validades acompanhados, com alertas de risco e sugestões de ação.'],
-          ['Faturamento bom, lucro que ninguém enxerga', 'Faturamento, custos, valor em estoque e margens lado a lado, com lucro real e previsões.'],
+          ['Estoque que só se descobre vazio na hora do aperto', 'Cada pedido dá baixa automática nos insumos, a validade é acompanhada e o sistema avisa antes de faltar ou vencer.'],
+          ['Faturamento bom, lucro que ninguém enxerga', 'Faturamento, custos, valor em estoque e margem de lucro lado a lado, com lucro real e previsões.'],
           ['Planilhas e conferências paralelas', 'Conferências, relatórios e monitoramento operacional centralizados em um só sistema.'],
           ['Decisões tomadas no escuro', 'O Gerente IA Core relaciona os sinais da operação e recomenda. A decisão final continua sendo sua.'],
         ] },
@@ -18,8 +18,10 @@ export const COPY = {
     overrides: {
       core: { title: 'Uma venda não termina no caixa. O Kordena acompanha o caminho inteiro.', lead: 'Cada pedido movimenta produção, consome insumos, altera o estoque, gera receita e custo e muda a margem. O Gerente IA Core conecta essas consequências para que o proprietário enxergue o negócio de ponta a ponta.' },
       recursos: { title: 'Tudo o que a operação precisa, falando a mesma língua.', lead: 'Cada recurso conversa com os outros. O que acontece no salão chega à cozinha, ao estoque e ao financeiro, sem retrabalho e sem controle paralelo.' },
-      estoque: { title: 'Produto parado também é dinheiro parado.', lead: 'Inventário, movimentações, estoque mínimo, reservas, validade e valor financeiro passam a fazer parte da mesma visão. O sistema aponta o risco antes de ele virar perda e sugere uma ação, como uma promoção para dar saída ao que está perto de vencer.' },
-      financeiro: { title: 'Faturamento não é lucro. O Kordena mostra a diferença.', lead: 'O proprietário vê o que vende, o que custa operar, quanto dinheiro está parado em estoque e o resultado que realmente sobra, conforme os dados registrados pela operação.' },
+      estoque: { title: 'O estoque se atualiza sozinho, a cada pedido.', lead: 'Cada produto usado em um pedido já dá baixa automática no estoque, e o sistema mantém a quantidade sempre atualizada. Ele acompanha a data de validade de cada item, avisa quando algum produto está perto de vencer e sugere uma campanha para dar saída a esse produto. A campanha só é criada se você autorizar.',
+        bullets: ['Baixa automática no estoque a cada produto usado no pedido', 'Quantidade sempre atualizada, com previsão de falta e reposição', 'Data de validade acompanhada, item por item', 'Aviso quando um produto está perto de vencer', 'Sugestão de campanha para usar o que está perto do vencimento, e o sistema pede a sua permissão para criá-la', 'Margem de lucro sob controle, com custo e estoque na conta'],
+        side: { title: 'Do pedido à campanha, sem perda de controle', steps: ['Pedido registrado', 'Estoque dá baixa automática', 'Validade acompanhada', 'Aviso de produto perto de vencer', 'Campanha sugerida', 'Você autoriza ou recusa'] } },
+      financeiro: { title: 'Faturamento não é lucro. O Kordena mostra a diferença.', lead: 'O proprietário vê o que vende, o que custa operar, quanto dinheiro está parado em estoque e a margem de lucro que realmente sobra, conforme os dados registrados pela operação. Como o estoque baixa a cada pedido, o custo entra na conta sem lançamento manual.', bullets: ['Faturamento, recebimentos, pendências e estornos', 'Ticket médio e custos', 'Valor em estoque e margem de lucro sob controle', 'Lucro real, projeções e previsões'] },
       'core-acao': { title: 'Pergunte ao seu negócio. Receba uma resposta com contexto.', lead: 'Em vez de caçar números em relatórios, você consulta o Core. Estes são exemplos de perguntas que ele responde com base nos dados da sua operação, sempre com a decisão sob controle humano.' },
       seguranca: { title: 'Inteligência com controle. Automação com responsabilidade.', lead: 'O Kordena apoia a operação sem tirar das pessoas as decisões importantes. Cada usuário trabalha conforme seus acessos e responsabilidades.' },
     },
