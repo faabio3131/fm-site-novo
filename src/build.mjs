@@ -94,12 +94,20 @@ const fig = (slug, im, cls = '') => {
     ? `<figure class="ph ${cls}"><img src="@UP@assets/img/${slug}/${im.file}" alt="${esc(im.alt)}" loading="lazy"${im.pos ? ` style="object-position:${im.pos}"` : ''}>${CREDITS[slug + '/' + im.file]?.note ? `<figcaption class="credit">${esc(CREDITS[slug + '/' + im.file].note)}</figcaption>` : CREDITS[slug + '/' + im.file] ? `<figcaption class="credit">Foto: <a href="${CREDITS[slug + '/' + im.file].by_url}" target="_blank" rel="noopener">${esc(CREDITS[slug + '/' + im.file].by)}</a> · <a href="https://unsplash.com/?utm_source=fm_tecnologia&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption>` : ''}</figure>`
     : `<figure class="ph empty ${cls}"><figcaption><b>Imagem em preparação</b><span>${esc(im.brief)}</span></figcaption></figure>`;
 };
+
+function chatMock() {
+  const bars = [6, 12, 18, 10, 22, 14, 8, 20, 16, 9, 13, 18, 7].map((h) => `<i style="height:${h}px"></i>`).join('');
+  return `<figure class="chatmock" aria-label="Exemplo ilustrativo do Atendente IA"><div class="phone"><div class="ph-head"><span class="av">${ic('bot')}</span><div><b>Atendente IA</b><small>Kordena · online</small></div></div>
+<div class="msgs"><div class="m c">Oi! Quero fazer um pedido.</div><div class="m a">Olá! Posso te mostrar o cardápio ou você já sabe o que quer?</div><div class="m c aud"><span class="play">▶</span><span class="wave">${bars}</span><small>0:08</small></div><div class="m a">Entendi o seu áudio. Anotei o pedido, confira:<div class="ord"><span>${ic('check')} Itens do pedido</span><span>${ic('check')} Observações do cliente</span><span>${ic('check')} Endereço de entrega</span><em>Confirmar pedido</em></div></div></div></div>
+<div class="core-side"><div class="chip-core">${ic('bot')}<span>Gerente IA Core</span></div><div class="arrow">↓</div><div class="chip-s">Produção · KDS</div><div class="chip-s">Estoque</div><div class="chip-s">Financeiro</div><small>Exemplo ilustrativo</small></div></figure>`;
+}
+
 function photoSections(p, c) {
   const I = IMAGES[p.slug]; if (!I) return '';
   const t = I.owner_text;
   const own = `<section class="sec soft" id="visao"><div class="wrap"><div class="split flip"><div><span class="kick">${t.kicker}</span><h2 style="margin:14px 0 16px">${t.title}</h2><p class="sub">${t.lead}</p><ul>${t.bullets.map((b) => `<li>${ic('check')}<span>${esc(b)}</span></li>`).join('')}</ul></div>${fig(p.slug, I.owner, 'tall')}</div></div></section>`;
   const amb = `<section class="sec" id="ambiente"><div class="wrap">${head('Ambiente', I.ambient_title, '', true)}<div class="grid ${I.ambient.length === 3 ? 'g3' : 'g2'}">${I.ambient.map((a) => fig(p.slug, a)).join('')}</div></div></section>`;
-  const kit = (I.splits || []).map((k) => `<section class="sec${k.flip ? ' soft' : ''}" id="${k.id}"><div class="wrap"><div class="split ${k.flip ? 'flip' : ''}"><div><span class="kick">${k.kicker}</span><h2 style="margin:14px 0 16px">${k.title}</h2><p class="sub">${k.lead}</p><ul>${k.bullets.map((x) => `<li>${ic('check')}<span>${esc(x)}</span></li>`).join('')}</ul></div>${fig(p.slug, k, 'tall')}</div>${k.flow ? `<div class="flow">${k.flow.map(([a, t]) => `<div><b>${esc(a).toUpperCase()}</b><span>${esc(t)}</span></div>`).join('')}</div>` : ''}</div></section>`).join('');
+  const kit = (I.splits || []).map((k) => `<section class="sec${k.flip ? ' soft' : ''}" id="${k.id}"><div class="wrap"><div class="split ${k.flip ? 'flip' : ''}"><div><span class="kick">${k.kicker}</span><h2 style="margin:14px 0 16px">${k.title}</h2><p class="sub">${k.lead}</p><ul>${k.bullets.map((x) => `<li>${ic('check')}<span>${esc(x)}</span></li>`).join('')}</ul></div>${k.ui === 'chat' ? chatMock() : fig(p.slug, k, 'tall')}</div>${k.flow ? `<div class="flow">${k.flow.map(([a, t]) => `<div><b>${esc(a).toUpperCase()}</b><span>${esc(t)}</span></div>`).join('')}</div>` : ''}</div></section>`).join('');
   return (own + kit + amb).replaceAll('@UP@', c.up);
 }
 
