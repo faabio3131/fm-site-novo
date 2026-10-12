@@ -124,3 +124,6 @@ h3{font-size:21px;letter-spacing:-.015em;font-weight:700;line-height:1.25}
 .gh{margin-top:44px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:700}.card.sm{padding:22px}.card.sm h3{font-size:18px;margin:14px 0 6px}.card.sm p{font-size:14.5px}
 
 .dg{margin:40px 0 0;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#050d1e}.dg img{width:100%;height:auto;display:block}
+
+.brand .wm{height:50px;width:auto;display:block;color:var(--ink)}.foot .brand .wm{color:#fff;height:50px}.foot .brand .wm path:last-child{fill:#5fb8f2}
+@media(max-width:640px){.brand .wm{height:38px}}
