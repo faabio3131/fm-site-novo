@@ -15,7 +15,7 @@ export const PRODUCTS = [
     trial: { days: 30, note: '30 dias grátis, sem cartão. Ativação online em preparação.' },
     trialMsg: 'Olá! Tenho interesse no teste grátis de 30 dias do Kordena. Quero ser avisado assim que a ativação estiver disponível.',
     talkMsg: 'Olá! Quero conhecer o Kordena. Podemos conversar sobre disponibilidade e implantação?',
-    pricing: { monthly: 'R$ 299/mês', yearly: 'R$ 2.990/ano', enterprise: 'Sob consulta', note: '30 dias grátis, sem cartão. A ativação online será liberada após certificação e homologação.' },
+    pricing: { monthly: 'R$ 299/mês', yearly: 'R$ 2.990/ano', enterprise: 'Sob consulta', note: '30 dias grátis, sem cartão. A ativação do teste será liberada no lançamento.' },
     window: { title: 'Kordena · Gerente IA Core',
       side: ['Operação', 'Produção (KDS)', 'Estoque', 'Financeiro', 'Clientes e CRM', 'Marketing', 'Gerente IA Core'],
       cards: [
