@@ -118,6 +118,9 @@ export const COPY = {
       { kind: 'who', id: 'para-quem', kicker: 'Para quem é', title: 'Para quem vende pelo WhatsApp e quer atender sem perder o controle.',
         lead: 'Funciona com a API oficial do WhatsApp Business, da Meta. Lançamento em preparação.',
         chips: ['Lojas e negócios que vendem pelo WhatsApp', 'Quem tem ofertas com link de pagamento', 'Equipes que querem passar o que é delicado para uma pessoa'] },
+      { kind: 'flow', id: 'como-comecar', kicker: 'Como começar', title: 'Da compra à primeira venda recuperada.',
+        lead: 'Cada passo é guiado pelo painel, que mostra o que ainda falta.',
+        items: [['01', 'Assine, e a conta nasce com o convite'], ['02', 'Entre com a sua conta Google'], ['03', 'Conecte o WhatsApp e teste a conexão'], ['04', 'Cadastre ofertas, tom de voz e consentimento'], ['05', 'Teste a conversa e ligue']] },
     ],
   },
 };
