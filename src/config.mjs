@@ -8,6 +8,8 @@ export const SITE = {
   email: 'fmtecnologia.comercial@gmail.com',
   whatsapp: '5511978350851',
   whatsappLabel: '(11) 97835-0851',
+  // CNPJ da empresa, informado pelo diretor (dado público da empresa, exigido em sites que oferecem serviços).
+  cnpj: '07.109.248/0001-57',
 };
 
 export const wa = (msg) =>

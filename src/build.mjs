@@ -36,7 +36,7 @@ function footer(c) {
 <div><h6>Produtos</h6><ul>${li(main.map((p) => [p.name, c.href('produtos/' + p.slug)]))}</ul></div>
 <div><h6>Em desenvolvimento</h6><ul>${li([...dev, ...rnd].map((p) => [p.name, c.href('produtos/' + p.slug)]))}</ul></div>
 <div><h6>Empresa</h6><ul>${li([['Sobre a FM', c.href('empresa')], ['Soluções', c.href('solucoes')], ['Preços', c.href('precos')], ['Recursos', c.href('recursos')], ['Contato', c.href('contato')]])}<li><a href="mailto:${SITE.email}">${SITE.email}</a></li><li><a href="${wa('Olá! Quero conversar sobre os produtos da FM Tecnologia.')}">WhatsApp ${SITE.whatsappLabel}</a></li></ul></div>
-</div><div class="fb"><span>© ${new Date().getFullYear()} ${SITE.name}. Todos os direitos reservados.</span><span>${SITE.domain}</span></div></div></footer>`;
+</div><div class="fb"><span>© ${new Date().getFullYear()} ${SITE.name}. Todos os direitos reservados. CNPJ ${SITE.cnpj}</span><span>${SITE.domain}</span></div></div></footer>`;
 }
 
 function page(route, { title, desc, active, body }) {
