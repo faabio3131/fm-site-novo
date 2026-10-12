@@ -42,3 +42,6 @@ Base: `fm-next-gen-erp` (24 arquivos). Código real: serviço em Go com estoque 
 
 ## Super Core Extreme: página escrita (12/10/2026)
 Base: pasta do Google Drive (Plano Mestre de Descoberta v0.1, de 06/09/2026, e Diretrizes adicionais de 09/10/2026). Estado: descoberta e planejamento, sem código; a programação só começa depois do desenho de sistema e da aprovação humana. Regra da marca: sempre "pesquisa e desenvolvimento, em desenvolvimento", nunca produto pronto; "a IA recomenda, você decide"; sem prometer funções inexistentes. Por segurança, a página fica nos conceitos gerais (visão, ciclo, pilares, governança humana, etapas). Não publicar: tecnologias candidatas (nuvem, filas, bancos), nomes de sistemas e projetos externos estudados, hipóteses de monetização e mercado, e nomes internos de componentes ainda em pesquisa. Sem botão de contratação.
+
+## Status dos produtos (12/10/2026)
+Confirmação do diretor: o Kordena e o AtendeVendeIA estão prontos e só falta hospedar e colocar em produção. O AtendeVendeIA passou de "Em desenvolvimento · Em breve" para "Lançamento em preparação" (mesmo status do Kordena) e foi para o grupo de produtos principais. Hotmart e Messenger/Instagram continuam marcados como "em validação/em testes" por serem integrações opcionais ainda sem teste com conta real.
