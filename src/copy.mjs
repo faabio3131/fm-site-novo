@@ -33,7 +33,7 @@ export const COPY = {
         chips: ['Restaurantes', 'Pizzarias', 'Hamburguerias', 'Bares', 'Padarias', 'Pastelarias', 'Casas de espetinhos', 'Outros negócios de alimentação'] },
       { kind: 'flow', id: 'como-comecar', kicker: 'Como começar', title: 'Da conversa ao seu restaurante funcionando.',
         lead: 'A implantação acompanha o contexto de cada negócio: estrutura, canais, equipe e integrações.',
-        items: [['01', 'Fale com a FM e conte como é a sua operação'], ['02', 'Configuração da operação, integrações e canais'], ['03', 'Usuários e acessos definidos para a sua equipe'], ['04', 'Teste grátis por 30 dias, sem cartão (ativação online em preparação)']] },
+        items: [['01', 'Fale com a FM e conte como é a sua operação'], ['02', 'Configuração da operação, integrações e canais'], ['03', 'Usuários e acessos definidos para a sua equipe'], ['04', 'Teste grátis por 15 dias, sem cartão (ativação online em preparação)']] },
     ],
   },
   'iron-fit': {

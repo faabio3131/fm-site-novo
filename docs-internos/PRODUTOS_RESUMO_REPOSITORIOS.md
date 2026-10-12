@@ -52,3 +52,6 @@ Imagens da marca (12/10/2026): ícone da aba só com o símbolo (com luz azul na
 
 ## Estado de entrada no ar (12/10/2026, declaração do diretor)
 Kordena, AtendeVendeIA e NFCore estão prontos (não estão "em desenvolvimento"). Falta hospedar e colocar para funcionar. A entrada no ar aguarda a regularização do CNPJ (inclusão dos CNAEs). No site, esses produtos aparecem como "Lançamento em preparação", sem citar o motivo do prazo (hospedagem e CNPJ são assuntos internos). Quando o diretor liberar, mudar `status` para `available` e preencher `signupUrl` em `src/products.mjs`.
+
+## Teste grátis: 15 dias (12/10/2026)
+Decisão do diretor: o teste grátis passa de 30 para 15 dias, sem cartão, em todos os produtos (Kordena e Iron Fit; Iron Fit mantém o limite de 15 alunos durante o teste). O site já mostra 15 dias. ATENÇÃO: o prazo também está configurado dentro dos produtos (Kordena e Iron Fit); alterar lá antes de liberar o cadastro de teste, para o prazo do site e o do produto serem o mesmo.
