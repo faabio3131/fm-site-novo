@@ -145,7 +145,7 @@ function productPage(p) {
       parts.splice(at, 0, (VIDEOS[p.slug] ? videoSection(p, c) : '') + (IMAGES[p.slug] ? photoSections(p, c) : ''));
       
       const body = parts.join('');
-      const final = p.minimal ? '' : `<section class="sec"><div class="wrap"><div class="cta"><div><h2>${esc(p.name)}</h2><p>${esc(p.short)}</p></div><div class="b"><a class="btn w l" href="${k.url}">${esc(k.label)}</a><a class="btn gh l" href="mailto:${SITE.email}">Falar por e-mail</a></div></div></div></section>`;
+      const final = (p.minimal || p.noCta) ? '' : `<section class="sec"><div class="wrap"><div class="cta"><div><h2>${esc(p.name)}</h2><p>${esc(p.short)}</p></div><div class="b"><a class="btn w l" href="${k.url}">${esc(k.label)}</a><a class="btn gh l" href="mailto:${SITE.email}">Falar por e-mail</a></div></div></div></section>`;
       return subnav + hero + body + final;
     },
   });
