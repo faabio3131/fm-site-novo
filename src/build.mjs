@@ -5,7 +5,7 @@ import { PRODUCTS, bySlug } from './products.mjs';
 import { ic } from './icons.mjs';
 import { IMAGES } from './images.mjs';
 import { VIDEOS } from './videos.mjs';
-const WM = fs.readFileSync('src/brand-fm.html', 'utf8');
+const wm = (up) => `<span class="wm"><img src="${up}assets/brand/fm/logo-fm.webp" width="626" height="114" alt="FM Tecnologia"><small>IA para melhorar hoje e evoluir o amanhã.</small></span>`;
 const CREDITS = fs.existsSync('src/credits.json') ? JSON.parse(fs.readFileSync('src/credits.json', 'utf8')) : {};
 
 const EXT = process.env.LINKEXT ?? '';         // '' em produção, '.html' no preview local
@@ -24,7 +24,7 @@ function ctx(route) {
 
 function nav(c, active) {
   const items = [['produtos', 'Produtos'], ['solucoes', 'Soluções'], ['precos', 'Preços'], ['recursos', 'Recursos'], ['empresa', 'Empresa']];
-  return `<header class="nav"><div class="wrap"><a class="brand" href="${c.href('')}">${WM}</a>
+  return `<header class="nav"><div class="wrap"><a class="brand" href="${c.href('')}">${wm(c.up)}</a>
 <nav class="menu" id="menu" aria-label="Principal">${items.map(([r, t]) => `<a href="${c.href(r)}" class="${active === r ? 'on' : ''}">${t}</a>`).join('')}</nav>
 <div class="nr"><button class="theme" id="theme" aria-label="Alternar tema claro/escuro">${ic('sun')}</button><a class="btn sm" href="${c.href('entrar')}">Entrar</a><a class="btn sm k" href="${c.href('contato')}">Falar com especialista</a><button class="theme burger" id="burger" aria-label="Menu">☰</button></div></div></header>`;
 }
@@ -32,7 +32,7 @@ function nav(c, active) {
 function footer(c) {
   const li = (arr) => arr.map(([t, h]) => `<li><a href="${h}">${t}</a></li>`).join('');
   return `<footer class="foot"><div class="wrap"><div class="g">
-<div><a class="brand" href="${c.href('')}">${WM}</a><p>${SITE.signature} Software e inteligência artificial aplicados a negócios.</p></div>
+<div><a class="brand" href="${c.href('')}">${wm(c.up)}</a><p>${SITE.signature} Software e inteligência artificial aplicados a negócios.</p></div>
 <div><h6>Produtos</h6><ul>${li(main.map((p) => [p.name, c.href('produtos/' + p.slug)]))}</ul></div>
 <div><h6>Em desenvolvimento</h6><ul>${li([...dev, ...rnd].map((p) => [p.name, c.href('produtos/' + p.slug)]))}</ul></div>
 <div><h6>Empresa</h6><ul>${li([['Sobre a FM', c.href('empresa')], ['Soluções', c.href('solucoes')], ['Preços', c.href('precos')], ['Recursos', c.href('recursos')], ['Contato', c.href('contato')]])}<li><a href="mailto:${SITE.email}">${SITE.email}</a></li><li><a href="${wa('Olá! Quero conversar sobre os produtos da FM Tecnologia.')}">WhatsApp ${SITE.whatsappLabel}</a></li></ul></div>
