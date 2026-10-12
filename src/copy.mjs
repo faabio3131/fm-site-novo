@@ -80,6 +80,26 @@ export const COPY = {
         chips: ['Operações com emissão de documentos fiscais', 'Produtos do ecossistema FM', 'Equipes que precisam de auditoria e rastreabilidade'] },
     ],
   },
+  campaia: {
+    title: 'Campanhas inteligentes. Resultados reais.',
+    lead: 'O CampaIA entende o seu negócio, propõe a estratégia, cria textos e imagens, confere as regras de cada plataforma e só publica depois da sua aprovação. Você acompanha os resultados e decide o que otimizar, sem virar especialista em anúncios.',
+    before: [
+      { kind: 'contrast', id: 'desafio', kicker: 'O desafio do marketing digital', title: 'Anunciar bem exige tempo, especialistas e atenção constante.',
+        lead: 'O CampaIA reúne planejamento, criação, conferência e acompanhamento em um só lugar, com você no comando.',
+        items: [
+          ['Dias de planejamento e pesquisa', 'Do briefing à proposta de campanha em minutos, com estratégia e criativos sugeridos.'],
+          ['Um especialista para cada plataforma', 'Google, Facebook, Instagram e WhatsApp em uma só ferramenta e em um só painel.'],
+          ['Verba mal aplicada', 'Limites de orçamento e de ajuste definidos por você, com sugestões explicadas.'],
+          ['Medo de anúncio fora das regras', 'Conferência de políticas e de alegações antes de qualquer publicação.'],
+        ] },
+    ],
+    overrides: {},
+    after: [
+      { kind: 'who', id: 'para-quem', kicker: 'Para quem é', title: 'Para quem precisa anunciar bem sem montar uma equipe de marketing.',
+        lead: 'Produto em desenvolvimento. Os recursos descritos estão em construção.',
+        chips: ['Pequenos negócios de qualquer segmento', 'Gerentes de marketing de pequenas e médias empresas', 'Agências que cuidam de vários clientes', 'Empreendedores digitais'] },
+    ],
+  },
   command: {
     title: 'Comande a empresa com dados governados e inteligência no centro.',
     lead: 'Produtos, métricas, financeiro, crescimento, clientes, operações e alertas em uma única visão executiva. Cada número chega com período, qualidade e origem. Quando a fonte não existe, o Command diz que o dado está indisponível, em vez de inventar uma resposta.',
