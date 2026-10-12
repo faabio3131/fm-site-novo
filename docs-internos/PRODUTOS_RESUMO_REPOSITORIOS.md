@@ -45,3 +45,6 @@ Base: pasta do Google Drive (Plano Mestre de Descoberta v0.1, de 06/09/2026, e D
 
 ## Status dos produtos (12/10/2026)
 Confirmação do diretor: o Kordena e o AtendeVendeIA estão prontos e só falta hospedar e colocar em produção. O AtendeVendeIA passou de "Em desenvolvimento · Em breve" para "Lançamento em preparação" (mesmo status do Kordena) e foi para o grupo de produtos principais. Hotmart e Messenger/Instagram continuam marcados como "em validação/em testes" por serem integrações opcionais ainda sem teste com conta real.
+
+## Marca FM Tecnologia (12/10/2026)
+Aprovado pelo diretor: o logotipo oficial é o do site atual (símbolo "FM" metálico + "FM TECNOLOGIA" + slogan "IA PARA MELHORAR HOJE E EVOLUIR O AMANHÃ."), com a haste em azul (o arquivo original tem a haste verde, e o site aplica o filtro hue-rotate(108deg) saturate(1.32) brightness(1.04) contrast(1.04) com leve brilho azul). Fonte do arquivo: `/brand/fm-tecnologia-approved.svg` do site atual (imagem de 660x150). Regra: usar este logotipo, com este tratamento, em todos os lugares onde a marca da FM aparecer (cabeçalho, rodapé, ícone do navegador e materiais futuros). Arquivos em `assets/brand/fm/` (logo-fm.webp/png, favicon, apple-touch-icon). Pendente: versão em alta resolução com quem criou o logotipo, para impressão e telas grandes.
