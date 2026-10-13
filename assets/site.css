@@ -151,7 +151,7 @@ h3{font-size:20px;letter-spacing:-.02em;font-weight:600;line-height:1.25}
 .cgrid .cc{padding:26px;display:flex;flex-direction:column;gap:8px}.cgrid .cc h3{margin:2px 0 10px;font-size:18px;color:var(--mu);font-weight:500}.cl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--dim)}.cl.ok{color:var(--a);margin-top:auto}.cgrid .cc p{margin:0;color:var(--tx);font-size:15.5px}
 .c5{grid-template-columns:repeat(6,1fr)}.c5>*{grid-column:span 2}.c5>*:nth-child(n+4){grid-column:span 3}
 h3.gh{margin-top:44px;font:700 12px var(--fb);letter-spacing:.16em;text-transform:uppercase;color:var(--a)}.card.sm{padding:22px}.card.sm h3{font-size:17px;margin:14px 0 6px}.card.sm p{font-size:14.5px}
-.dg{margin:40px 0 0;border-radius:20px;overflow:hidden;border:1px solid var(--ln);background:var(--s1)}.dg img{width:100%;height:auto;display:block}
+.dg{margin:40px 0 0;border-radius:20px;overflow:hidden;border:1px solid var(--ln);background:#000}.dg img{width:100%;height:auto;display:block}
 
 /* logo aprovada (azul, como no site atual) */
 .brand .wm{display:flex;flex-direction:column;gap:5px;align-items:flex-start}
