@@ -16,6 +16,8 @@ html[data-p=atendevendeia]{--bg:#020504;--s1:#06100E;--s2:#0A1A17;--ln:#12302B;-
 html[data-p=campaia]{--bg:#060307;--s1:#0F080F;--s2:#190D18;--ln:#33182F;--mu:#BC9FB7;--dim:#86687F;--a:#F0509B;--a2:#F58BBD;--argb:240,80,155;--hl:#F58BBD;--btn:#F0509B;--btnfg:#fff;--glow:.09}
 html[data-p=erp-core]{--bg:#060403;--s1:#100A07;--s2:#1B110B;--ln:#37221A;--mu:#BAA595;--dim:#85715F;--a:#FF8A3D;--a2:#FFB070;--argb:255,138,61;--hl:#FFB070;--btn:#FF8A3D;--btnfg:#180900;--glow:.08}
 html[data-p=super-core-extreme]{--bg:#060303;--s1:#100708;--s2:#1B0D0F;--ln:#371A1D;--mu:#BA9FA2;--dim:#85686B;--a:#E5484D;--a2:#F08084;--argb:229,72,77;--hl:#F08084;--btn:#E5484D;--btnfg:#fff;--glow:.09}
+/* fundo sempre neutro: o preto domina e a cor do produto não "suja" as superfícies (só detalhes usam o acento) */
+html[data-p]{--bg:#030304;--s1:#08080A;--s2:#0F0F12;--ln:#1D1E23;--mu:#A1A6AE;--dim:#6B7078;--glow:.035}
 
 *{box-sizing:border-box;margin:0;padding:0}html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
 body{font-family:var(--fb);color:var(--tx);background:var(--bg);line-height:1.6;overflow-x:hidden}
@@ -49,7 +51,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.08;letter-spacing:-.04em;font-
 h3{font-size:20px;letter-spacing:-.02em;font-weight:600;line-height:1.25}
 .lead{font-size:clamp(17px,1.5vw,19px);line-height:1.65;color:var(--mu)}.sub{font-size:17px;line-height:1.65;color:var(--mu)}
 .grad{color:var(--hl)}
-.sec{padding:96px 0}.soft{background:var(--s1);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}.center{text-align:center}.center .lead,.center .sub{margin-left:auto;margin-right:auto}
+.sec{padding:96px 0}.soft{background:#050506;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}.center{text-align:center}.center .lead,.center .sub{margin-left:auto;margin-right:auto}
 .dark{background:var(--bg)}
 .sh{max-width:780px}.sh.center{margin-left:auto;margin-right:auto}.sh h2{margin:14px 0 16px}
 .pill{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:99px;border:1px solid var(--ln);color:var(--mu);white-space:nowrap}
