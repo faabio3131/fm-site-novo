@@ -229,3 +229,24 @@ h3.gh{margin-top:44px;font:700 12px var(--fb);letter-spacing:.16em;text-transfor
  .ii-chips{grid-template-columns:repeat(2,1fr);gap:10px}
  .ii-ban{padding:16px 18px}
 }
+/* infográfico Iron Intelligence: versão compacta p/ caber em uma tela (desktop) */
+@media(min-width:1061px){
+ .ii{max-width:1180px;padding:26px 30px;margin-top:28px}
+ .ii-top{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 252px minmax(0,1fr);gap:12px 14px}
+ .ii-txt{gap:14px}
+ .ii-txt h3{font-size:25px;margin-top:12px}
+ .ii-txt>p{font-size:13.5px;line-height:1.5}
+ .ii-q{padding:2px 0 2px 14px}.ii-q b{font-size:14px;margin-bottom:4px}.ii-q p{font-size:12.5px;line-height:1.5}
+ .ii-k{font-size:11px}
+ .ii-card{padding:14px 14px 14px;border-radius:15px}
+ .ii-card h4{font-size:15px;margin:8px 0 5px}.ii-card p{font-size:12.5px;line-height:1.45}
+ .ii-n{font-size:16px}
+ .ii-ic{width:34px;height:34px;top:12px;right:12px}.ii-ic .i{width:16px;height:16px}
+ .ii-ring{width:calc(100% - 34px);border-width:4px}
+ .ii-em{width:62px;height:62px;margin-bottom:3px}
+ .ii-wm{font-size:17px}.ii-tg{font-size:8.5px;margin-top:7px;line-height:1.6}.ii-by{font-size:10.5px;margin-top:9px}
+ .ii-cn{width:70px}.ii-cn.a,.ii-cn.c{left:-14px}.ii-cn.b,.ii-cn.d{right:-14px}
+ .ii-cn.a,.ii-cn.b{top:calc(50% - 56px)}.ii-cn.c,.ii-cn.d{top:calc(50% + 56px)}
+ .ii-chips{gap:10px;margin-top:16px}.ii-chips div{padding:9px 6px;border-radius:10px}.ii-chips b{font-size:12px;margin-bottom:3px}.ii-chips span{font-size:12.5px}
+ .ii-ban{margin-top:10px;padding:11px 18px}.ii-ban b{font-size:14px;margin-bottom:2px}.ii-ban p{font-size:12.5px;line-height:1.5}
+}
