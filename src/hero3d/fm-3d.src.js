@@ -115,7 +115,7 @@ export function mount(host) {
   const dust = new Points(pg, new PointsMaterial({ color: 0x8dff55, size: 0.028, transparent: true, opacity: 0.55, depthWrite: false, blending: AdditiveBlending }));
   scene.add(dust);
 
-  const state = { tx: 0, ty: 0, x: 0, y: 0, vis: false, raf: 0 };
+  const state = { tx: 0, ty: 0, x: 0, y: 0, vis: false, raf: 0, yaw: -0.32, yawC: -0.32, pause: false };
   const t0 = performance.now();
 
   function size() {
@@ -130,12 +130,14 @@ export function mount(host) {
 
   function draw(t) {
     state.x += (state.tx - state.x) * 0.07; state.y += (state.ty - state.y) * 0.07;
-    const sway = reduce ? 0 : Math.sin(t * 0.55) * 0.28;
-    rig.rotation.y = -0.32 + sway + state.x * 0.5;
-    rig.rotation.x = 0.06 + (reduce ? 0 : Math.sin(t * 0.43) * 0.04) + state.y * 0.26;
-    rig.position.y = reduce ? 0 : Math.sin(t * 0.8) * 0.06;
-    green.intensity = 3.2 + (reduce ? 0 : Math.sin(t * 1.7) * 0.9);
-    halo.material.opacity = 0.8 + (reduce ? 0 : Math.sin(t * 1.7) * 0.08);
+    const still = reduce || state.pause;
+    state.yawC += (state.yaw - state.yawC) * 0.08;
+    const sway = still ? 0 : Math.sin(t * 0.55) * 0.28;
+    rig.rotation.y = state.yawC + sway + state.x * 0.5;
+    rig.rotation.x = 0.06 + (still ? 0 : Math.sin(t * 0.43) * 0.04) + state.y * 0.26;
+    rig.position.y = still ? 0 : Math.sin(t * 0.8) * 0.06;
+    green.intensity = 3.2 + (still ? 0 : Math.sin(t * 1.7) * 0.9);
+    halo.material.opacity = 0.8 + (still ? 0 : Math.sin(t * 1.7) * 0.08);
     dust.rotation.y = t * 0.02; dust.position.y = Math.sin(t * 0.3) * 0.05;
     renderer.render(scene, camera);
   }
@@ -157,4 +159,12 @@ export function mount(host) {
   size(); draw(0);
   host.classList.add('is3d');
   window.__fm3d = { scene, camera, rig, renderer, draw };
+  // controle para revisão visual (não é usado no site)
+  return {
+    setView(name) {
+      state.yaw = ({ frente: 0, 'tres-quartos': -0.32, perfil: -1.15, 'outro-lado': 0.55 })[name] ?? -0.32;
+      if (!state.raf) { state.yawC = state.yaw; draw(0); }
+    },
+    setPaused(p) { state.pause = !!p; if (!state.raf) draw(0); }
+  };
 }
