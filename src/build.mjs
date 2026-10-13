@@ -161,11 +161,25 @@ function productCard(p, c) {
   return `<a class="card pcard" href="${c.href('produtos/' + p.slug)}">${pill(p)}<div class="ic">${ic({ kordena: 'store', 'iron-fit': 'flame', nfcore: 'file', command: 'chart', atendevendeia: 'chat', campaia: 'mega', 'erp-core': 'layers', 'super-core-extreme': 'cog' }[p.slug])}</div><h3>${p.name}</h3><p>${esc(p.short)}</p><span class="go">${p.group === 'rnd' ? 'Explorar pesquisa' : 'Conhecer produto'} →</span></a>`;
 }
 
+
+// Marca FM em 3D (Three.js, carregada sob demanda) com fallback em SVG nítido
+const FM_STAGE = (c) => `<div class="stage" id="fm3d" data-src="${c.up}assets/fm-3d.js" role="img" aria-label="Logo FM Tecnologia em 3D, com núcleo verde brilhante">
+<svg class="fb" viewBox="40 30 740 440" aria-hidden="true" focusable="false"><defs>
+<linearGradient id="fmg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d4d8dc"/><stop offset=".5" stop-color="#8d9298"/><stop offset="1" stop-color="#5f656b"/></linearGradient>
+<linearGradient id="fmg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d9298"/><stop offset="1" stop-color="#4c5157"/></linearGradient>
+<linearGradient id="fmg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a6ff6b"/><stop offset="1" stop-color="#3fc80f"/></linearGradient>
+<filter id="fmglow" x="-80%" y="-40%" width="260%" height="180%"><feGaussianBlur stdDeviation="14"/></filter></defs>
+<polygon points="365,170 378,210 438,252 442,440 372,398 366,390" fill="#5cff22" filter="url(#fmglow)" opacity=".75"/>
+<polygon points="105,143 180,62 420,62 540,185 690,62 750,60 748,403 668,403 660,185 532,300 382,143" fill="url(#fmg1)"/>
+<path d="M75 405V262Q75 190 152 190H306V268H160L157 405Z" fill="url(#fmg2)"/>
+<polygon points="365,170 378,210 438,252 442,440 372,398 366,390" fill="url(#fmg3)"/></svg>
+<canvas aria-hidden="true"></canvas></div>`;
+
 page('', { title: `${SITE.name} — ${SITE.signature}`, desc: 'Tecnologia que conecta operação, dados e inteligência. Produtos inteligentes para transformar processos, acelerar decisões e preparar operações para crescer.', active: '', body: (c) => `
-<section class="hero"><div class="wrap"><div class="t"><span class="eb"><i></i>${SITE.name} · IA · Automação · Software</span>
+<section class="hero"><div class="wrap"><div class="hgrid"><div class="t"><span class="eb"><i></i>${SITE.name} · IA · Automação · Software</span>
 <h1>Tecnologia que conecta <span class="grad">operação, dados e inteligência.</span></h1>
 <p class="lead">Desenvolvemos produtos inteligentes para transformar processos, acelerar decisões e preparar operações para crescer. A IA recomenda; você decide.</p>
-<div class="b"><a class="btn p l" href="${c.href('produtos')}">Conhecer produtos</a><a class="btn l" href="${c.href('contato')}">Falar com a FM</a></div><p class="note">${SITE.signature}</p></div>
+<div class="b"><a class="btn p l" href="${c.href('produtos')}">Conhecer produtos</a><a class="btn l" href="${c.href('contato')}">Falar com a FM</a></div><p class="note">${SITE.signature}</p></div>${FM_STAGE(c)}</div>
 <div class="win"><div class="wb"><b></b><b></b><b></b><span>Ecossistema FM Tecnologia</span></div><div class="wbody"><div class="side">${[...main, ...dev].map((p) => `<div>${p.name}</div>`).join('')}</div><div class="eco"><div class="core"><span>Core cognitivo transversal<br><small>Conecta · Entende · Recomenda · Você decide</small></span>${ic('bot')}</div>${['Atendimento', 'Vendas', 'Estoque', 'Produção', 'Financeiro', 'Clientes'].map((a) => `<div class="wc"><h5>${a}</h5><p>Conectado ao mesmo contexto.</p></div>`).join('')}</div></div></div></div></section>
 <div class="wrap"><div class="band">${main.concat(dev).map((p) => `<a href="${c.href('produtos/' + p.slug)}">${p.name}</a>`).join('')}</div></div>
 <section class="sec"><div class="wrap">${head('Produtos principais', 'Soluções inteligentes para cada frente da operação.', 'Produtos especializados que conectam gestão, desempenho e fiscal dentro do ecossistema FM.', true)}<div class="grid g2">${main.map((p) => productCard(p, c)).join('')}</div></div></section>

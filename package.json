@@ -4,6 +4,11 @@
   "type": "module",
   "scripts": {
     "build": "node src/build.mjs",
-    "build:preview": "LINKEXT=.html OUT=preview node src/build.mjs"
+    "build:preview": "LINKEXT=.html OUT=preview node src/build.mjs",
+    "build:3d": "esbuild src/hero3d/fm-3d.src.js --bundle --minify --format=esm --target=es2020 --outfile=assets/fm-3d.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "three": "^0.186.1"
   }
 }
