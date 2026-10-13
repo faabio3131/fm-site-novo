@@ -12,7 +12,7 @@ const CREDITS = fs.existsSync('src/credits.json') ? JSON.parse(fs.readFileSync('
 const EXT = process.env.LINKEXT ?? '';         // '' em produção, '.html' no preview local
 const OUT = process.env.OUT ?? 'docs';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const PC = { kordena: ['#4F7BF2', '79,123,242'], 'iron-fit': ['#2BF47A', '43,244,122'], nfcore: ['#8B5CF6', '139,92,246'], command: ['#E0AE4B', '224,174,75'], atendevendeia: ['#19D3C5', '25,211,197'], campaia: ['#F0509B', '240,80,155'], 'erp-core': ['#FF8A3D', '255,138,61'], 'super-core-extreme': ['#E5484D', '229,72,77'] };
+const PC = { kordena: ['#4F7BF2', '79,123,242'], 'iron-fit': ['#2BF47A', '43,244,122'], nfcore: ['#8B5CF6', '139,92,246'], command: ['#FF9F1C', '255,159,28'], atendevendeia: ['#19D3C5', '25,211,197'], campaia: ['#F0509B', '240,80,155'], 'erp-core': ['#FF8A3D', '255,138,61'], 'super-core-extreme': ['#E5484D', '229,72,77'] };
 const pcs = (slug) => `--pc:${PC[slug][0]};--pcrgb:${PC[slug][1]}`;
 const main = PRODUCTS.filter((p) => p.group === 'main');
 const dev = PRODUCTS.filter((p) => p.group === 'dev');
