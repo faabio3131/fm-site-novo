@@ -3,6 +3,7 @@ import path from 'node:path';
 import { SITE, STATUS, wa } from './config.mjs';
 import { PRODUCTS, bySlug } from './products.mjs';
 import { ic } from './icons.mjs';
+import { ironInt } from './iron-int.mjs';
 import { IMAGES } from './images.mjs';
 import { VIDEOS } from './videos.mjs';
 const wm = (up) => `<span class="wm"><img src="${up}assets/brand/fm/logo-fm.webp" width="626" height="114" alt="FM Tecnologia"><small>IA para melhorar hoje e evoluir o amanhã.</small></span>`;
@@ -78,8 +79,9 @@ function floatOf(p) {
 
 function section(s, p, c) {
   const html = sectionBase(s, p, c);
-  if (!s.figure || !fs.existsSync(path.join('assets/img', p.slug, s.figure.file))) return html;
+  if (!s.figure || (!s.figure.native && !fs.existsSync(path.join('assets/img', p.slug, s.figure.file)))) return html;
   const f = s.figure;
+  if (f.native === 'iron-int') return html.replace(/<\/div><\/section>$/, `${ironInt(esc(f.alt))}</div></section>`);
   return html.replace(/<\/div><\/section>$/, `<figure class="dg"><img src="${c.up}assets/img/${p.slug}/${f.file}" alt="${esc(f.alt)}" loading="lazy"></figure></div></section>`);
 }
 
