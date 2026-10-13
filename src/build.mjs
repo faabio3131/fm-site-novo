@@ -4,6 +4,7 @@ import { SITE, STATUS, wa } from './config.mjs';
 import { PRODUCTS, bySlug } from './products.mjs';
 import { ic } from './icons.mjs';
 import { ironInt } from './iron-int.mjs';
+import { nfLogo } from './nf-logo.mjs';
 import { IMAGES } from './images.mjs';
 import { VIDEOS } from './videos.mjs';
 const wm = (up) => `<span class="wm"><img src="${up}assets/brand/fm/logo-fm.webp" width="626" height="114" alt="FM Tecnologia"><small>IA para melhorar hoje e evoluir o amanhã.</small></span>`;
@@ -12,7 +13,7 @@ const CREDITS = fs.existsSync('src/credits.json') ? JSON.parse(fs.readFileSync('
 const EXT = process.env.LINKEXT ?? '';         // '' em produção, '.html' no preview local
 const OUT = process.env.OUT ?? 'docs';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const PC = { kordena: ['#4F7BF2', '79,123,242'], 'iron-fit': ['#2BF47A', '43,244,122'], nfcore: ['#8B5CF6', '139,92,246'], command: ['#FF9F1C', '255,159,28'], atendevendeia: ['#19D3C5', '25,211,197'], campaia: ['#F0509B', '240,80,155'], 'erp-core': ['#FF8A3D', '255,138,61'], 'super-core-extreme': ['#E5484D', '229,72,77'] };
+const PC = { kordena: ['#4F7BF2', '79,123,242'], 'iron-fit': ['#2BF47A', '43,244,122'], nfcore: ['#7C3AED', '124,58,237'], command: ['#FF9F1C', '255,159,28'], atendevendeia: ['#19D3C5', '25,211,197'], campaia: ['#F0509B', '240,80,155'], 'erp-core': ['#FF8A3D', '255,138,61'], 'super-core-extreme': ['#E5484D', '229,72,77'] };
 const pcs = (slug) => `--pc:${PC[slug][0]};--pcrgb:${PC[slug][1]}`;
 const main = PRODUCTS.filter((p) => p.group === 'main');
 const dev = PRODUCTS.filter((p) => p.group === 'dev');
@@ -81,6 +82,7 @@ function section(s, p, c) {
   const html = sectionBase(s, p, c);
   if (!s.figure || (!s.figure.native && !fs.existsSync(path.join('assets/img', p.slug, s.figure.file)))) return html;
   const f = s.figure;
+  if (f.native === 'nf-logo') return html.replace(/<\/div><\/section>$/, `${nfLogo(esc(f.alt))}</div></section>`);
   if (f.native === 'iron-int') return html.replace(/<\/div><\/section>$/, `${ironInt(esc(f.alt))}</div></section>`);
   return html.replace(/<\/div><\/section>$/, `<figure class="dg"><img src="${c.up}assets/img/${p.slug}/${f.file}" alt="${esc(f.alt)}" loading="lazy"></figure></div></section>`);
 }

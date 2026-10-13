@@ -10,7 +10,7 @@
 /* acento por produto (só muda a cor de destaque; o fundo continua preto) */
 html[data-p=kordena]{--bg:#02040A;--s1:#060B18;--s2:#0B1226;--ln:#16234A;--mu:#9AA8C7;--dim:#6475A0;--a:#4F7BF2;--a2:#8FADFA;--argb:43,89,230;--hl:#8FADFA;--btn:#2B59E6;--btnfg:#fff;--glow:.11}
 html[data-p=iron-fit]{--bg:#030502;--s1:#090D06;--s2:#10160A;--ln:#1E2813;--mu:#A2AE95;--dim:#6F7C62;--a:#2BF47A;--a2:#7DFFB1;--argb:43,244,122;--hl:#7DFFB1;--btn:#2BF47A;--btnfg:#03140A;--glow:.08}
-html[data-p=nfcore]{--bg:#040308;--s1:#0A0813;--s2:#110E1F;--ln:#251E44;--mu:#A59FBF;--dim:#706A8E;--a:#8B5CF6;--a2:#B9A0FA;--argb:139,92,246;--hl:#B9A0FA;--btn:#7C4DF0;--btnfg:#fff;--glow:.1}
+html[data-p=nfcore]{--bg:#040308;--s1:#0A0813;--s2:#110E1F;--ln:#251E44;--mu:#A59FBF;--dim:#706A8E;--a:#7C3AED;--a2:#A78BFA;--argb:124,58,237;--hl:#A78BFA;--btn:#6D28D9;--btnfg:#fff;--glow:.16}
 html[data-p=command]{--bg:#000;--s1:#0C0A07;--s2:#15120C;--ln:#2A2416;--mu:#B0A892;--dim:#7C7560;--a:#FF9F1C;--a2:#FFC46B;--argb:255,159,28;--hl:#FFC46B;--btn:#FF9F1C;--btnfg:#1A0E00;--glow:.07}
 html[data-p=atendevendeia]{--bg:#020504;--s1:#06100E;--s2:#0A1A17;--ln:#12302B;--mu:#93B2AD;--dim:#5F807B;--a:#19D3C5;--a2:#6BE7DC;--argb:25,211,197;--hl:#6BE7DC;--btn:#19D3C5;--btnfg:#021210;--glow:.08}
 html[data-p=campaia]{--bg:#060307;--s1:#0F080F;--s2:#190D18;--ln:#33182F;--mu:#BC9FB7;--dim:#86687F;--a:#F0509B;--a2:#F58BBD;--argb:240,80,155;--hl:#F58BBD;--btn:#F0509B;--btnfg:#fff;--glow:.09}
@@ -252,3 +252,6 @@ h3.gh{margin-top:44px;font:700 12px var(--fb);letter-spacing:.16em;text-transfor
 }
 
 .wc,.win,.float,.hero .win *{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}.wc p,.side div{color:#B4BAC3}.wc h5{color:#fff}
+
+.nfl{padding:0;max-width:900px}.nfl svg{display:block;width:100%;height:auto}
+html[data-p=nfcore] .card,html[data-p=nfcore] .panel{border-color:rgba(var(--argb),.32);box-shadow:0 0 28px -10px rgba(var(--argb),.45)}
