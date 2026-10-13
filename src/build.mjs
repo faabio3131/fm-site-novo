@@ -82,7 +82,7 @@ function section(s, p, c) {
   const html = sectionBase(s, p, c);
   if (!s.figure || (!s.figure.native && !fs.existsSync(path.join('assets/img', p.slug, s.figure.file)))) return html;
   const f = s.figure;
-  if (f.native === 'nf-logo') return html.replace(/<\/div><\/section>$/, `${nfLogo(esc(f.alt))}</div></section>`);
+  if (f.native === 'nf-logo') return html.replace(/<\/div><\/section>$/, `${nfLogo(esc(f.alt), c.up)}</div></section>`);
   if (f.native === 'iron-int') return html.replace(/<\/div><\/section>$/, `${ironInt(esc(f.alt))}</div></section>`);
   return html.replace(/<\/div><\/section>$/, `<figure class="dg"><img src="${c.up}assets/img/${p.slug}/${f.file}" alt="${esc(f.alt)}" loading="lazy"></figure></div></section>`);
 }

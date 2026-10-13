@@ -253,5 +253,7 @@ h3.gh{margin-top:44px;font:700 12px var(--fb);letter-spacing:.16em;text-transfor
 
 .wc,.win,.float,.hero .win *{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}.wc p,.side div{color:#B4BAC3}.wc h5{color:#fff}
 
-.nfl{padding:0;max-width:900px}.nfl svg{display:block;width:100%;height:auto}
+.nfl{margin:40px auto 0;display:flex;flex-direction:column;align-items:center;text-align:center}.nfl img{width:min(440px,78vw);height:auto;display:block}
+.nfw{font:800 clamp(40px,7vw,64px)/1 var(--fd);letter-spacing:-.01em;margin-top:-8px}.nfw span{background:linear-gradient(#fff,#9C9AAA);-webkit-background-clip:text;background-clip:text;color:transparent}.nfw em{font-style:normal;margin-left:.12em;background:linear-gradient(90deg,#A878FF,#7C5CFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nft{margin-top:14px;font:600 14px/1 var(--fb);letter-spacing:.34em;text-transform:uppercase;color:#A59FBF}
 html[data-p=nfcore] .card,html[data-p=nfcore] .panel{border-color:rgba(var(--argb),.32);box-shadow:0 0 28px -10px rgba(var(--argb),.45)}

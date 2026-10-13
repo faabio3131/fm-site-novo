@@ -15,32 +15,6 @@ function brain() {
 <path d="M125 16C118 50 132 70 122 100C114 124 124 140 118 158" fill="none" stroke="#C9B5FF" stroke-width="1.4" stroke-opacity=".7"/></g></g>`;
 }
 
-export function nfLogo(alt) {
-  // cubo isométrico: centro (150,0) local
-  const cube = `<g transform="translate(160 232)">
-<path d="M0 -92 80 -46 0 0 -80 -46Z" fill="url(#ntop)" stroke="#B9A0FA" stroke-width="2"/>
-<path d="M-80 -46 0 0 0 100 -80 54Z" fill="url(#nleft)" stroke="#9D7BFF" stroke-width="2"/>
-<path d="M80 -46 0 0 0 100 80 54Z" fill="url(#nright)" stroke="#9D7BFF" stroke-width="2"/>
-<path d="M0 0V100" stroke="#C9B5FF" stroke-width="2.5" filter="url(#nglow)"/>
-<path d="M0 -92 80 -46 0 0 -80 -46Z" fill="none" stroke="#fff" stroke-opacity=".35"/>
-<g transform="matrix(.866 .5 0 1 -59 37)"><text x="0" y="0" font-family="Sora,sans-serif" font-weight="800" font-size="56" fill="url(#nmetal)">N</text></g>
-<g transform="matrix(.866 -.5 0 1 21 59)"><text x="0" y="0" font-family="Sora,sans-serif" font-weight="800" font-size="56" fill="url(#nmetal)">F</text></g>
-<path d="M-26 -46 0 -60 26 -46 0 -32Z" fill="#0A0414" stroke="#C9B5FF" stroke-width="1.6"/></g>`;
-  const trunk = `<g fill="none" stroke="#A98BFF" stroke-linecap="round" filter="url(#nglow)"><path d="M160 172V150" stroke-width="3"/><path d="M160 190C140 170 128 160 118 150M160 190C180 170 192 160 202 150M160 200C130 186 110 178 98 160M160 200C190 186 210 178 222 160" stroke-width="1.6" stroke-opacity=".8"/></g>`;
-  return `<figure class="dg nfl" role="img" aria-label="${alt}"><svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<filter id="nglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-<linearGradient id="ntop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A1C7A"/><stop offset="1" stop-color="#150A30"/></linearGradient>
-<linearGradient id="nleft" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1D0F3E"/><stop offset="1" stop-color="#0B0518"/></linearGradient>
-<linearGradient id="nright" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A1559"/><stop offset="1" stop-color="#0B0518"/></linearGradient>
-<linearGradient id="nmetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#C9C5D6"/><stop offset="1" stop-color="#7C7A8C"/></linearGradient>
-<linearGradient id="ncore" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9D6BFF"/><stop offset="1" stop-color="#5B7CFF"/></linearGradient>
-<radialGradient id="nhalo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#7C3AED" stop-opacity=".35"/><stop offset="1" stop-color="#7C3AED" stop-opacity="0"/></radialGradient>
-</defs>
-<ellipse cx="170" cy="190" rx="190" ry="170" fill="url(#nhalo)"/>
-<g transform="translate(46 14) scale(.98)">${brain()}</g>
-${trunk}${cube}
-<text x="336" y="250" font-family="Sora,sans-serif" font-weight="800" font-size="98" textLength="520" lengthAdjust="spacingAndGlyphs"><tspan fill="url(#nmetal)">NF</tspan><tspan fill="url(#ncore)" dx="8">CORE</tspan></text>
-<text x="338" y="300" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" font-size="19" textLength="516" lengthAdjust="spacing" fill="#9A93B5">INFRASTRUCTURE MISSION CONTROL</text>
-</svg></figure>`;
+export function nfLogo(alt, up = '') {
+  return `<figure class="nfl" role="img" aria-label="${alt}"><img src="${up}assets/img/nfcore/cubo.webp" alt="" width="1000" height="1000" loading="lazy"><b class="nfw"><span>NF</span><em>CORE</em></b><span class="nft">Inteligência fiscal</span></figure>`;
 }
