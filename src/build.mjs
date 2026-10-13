@@ -11,6 +11,8 @@ const CREDITS = fs.existsSync('src/credits.json') ? JSON.parse(fs.readFileSync('
 const EXT = process.env.LINKEXT ?? '';         // '' em produção, '.html' no preview local
 const OUT = process.env.OUT ?? 'docs';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const PC = { kordena: ['#4F7BF2', '79,123,242'], 'iron-fit': ['#8EDB2A', '142,219,42'], nfcore: ['#8B5CF6', '139,92,246'], command: ['#E0AE4B', '224,174,75'], atendevendeia: ['#19D3C5', '25,211,197'], campaia: ['#F0509B', '240,80,155'], 'erp-core': ['#FF8A3D', '255,138,61'], 'super-core-extreme': ['#E5484D', '229,72,77'] };
+const pcs = (slug) => `--pc:${PC[slug][0]};--pcrgb:${PC[slug][1]}`;
 const main = PRODUCTS.filter((p) => p.group === 'main');
 const dev = PRODUCTS.filter((p) => p.group === 'dev');
 const rnd = PRODUCTS.filter((p) => p.group === 'rnd');
@@ -26,7 +28,7 @@ function nav(c, active) {
   const items = [['produtos', 'Produtos'], ['solucoes', 'Soluções'], ['precos', 'Preços'], ['recursos', 'Recursos'], ['empresa', 'Empresa']];
   return `<header class="nav"><div class="wrap"><a class="brand" href="${c.href('')}">${wm(c.up)}</a>
 <nav class="menu" id="menu" aria-label="Principal">${items.map(([r, t]) => `<a href="${c.href(r)}" class="${active === r ? 'on' : ''}">${t}</a>`).join('')}</nav>
-<div class="nr"><button class="theme" id="theme" aria-label="Alternar tema claro/escuro">${ic('sun')}</button><a class="btn sm" href="${c.href('entrar')}">Entrar</a><a class="btn sm k" href="${c.href('contato')}">Falar com especialista</a><button class="theme burger" id="burger" aria-label="Menu">☰</button></div></div></header>`;
+<div class="nr"><a class="btn sm" href="${c.href('entrar')}">Entrar</a><a class="btn sm k" href="${c.href('contato')}">Falar com especialista</a><button class="burger" id="burger" aria-label="Menu">☰</button></div></div></header>`;
 }
 
 function footer(c) {
@@ -39,12 +41,11 @@ function footer(c) {
 </div><div class="fb"><span>© ${new Date().getFullYear()} ${SITE.legalName}. Todos os direitos reservados. CNPJ ${SITE.cnpj}</span><span>${SITE.domain}</span></div></div></footer>`;
 }
 
-function page(route, { title, desc, active, body }) {
+function page(route, { title, desc, active, body, prod }) {
   const c = ctx(route);
-  const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  const html = `<!doctype html><html lang="pt-BR"${prod ? ` data-p="${prod}"` : ''}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title><meta name="description" content="${esc(desc)}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="website"><meta property="og:image" content="https://${SITE.domain}/assets/brand/fm/compartilhar-1200x630.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/png" href="${c.up}assets/brand/fm/favicon.png"><link rel="apple-touch-icon" href="${c.up}assets/brand/fm/apple-touch-icon.png">
-<script>try{var t=localStorage.getItem('fm-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="${c.up}assets/site.css"></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="${c.up}assets/site.css"></head><body>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>${nav(c, active)}<main id="conteudo">${typeof body === 'function' ? body(c) : body}</main>${footer(c)}<script src="${c.up}assets/site.js"></script></body></html>`;
   const file = path.join(OUT, route === '' ? 'index.html' : route + '.html');
   fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -68,6 +69,11 @@ function ctas(p, c) {
 function windowOf(p) {
   const w = p.window;
   return `<div class="win"><div class="wb"><b></b><b></b><b></b><span>${esc(w.title)}</span></div><div class="wbody"><div class="side">${w.side.map((s) => `<div>${esc(s)}</div>`).join('')}</div><div class="wmain">${w.cards.map((x) => `<div class="wc ${x.ai ? 'ai' : ''}"><h5>${x.ai ? ic('bot') : ''}${esc(x.h)}</h5><p>${esc(x.p)}</p></div>`).join('')}</div></div></div>`;
+}
+
+function floatOf(p) {
+  const a = p.window.cards.find((x) => x.ai) || p.window.cards[0];
+  return `<div class="float f1"><span class="ic">${ic('bot')}</span><div><b>${esc(a.h)}</b><small>${esc(a.p.length > 52 ? a.p.slice(0, 50).replace(/[ ,.;]+\S*$/, '') + '…' : a.p)}</small></div></div>`;
 }
 
 function section(s, p, c) {
@@ -136,10 +142,10 @@ function productPage(p) {
   const route = 'produtos/' + p.slug;
   const k = ctas(p);
   page(route, {
-    title: `${p.name} — ${SITE.name}`, desc: p.short, active: 'produtos',
+    title: `${p.name} — ${SITE.name}`, desc: p.short, active: 'produtos', prod: p.slug,
     body: (c) => {
       const subnav = p.sections.length ? `<div class="sn"><div class="wrap"><b>${p.name}</b><ul>${p.sections.map((s) => `<li><a href="#${s.id}">${esc(SHORT[s.id] || s.kicker)}</a></li>`).join('')}</ul>${k.primary ? `<a class="btn sm p" href="${k.url}">${k.label.length > 24 ? 'Testar grátis' : k.label}</a>` : ''}</div></div>` : '';
-      const hero = `<section class="phero"><div class="wrap"><a class="crumb" href="${c.href('produtos')}">← Todos os produtos</a><div class="${p.window ? 'pg' : ''}"><div><span class="eb"><i></i>${esc(p.eyebrow)}</span> ${pill(p)}<h1>${p.minimal ? esc(p.name) : esc(p.title)}</h1><p class="lead">${esc(p.lead)}</p>${k.primary ? `<div class="b">${k.primary}${k.secondary}</div>` : ''}<p class="note">${esc(p.trial.note)}</p></div>${p.window ? windowOf(p) : ''}</div></div></section>`;
+      const hero = `<section class="phero"><div class="wrap"><a class="crumb" href="${c.href('produtos')}">← Todos os produtos</a><div class="${p.window ? 'pg' : ''}"><div><span class="eb"><i></i>${esc(p.eyebrow)}</span> ${pill(p)}<h1>${p.minimal ? esc(p.name) : esc(p.title)}</h1><p class="lead">${esc(p.lead)}</p>${k.primary ? `<div class="b">${k.primary}${k.secondary}</div>` : ''}<p class="note">${esc(p.trial.note)}</p></div>${p.window ? `<div class="vis">${windowOf(p)}${floatOf(p)}</div>` : ''}</div></div></section>`;
       const parts = p.sections.map((s) => section(s, p, c));
       const flowAt = p.sections.findIndex((x) => x.kind === 'flow');
       const at = flowAt >= 0 ? flowAt + 1 : 1;
@@ -157,19 +163,24 @@ const MISSION = 'Criar tecnologias inteligentes, acessíveis, seguras e úteis, 
 const VISION = 'Um ecossistema tecnológico em que a IA é uma camada natural da operação empresarial.';
 const VALUES = [['Utilidade real', 'Tecnologia que resolve problemas de verdade.'], ['Inovação com propósito', 'Inovar para gerar valor, não para enfeitar.'], ['Evolução contínua', 'Produtos que melhoram a cada etapa.'], ['Qualidade', 'Testado, auditado, validado.'], ['Segurança e governança', 'Controle, acesso e rastreabilidade desde a arquitetura.'], ['Simplicidade', 'Complexidade tratada por dentro, clareza por fora.'], ['Transparência', 'Não prometer o que não existe.'], ['Responsabilidade', 'A IA apoia pessoas, não elimina responsabilidade.'], ['Foco no cliente', 'O negócio do cliente no centro da decisão.'], ['Visão de longo prazo', 'Construir hoje o que sustenta o amanhã.']];
 
-function productCard(p, c) {
-  return `<a class="card pcard" href="${c.href('produtos/' + p.slug)}">${pill(p)}<div class="ic">${ic({ kordena: 'store', 'iron-fit': 'flame', nfcore: 'file', command: 'chart', atendevendeia: 'chat', campaia: 'mega', 'erp-core': 'layers', 'super-core-extreme': 'cog' }[p.slug])}</div><h3>${p.name}</h3><p>${esc(p.short)}</p><span class="go">${p.group === 'rnd' ? 'Explorar pesquisa' : 'Conhecer produto'} →</span></a>`;
+const ICON = { kordena: 'store', 'iron-fit': 'flame', nfcore: 'file', command: 'chart', atendevendeia: 'chat', campaia: 'mega', 'erp-core': 'layers', 'super-core-extreme': 'cog' };
+function productCard(p, c, big) {
+  return `<a class="card pcard${big ? ' big' : ''}" style="${pcs(p.slug)}" href="${c.href('produtos/' + p.slug)}">${pill(p)}<div class="ic">${ic(ICON[p.slug])}</div><h3>${p.name}</h3><p>${esc(p.short)}</p><span class="go">${p.group === 'rnd' ? 'Explorar pesquisa' : 'Conhecer produto'} →</span></a>`;
 }
-
 page('', { title: `${SITE.name} — ${SITE.signature}`, desc: 'Tecnologia que conecta operação, dados e inteligência. Produtos inteligentes para transformar processos, acelerar decisões e preparar operações para crescer.', active: '', body: (c) => `
-<section class="hero"><div class="wrap"><div class="t"><span class="eb"><i></i>${SITE.name} · IA · Automação · Software</span>
+<section class="hero"><div class="wrap"><div class="hgrid"><div class="t"><span class="eb"><i></i>${SITE.name} · IA · Automação · Software</span>
 <h1>Tecnologia que conecta <span class="grad">operação, dados e inteligência.</span></h1>
 <p class="lead">Desenvolvemos produtos inteligentes para transformar processos, acelerar decisões e preparar operações para crescer. A IA recomenda; você decide.</p>
-<div class="b"><a class="btn p l" href="${c.href('produtos')}">Conhecer produtos</a><a class="btn l" href="${c.href('contato')}">Falar com a FM</a></div><p class="note">${SITE.signature}</p></div>
-<div class="win"><div class="wb"><b></b><b></b><b></b><span>Ecossistema FM Tecnologia</span></div><div class="wbody"><div class="side">${[...main, ...dev].map((p) => `<div>${p.name}</div>`).join('')}</div><div class="eco"><div class="core"><span>Core cognitivo transversal<br><small>Conecta · Entende · Recomenda · Você decide</small></span>${ic('bot')}</div>${['Atendimento', 'Vendas', 'Estoque', 'Produção', 'Financeiro', 'Clientes'].map((a) => `<div class="wc"><h5>${a}</h5><p>Conectado ao mesmo contexto.</p></div>`).join('')}</div></div></div></div></section>
-<div class="wrap"><div class="band">${main.concat(dev).map((p) => `<a href="${c.href('produtos/' + p.slug)}">${p.name}</a>`).join('')}</div></div>
-<section class="sec"><div class="wrap">${head('Produtos principais', 'Soluções inteligentes para cada frente da operação.', 'Produtos especializados que conectam gestão, desempenho e fiscal dentro do ecossistema FM.', true)}<div class="grid g2">${main.map((p) => productCard(p, c)).join('')}</div></div></section>
-<section class="sec dark"><div class="wrap">${head('Core cognitivo transversal', 'Uma inteligência compartilhada por todos os produtos.', 'Mais que chatbots: uma camada que conecta dados, entende o contexto e apoia a decisão — sem tirar das pessoas a responsabilidade.', true)}<div class="flow">${[['01', 'Conecta'], ['02', 'Entende'], ['03', 'Recomenda'], ['04', 'Você decide']].map(([a, b]) => `<div><b>${a}</b><span>${b}</span></div>`).join('')}</div></div></section>
+<div class="b"><a class="btn p l" href="${c.href('produtos')}">Conhecer produtos</a><a class="btn l" href="${c.href('contato')}">Falar com a FM</a></div>
+<div class="checks"><span>${ic('check')}A IA recomenda</span><span>${ic('check')}Você decide</span><span>${ic('check')}Governança e auditoria</span></div></div>
+<div class="vis"><div class="win"><div class="wb"><b></b><b></b><b></b><span>Ecossistema FM Tecnologia</span></div><div class="wbody"><div class="side">${[...main, ...dev, ...rnd].map((p, i) => `<div>${p.name}</div>`).join('')}</div><div class="eco"><div class="core"><span>Core cognitivo transversal<br><small>Conecta · Entende · Recomenda · Você decide</small></span>${ic('bot')}</div>${['Atendimento', 'Vendas', 'Estoque', 'Produção', 'Financeiro', 'Clientes'].map((a) => `<div class="wc"><h5>${a}</h5><p>Conectado ao mesmo contexto.</p></div>`).join('')}</div></div></div>
+<div class="float f1"><span class="ic">${ic('check')}</span><div><b>Você decide</b><small>A IA recomenda, a equipe aprova</small></div></div>
+<div class="float f2"><small>Core cognitivo</small><b>Conecta → Entende → Recomenda</b></div></div></div></div></section>
+<div class="wrap"><div class="band"><em>Produtos do ecossistema</em>${PRODUCTS.map((p) => `<a href="${c.href('produtos/' + p.slug)}" style="${pcs(p.slug)}"><b></b>${p.name}</a>`).join('')}</div></div>
+<section class="sec"><div class="wrap">${head('Como pensamos', 'Não somos só chatbots com IA.', 'Nossos produtos são construídos sobre um núcleo cognitivo compartilhado, que conecta dados, regras, integrações e decisões em toda a operação. Sem exagero e sem prometer o que não existe.', true)}<div class="grid g3">${[['bot', 'IA como camada', 'A IA gera valor quando está integrada corretamente ao negócio, junto de software, dados, regras, integrações, segurança e governança.'], ['shield', 'Controle humano', 'A IA recomenda; a decisão é de quem gere o negócio.'], ['check', 'Qualidade verificável', 'Testado, auditado, validado — sem apresentar certificações externas não comprovadas.']].map(([i, t, d]) => `<div class="card"><div class="ic">${ic(i)}</div><h3>${t}</h3><p>${d}</p></div>`).join('')}</div></div></section>
+<section class="sec soft"><div class="wrap">${head('Produtos principais', 'Soluções inteligentes para cada frente da operação.', 'Produtos especializados que conectam gestão, desempenho e fiscal dentro do ecossistema FM.', true)}<div class="bento">${main.map((p, i) => productCard(p, c, i < 2)).join('')}</div></div></section>
+<section class="sec"><div class="wrap">${head('Core cognitivo transversal', 'Uma inteligência compartilhada por todos os produtos.', 'Mais que chatbots: uma camada que conecta dados, entende o contexto e apoia a decisão — sem tirar das pessoas a responsabilidade.', true)}<div class="flow">${[['01', 'Conecta'], ['02', 'Entende'], ['03', 'Recomenda'], ['04', 'Você decide']].map(([a, b]) => `<div><b>${a}</b><span>${b}</span></div>`).join('')}</div></div></section>
+<section class="numband"><div class="wrap"><div class="nb"><div><b>${main.length}</b><span>produtos principais</span></div><div><b>${dev.length + rnd.length}</b><span>em desenvolvimento ou pesquisa</span></div><div><b>1</b><span>Core cognitivo compartilhado</span></div></div></div></section>
 <section class="sec"><div class="wrap">${head('O que estamos construindo', 'Produtos em desenvolvimento.', 'Clareza entre soluções principais, iniciativas em desenvolvimento e pesquisa.', true)}<div class="grid g3">${[...dev, ...rnd].map((p) => productCard(p, c)).join('')}</div></div></section>
 <section class="sec soft"><div class="wrap">${head('Por que existimos', 'Tecnologia com utilidade real.', MISSION, true)}<div class="chips">${['Utilidade real', 'Qualidade: testado, auditado, validado', 'Segurança e governança', 'Transparência', 'Responsabilidade'].map((v) => `<span>${v}</span>`).join('')}</div><div class="center" style="margin-top:36px"><a class="btn" href="${c.href('empresa')}">Conhecer a FM Tecnologia</a></div></div></section>
 <section class="sec"><div class="wrap"><div class="cta"><div><h2>Vamos conversar sobre a sua operação?</h2><p>Fale com a nossa equipe por WhatsApp ou e-mail.</p></div><div class="b"><a class="btn w l" href="${wa('Olá! Quero conversar sobre os produtos da FM Tecnologia.')}">WhatsApp</a><a class="btn gh l" href="${c.href('contato')}">Contato</a></div></div></div></section>` });
