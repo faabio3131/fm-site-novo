@@ -118,6 +118,12 @@ const fig = (slug, im, cls = '') => {
     : `<figure class="ph empty ${cls}"><figcaption><b>Imagem em preparação</b><span>${esc(im.brief)}</span></figcaption></figure>`;
 };
 
+function salesMock() {
+  return `<figure class="chatmock" aria-label="Exemplo ilustrativo de venda pelo WhatsApp com o AtendeVendeIA"><div class="phone"><div class="ph-head"><span class="av">${ic('bot')}</span><div><b>Atendente IA</b><small>Sua loja · online</small></div></div>
+<div class="msgs"><div class="m c">Oi! Quanto é o vestido azul?</div><div class="m a">Olá! O vestido azul está R$ 189,90, nos tamanhos P, M e G. Quer que eu envie o link de pagamento?</div><div class="m c">Quero o M, pode mandar.</div><div class="m a">Perfeito! Aqui está o link do seu pedido.<div class="ord"><em>Pagar com Pix ou boleto</em></div></div><div class="m a">Pagamento confirmado!<div class="ord"><span>${ic('check')} Pagamento confirmado</span><span>${ic('check')} Pedido faturado</span><span>${ic('check')} Cliente avisado</span></div></div></div></div>
+<div class="core-side"><div class="chip-core">${ic('bot')}<span>Atendente IA</span></div><div class="arrow">↓</div><div class="chip-s">Preço e link do seu cadastro</div><div class="chip-s">Venda recuperada</div><div class="chip-s">Pedido faturado</div><small>Exemplo ilustrativo</small></div></figure>`;
+}
+
 function chatMock() {
   const bars = [6, 12, 18, 10, 22, 14, 8, 20, 16, 9, 13, 18, 7].map((h) => `<i style="height:${h}px"></i>`).join('');
   return `<figure class="chatmock" aria-label="Exemplo ilustrativo do Atendente IA"><div class="phone"><div class="ph-head"><span class="av">${ic('bot')}</span><div><b>Atendente IA</b><small>Kordena · online</small></div></div>
@@ -130,7 +136,7 @@ function photoSections(p, c) {
   const t = I.owner_text;
   const own = `<section class="sec soft" id="visao"><div class="wrap"><div class="split flip"><div><span class="kick">${t.kicker}</span><h2 style="margin:14px 0 16px">${t.title}</h2><p class="sub">${t.lead}</p><ul>${t.bullets.map((b) => `<li>${ic('check')}<span>${esc(b)}</span></li>`).join('')}</ul></div>${fig(p.slug, I.owner, 'tall')}</div></div></section>`;
   const amb = `<section class="sec" id="ambiente"><div class="wrap">${head('Ambiente', I.ambient_title, '', true)}<div class="grid ${I.ambient.length === 3 ? 'g3' : 'g2'}">${I.ambient.map((a) => fig(p.slug, a)).join('')}</div></div></section>`;
-  const kit = (I.splits || []).map((k) => `<section class="sec${k.flip ? ' soft' : ''}" id="${k.id}"><div class="wrap"><div class="split ${k.flip ? 'flip' : ''}"><div><span class="kick">${k.kicker}</span><h2 style="margin:14px 0 16px">${k.title}</h2><p class="sub">${k.lead}</p><ul>${k.bullets.map((x) => `<li>${ic('check')}<span>${esc(x)}</span></li>`).join('')}</ul></div>${k.ui === 'chat' ? chatMock() : fig(p.slug, k, 'tall')}</div>${k.flow ? `<div class="flow">${k.flow.map(([a, t]) => `<div><b>${esc(a).toUpperCase()}</b><span>${esc(t)}</span></div>`).join('')}</div>` : ''}</div></section>`).join('');
+  const kit = (I.splits || []).map((k) => `<section class="sec${k.flip ? ' soft' : ''}" id="${k.id}"><div class="wrap"><div class="split ${k.flip ? 'flip' : ''}"><div><span class="kick">${k.kicker}</span><h2 style="margin:14px 0 16px">${k.title}</h2><p class="sub">${k.lead}</p><ul>${k.bullets.map((x) => `<li>${ic('check')}<span>${esc(x)}</span></li>`).join('')}</ul></div>${k.ui === 'chat' ? chatMock() : k.ui === 'sales' ? salesMock() : fig(p.slug, k, 'tall')}</div>${k.flow ? `<div class="flow">${k.flow.map(([a, t]) => `<div><b>${esc(a).toUpperCase()}</b><span>${esc(t)}</span></div>`).join('')}</div>` : ''}</div></section>`).join('');
   return (own + kit + amb).replaceAll('@UP@', c.up);
 }
 

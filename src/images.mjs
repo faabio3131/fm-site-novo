@@ -54,6 +54,11 @@ export const IMAGES = {
   atendevendeia: {
     owner: { file: 'gestor.jpg', alt: 'Empreendedor acompanhando conversas e vendas no celular', brief: 'Empreendedor(a) olhando conversas de WhatsApp e relatórios no celular/notebook, sem dados legíveis' },
     owner_text: { kicker: 'Visão do negócio', title: 'Você acompanha as vendas. A IA cuida da conversa.', lead: 'Conversas, vendas recuperadas e uso do plano em relatórios, com a equipe sempre no comando.', bullets: ['Relatórios de conversas e vendas', 'Passagem para uma pessoa quando necessário', 'Preço e link sempre do seu cadastro'] },
+    splits: [
+      { id: 'venda', ui: 'sales',
+        kicker: 'Da conversa ao faturamento', title: 'A conversa vira venda, e a venda vira pedido faturado.', lead: 'O Atendente IA responde no WhatsApp, passa o preço e o link de pagamento direto do seu cadastro e acompanha o pagamento. Quando o cliente paga, o pedido aparece confirmado e faturado para a sua equipe.',
+        bullets: ['Preço e link sempre do seu cadastro', 'Pagamento confirmado e pedido faturado', 'Vendas paradas retomadas na conversa'] },
+    ],
     ambient: [
       { file: 'loja.jpg', alt: 'Loja que vende pelo WhatsApp', brief: 'Pequeno comércio atendendo pelo celular' },
       { file: 'atendimento.jpg', alt: 'Atendimento no WhatsApp', brief: 'Pessoa atendendo cliente no celular' },
