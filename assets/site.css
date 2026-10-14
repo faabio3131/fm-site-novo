@@ -345,7 +345,7 @@ html[data-p=super-core-extreme]{--fpos:100% 50%;--fsz:130% auto}
 .bc:hover,.bc:focus-visible{border-color:rgba(176,64,240,.98);background:rgba(18,8,28,.82);box-shadow:0 0 0 1px rgba(158,17,214,.6),0 0 44px -4px rgba(158,17,214,.8),inset 0 0 30px -14px rgba(158,17,214,.6);transform:translateY(-3px);color:#fff}
 .bc:hover i,.bc:focus-visible i{transform:translateX(3px);color:#C77DFF}
 .bc:hover b{box-shadow:0 0 12px 2px var(--pc,var(--a))}
-@media(max-width:480px){.bandsec{padding:40px 0 44px}.bc{width:200px;padding:16px 14px;gap:10px;font-size:15px}.bc i{display:none}}
+@media(max-width:720px){.bandsec{padding:40px 0 36px}.bandk{margin-bottom:10px}.bandr{padding:10px 0}.bc{width:176px;margin-right:10px;padding:12px 16px;gap:10px;font-size:14px;border-radius:12px}.bc i{display:none}.bandt{animation-duration:38s}.bandr.rev .bandt{animation-duration:42s}}
 @media(prefers-reduced-motion:reduce){.bc,.bc i{transition:none}.bc:hover,.bc:focus-visible{transform:none}.bandt{animation:none}.bandr{overflow-x:auto}.bandg{-webkit-mask:none;mask:none}}
 /* Home: cards acendem no hover (neon roxo; cards de produto na cor do produto) */
 main.home{--hn:158,17,214}
