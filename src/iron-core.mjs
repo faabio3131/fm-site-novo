@@ -9,20 +9,20 @@ const STEPS = ['Core vertical', 'Módulos conectados', 'Dados contextualizados',
 
 const pill = ([n, t, i], side, k) => `<div class="cg-pill ${side} p${k}"><span class="cg-ico">${ic(i)}</span><span class="cg-tx"><b>${n}</b><span>${t}</span></span></div>`;
 
-// conectores (px reais; área = 60px de cada lado + disco de 330px; altura 410)
-const Y = [46, 152, 258, 364];
+// conectores (px reais; área = 48px de cada lado + disco de 280px; altura 348)
+const Y = [39, 129, 219, 309];
 function lines() {
   const out = []; const dots = [];
   const mk = (pts) => { out.push(`<polyline points="${pts.map((q) => q.join(',')).join(' ')}"/>`); const a = pts[0], z = pts[pts.length - 1]; dots.push(`<circle cx="${a[0]}" cy="${a[1]}" r="4"/><circle cx="${z[0]}" cy="${z[1]}" r="4"/>`); };
-  const ring = [[122, 82], [74, 152], [74, 258], [122, 328]];
-  const first = [[0, 46], [0, 152], [0, 258], [0, 364]];
+  const ring = [[101, 71], [61, 129], [61, 219], [101, 277]];
+  const first = [[0, 39], [0, 129], [0, 219], [0, 309]];
   for (let k = 0; k < 4; k++) {
     const outer = k === 0 || k === 3;
-    const pl = outer ? [first[k], [34, Y[k]], ring[k]] : [first[k], ring[k]];
+    const pl = outer ? [first[k], [28, Y[k]], ring[k]] : [first[k], ring[k]];
     mk(pl);
-    mk(pl.map(([x, y]) => [450 - x, y]));
+    mk(pl.map(([x, y]) => [376 - x, y]));
   }
-  return `<svg class="cg-svg" viewBox="0 0 450 410" aria-hidden="true"><g class="cg-ln">${out.join('')}</g><g class="cg-dt">${dots.join('')}</g></svg>`;
+  return `<svg class="cg-svg" viewBox="0 0 376 348" aria-hidden="true"><g class="cg-ln">${out.join('')}</g><g class="cg-dt">${dots.join('')}</g></svg>`;
 }
 
 export function ironCore(alt) {
