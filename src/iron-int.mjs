@@ -5,7 +5,7 @@ import { ic } from './icons.mjs';
 const pt = (r, a) => { const t = (a * Math.PI) / 180; return [100 + r * Math.cos(t), 100 + r * Math.sin(t)]; };
 const arc = (r, a0, a1) => { const [x0, y0] = pt(r, a0); const [x1, y1] = pt(r, a1); return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
 
-const EMBLEM = `<svg class="ii-em" viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="iig" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="200"><stop offset="0" stop-color="#9BFFC4"/><stop offset="1" stop-color="#1FD468"/></linearGradient></defs>
+export const EMBLEM = `<svg class="ii-em" viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="iig" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="200"><stop offset="0" stop-color="#9BFFC4"/><stop offset="1" stop-color="#1FD468"/></linearGradient></defs>
 <g fill="none" stroke="url(#iig)" stroke-linecap="round">
 <path d="${arc(84, -58, 58)}" stroke-width="14"/><path d="${arc(84, 122, 238)}" stroke-width="14"/>
 <path d="${arc(57, -62, 62)}" stroke-width="8"/><path d="${arc(57, 118, 242)}" stroke-width="8"/>

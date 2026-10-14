@@ -1,7 +1,7 @@
 // Seções da página do Iron Fit Core, escritas a partir da leitura dos repositórios iron-fit-backend e iron-fit-app.
 // Só afirma o que o código comprova; o que depende de parceiro ou de ativação aparece como tal.
 export const IRON_SECTIONS = [
-  { kind: 'flow', id: 'core', figure: { file: 'core.webp', alt: 'Iron Fit Core no centro, conectando aluno, treino, avaliação, equipamentos, agenda, acesso, financeiro e inteligência' }, kicker: 'Core vertical FM Tecnologia', title: 'Um Core para conectar toda a operação da academia.',
+  { kind: 'flow', id: 'core', figure: { file: 'core.webp', native: 'iron-core', alt: 'Iron Fit Core no centro, conectando aluno, treino, avaliação, equipamentos, agenda, acesso, financeiro e inteligência' }, kicker: 'Core vertical FM Tecnologia', title: 'Um Core para conectar toda a operação da academia.',
     lead: 'O Iron Fit Core organiza gestão, operação e experiência do aluno sobre o mesmo contexto, conectando módulos e dados para reduzir controles isolados.',
     items: [['01', 'Aluno'], ['02', 'Treino'], ['03', 'Avaliação'], ['04', 'Equipamentos'], ['05', 'Agenda'], ['06', 'Acesso'], ['07', 'Financeiro'], ['08', 'Inteligência']] },
   { kind: 'groups', id: 'recursos', kicker: 'O que o Iron Fit Core faz', title: 'Cada função, em poucas palavras.',
