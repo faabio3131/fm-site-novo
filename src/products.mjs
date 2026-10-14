@@ -224,7 +224,7 @@ export const PRODUCTS = [
           ['chart', 'Arquivo e auditoria', 'Documentos, eventos e evidências preservados, com trilha para investigar qualquer divergência.'],
           ['mega', 'Eventos e webhooks', 'Os sistemas conectados recebem os eventos fiscais de forma assíncrona, com tentativas automáticas e registro de entrega.'],
         ] },
-      { kind: 'cards', id: 'plataforma', kicker: 'Plataforma', title: 'Infraestrutura fiscal para os produtos da FM e para integrações.',
+      { kind: 'cards', id: 'plataforma', figure: { file: 'chip.webp', alt: 'Chip com brilho roxo no centro de uma placa de circuitos, representando a infraestrutura fiscal do NFCore' }, kicker: 'Plataforma', title: 'Infraestrutura fiscal para os produtos da FM e para integrações.',
         lead: 'O NFCore não pertence a um produto só. O Kordena é o primeiro consumidor, e a arquitetura foi feita para atender os demais produtos do ecossistema.',
         items: [
           ['users', 'Várias empresas e unidades', 'Isolamento por empresa e por unidade, com perfis de acesso e escopo operacional.'],
@@ -524,7 +524,7 @@ export const PRODUCTS = [
           ['bot', 'Multiagente', 'Agentes especializados, cada um com função, escopo e limites definidos.'],
           ['plug', 'Multimodelo', 'Combina modelos de IA diferentes e escolhe o mais adequado a cada tarefa, em vez de depender de um só.'],
         ] },
-      { kind: 'flow', id: 'ciclo', kicker: 'Como pensa', title: 'Do evento à decisão, e da decisão ao aprendizado.',
+      { kind: 'flow', id: 'ciclo', figure: { file: 'chip.webp', alt: 'Chip com brilho vermelho no centro de uma placa de circuitos, representando o núcleo cognitivo do Super Core Extreme' }, kicker: 'Como pensa', title: 'Do evento à decisão, e da decisão ao aprendizado.',
         lead: 'O ciclo de trabalho que a pesquisa busca construir.',
         items: [['01', 'Percebe o que aconteceu'], ['02', 'Entende contexto, risco e regras'], ['03', 'Monta a missão e escolhe quem executa'], ['04', 'Executa o que está autorizado'], ['05', 'Verifica e registra as evidências'], ['06', 'Aprende com o resultado real']] },
       { kind: 'cards', id: 'pilares', kicker: 'Pilares em estudo', title: 'Os conceitos que orientam o desenho.',
