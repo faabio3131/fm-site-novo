@@ -86,7 +86,8 @@ function section(s, p, c) {
   if (f.native === 'nf-logo') return html.replace(/<\/div><\/section>$/, `${nfLogo(esc(f.alt), c.up)}</div></section>`);
   if (f.native === 'iron-core') return html.replace(/<\/div><\/section>$/, `${ironCore(esc(f.alt))}</div></section>`);
   if (f.native === 'iron-int') return html.replace(/<\/div><\/section>$/, `${ironInt(esc(f.alt))}</div></section>`);
-  return html.replace(/<\/div><\/section>$/, `<figure class="dg"><img src="${c.up}assets/img/${p.slug}/${f.file}" alt="${esc(f.alt)}" loading="lazy"></figure></div></section>`);
+  const ov = f.overlay ? `<figcaption class="dgc"><span class="kick">${esc(f.overlay.kicker)}</span><h3>${esc(f.overlay.title)}</h3><p>${esc(f.overlay.text)}</p><ul>${f.overlay.points.map((x) => `<li>${ic('check')}<span>${esc(x)}</span></li>`).join('')}</ul></figcaption>` : '';
+  return html.replace(/<\/div><\/section>$/, `<figure class="dg${f.overlay ? ' dgo' : ''}"><img src="${c.up}assets/img/${p.slug}/${f.file}" alt="${esc(f.alt)}" loading="lazy">${ov}</figure></div></section>`);
 }
 
 function sectionBase(s, p, c) {
