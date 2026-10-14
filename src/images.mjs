@@ -37,10 +37,11 @@ export const IMAGES = {
     owner: { file: 'gestor.jpg', alt: 'Responsável fiscal acompanhando documentos em uma tela', brief: 'Profissional fiscal/contábil diante de tela com documentos e status, sem dados legíveis' },
     owner_text: { kicker: 'Visão fiscal', title: 'Quem responde pelo fiscal precisa de evidência.', lead: 'Documentos, eventos, reconciliação e auditoria em uma visão única, com a autoridade crítica sob controle.', bullets: ['Estado de cada documento acompanhado', 'Rastreabilidade para investigar divergências', 'Menos retrabalho operacional'] },
     ambient: [
-      { file: 'escritorio.jpg', alt: 'Escritório de gestão fiscal', brief: 'Escritório moderno de gestão fiscal' },
-      { file: 'equipe.jpg', alt: 'Equipe analisando documentos', brief: 'Equipe analisando documentos na tela' },
+      { file: 'equipe.jpg', alt: 'Equipe reunida em volta da mesa analisando relatórios e gráficos', brief: 'Equipe analisando documentos na tela' },
+      { file: 'escritorio.jpg', alt: 'Mesa de trabalho fiscal com documentos, caneta, calculadora e painel no tablet', brief: 'Escritório moderno de gestão fiscal' },
     ],
     ambient_title: 'Ambiente de trabalho',
+    ambient_note: { title: 'A tecnologia evolui, e o seu fiscal acompanha.', text: 'A IA, junto com o core cognitivo transversal, apoia decisões mais precisas, um melhor enquadramento fiscal e menos margem para erro. A equipe aprova; o NFCore registra.' },
   },
   command: {
     owner: { file: 'gestor.jpg', alt: 'Diretor acompanhando um painel executivo', brief: 'Diretor sentado, olhando painel executivo com vários produtos, sem números legíveis' },

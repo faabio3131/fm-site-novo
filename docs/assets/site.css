@@ -364,3 +364,5 @@ main.home .flow>div:hover{background:rgba(var(--hn),.12);box-shadow:inset 0 0 0 
 .dgc ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
 .dgc li{display:flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(var(--argb),.4);border-radius:999px;background:rgba(var(--argb),.10);font-size:14px;color:#fff}.dgc li svg{width:16px;height:16px;color:var(--a2);flex:none}
 @media(max-width:720px){.dgo img{aspect-ratio:16/10}.dgc{position:static;padding:22px 20px 24px;background:#000}.dgc p{font-size:15px}}
+
+.ambnote{margin:44px auto 0;max-width:760px;text-align:center}.ambnote h3{font-size:clamp(26px,3.4vw,40px);line-height:1.12;margin:0 0 14px;background:linear-gradient(90deg,#fff,var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}.ambnote p{margin:0;color:var(--mu);font-size:17px;line-height:1.6}
