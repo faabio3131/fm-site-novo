@@ -259,7 +259,7 @@ export const PRODUCTS = [
         { h: 'Core Executivo', p: 'Responde com o que consegue provar. Dado ausente não vira zero.', ai: true },
       ] },
     sections: [
-      { kind: 'flow', id: 'arquitetura', figure: { file: 'marca.svg', alt: 'FM Command, visão executiva da empresa' }, kicker: 'Arquitetura executiva', title: 'O Command conecta. As fontes continuam sendo autoridade.',
+      { kind: 'flow', id: 'arquitetura', kicker: 'Arquitetura executiva', title: 'O Command conecta. As fontes continuam sendo autoridade.',
         lead: 'A informação entra por contratos governados, passa pela malha de integrações e pelo motor determinístico de métricas, ganha proveniência e só então chega ao painel e ao Core.',
         items: [['01', 'Fontes'], ['02', 'Integration Fabric'], ['03', 'Metric Engine'], ['04', 'Proveniência e evidências'], ['05', 'FM Cognitive Core'], ['06', 'Command']] },
       { kind: 'cards', id: 'capacidades', kicker: 'Capacidades', title: 'Uma visão executiva sem perder o contexto.',
@@ -315,7 +315,7 @@ export const PRODUCTS = [
         { h: 'Passagem para pessoa', p: 'Desconto, negociação ou reclamação vão para a sua equipe.', ai: true },
       ] },
     sections: [
-      { kind: 'flow', id: 'rotina', figure: { file: 'marca.svg', alt: 'AtendeVendeIA, atendimento e vendas com inteligência artificial' }, kicker: 'Da primeira mensagem ao pagamento', title: 'Conheça a rotina.',
+      { kind: 'flow', id: 'rotina', kicker: 'Da primeira mensagem ao pagamento', title: 'Conheça a rotina.',
         lead: 'Veja como uma conversa vira venda, e como a venda parada volta para a conversa, com a sua equipe no comando.',
         items: [['01', 'Atende o cliente no WhatsApp'], ['02', 'Apresenta a oferta e o link de pagamento'], ['03', 'Retoma a venda que esfriou']] },
       { kind: 'groups', id: 'recursos', kicker: 'O que o AtendeVendeIA faz', title: 'Controle e segurança desde o começo.', lead: 'Uma IA que vende precisa de limites claros. Cada função, em poucas palavras.',
