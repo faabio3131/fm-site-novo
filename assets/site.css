@@ -327,3 +327,19 @@ html[data-p=super-core-extreme]{--fpos:100% 50%;--fsz:130% auto}
 .hero.hh{--fundo:url(img/home/fundo.webp);--fpos:100% 40%;--fsz:100% auto;background:#000}
 .hero.hh::before{background:linear-gradient(90deg,rgba(0,0,0,.88) 0,rgba(0,0,0,.66) 34%,rgba(0,0,0,.3) 64%,rgba(0,0,0,.18) 100%),linear-gradient(0deg,#000 0,rgba(0,0,0,0) 18%),linear-gradient(180deg,rgba(0,0,0,.5) 0,rgba(0,0,0,0) 16%),var(--fundo) var(--fpos)/var(--fsz) no-repeat;-webkit-mask:none;mask:none}
 @media(max-width:720px){.hero.hh{--fpos:60% 50%;--fsz:cover}}
+/* Home: faixa de produtos em cards com neon roxo */
+.bandsec{position:relative;padding:58px 0 64px;border-bottom:1px solid var(--ln);overflow:hidden;background:#000}
+.bandsec::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#000 0,rgba(0,0,0,.45) 34%,rgba(0,0,0,.45) 66%,#000 100%),linear-gradient(90deg,rgba(0,0,0,.6) 0,rgba(0,0,0,.15) 50%,rgba(0,0,0,.6) 100%),url(img/home/fundo.webp) center 46%/cover no-repeat}
+.bandsec .wrap{position:relative}
+.bandk{display:block;text-align:center;font:600 12px var(--fb);letter-spacing:.16em;text-transform:uppercase;font-style:normal;color:var(--mu);margin-bottom:26px}
+.bandg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 auto}
+.bc{display:flex;align-items:center;gap:12px;padding:20px 22px;border-radius:14px;background:rgba(8,5,14,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(158,17,214,.38);box-shadow:0 0 26px -12px rgba(158,17,214,.6);font:700 16px var(--fd);letter-spacing:-.02em;color:var(--tx);transition:border-color .22s,box-shadow .22s,transform .22s,background .22s}
+.bc b{flex:none;width:9px;height:9px;border-radius:50%;background:var(--pc,var(--a))}
+.bc span{flex:1;min-width:0}
+.bc i{font-style:normal;color:var(--dim);transition:transform .22s,color .22s}
+.bc:hover,.bc:focus-visible{border-color:rgba(176,64,240,.98);background:rgba(18,8,28,.82);box-shadow:0 0 0 1px rgba(158,17,214,.6),0 0 44px -4px rgba(158,17,214,.8),inset 0 0 30px -14px rgba(158,17,214,.6);transform:translateY(-3px);color:#fff}
+.bc:hover i,.bc:focus-visible i{transform:translateX(3px);color:#C77DFF}
+.bc:hover b{box-shadow:0 0 12px 2px var(--pc,var(--a))}
+@media(max-width:900px){.bandg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.bandsec{padding:40px 0 44px}.bc{padding:16px 14px;gap:10px;font-size:15px}.bc i{display:none}}
+@media(prefers-reduced-motion:reduce){.bc,.bc i{transition:none}.bc:hover,.bc:focus-visible{transform:none}}
