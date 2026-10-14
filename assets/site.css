@@ -333,6 +333,13 @@ html[data-p=super-core-extreme]{--fpos:100% 50%;--fsz:130% auto}
 .bandsec{position:relative;padding:58px 0 64px;border-bottom:1px solid var(--ln);overflow:hidden;background:#000}
 .bandsec::before{content:none}
 .bandsec .wrap{position:relative}
+.solk{margin:0 0 26px;text-align:center;font:700 clamp(22px,2.6vw,32px)/1.2 Sora,sans-serif;letter-spacing:-.01em}
+.sols{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:44px}
+.sol{display:flex;flex-direction:column;gap:8px;padding:18px 16px;border-left:2px solid var(--pc,#a855f7);text-decoration:none;color:inherit}
+.sol b{font:700 16px/1.2 Sora,sans-serif;color:var(--pc,#a855f7)}
+.sol span{font-size:14.5px;line-height:1.45;color:#C9D1DB}
+@media(max-width:900px){.sols{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.sols{grid-template-columns:1fr;margin-bottom:30px}}
 .bandk{display:block;text-align:center;font:600 12px var(--fb);letter-spacing:.16em;text-transform:uppercase;font-style:normal;color:var(--mu);margin-bottom:26px}
 .bandg{display:flex;flex-direction:column;gap:0;position:relative;-webkit-mask:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
 .bandr{overflow:hidden;padding:24px 0}
