@@ -225,9 +225,9 @@ export const PRODUCTS = [
           ['mega', 'Eventos e webhooks', 'Os sistemas conectados recebem os eventos fiscais de forma assíncrona, com tentativas automáticas e registro de entrega.'],
         ] },
       { kind: 'cards', id: 'plataforma', figure: { file: 'chip.webp', alt: 'Chip com brilho roxo no centro de uma placa de circuitos, representando a infraestrutura fiscal do NFCore',
-        overlay: { kicker: 'Core cognitivo transversal', title: 'A inteligência que mantém o fiscal em dia.',
-          text: 'O core cognitivo transversal da FM acompanha a reforma tributária e as mudanças nas regras fiscais, e mantém o NFCore atualizado para reduzir o erro humano antes que ele vire retrabalho ou multa.',
-          points: ['Acompanha a reforma tributária e fiscal', 'Menos erro humano no dia a dia', 'A IA recomenda, a equipe aprova'] } }, kicker: 'Plataforma', title: 'Infraestrutura fiscal para os produtos da FM e para integrações.',
+        overlay: { kicker: 'Core cognitivo transversal', title: 'Acompanha a evolução fiscal, com revisão humana.',
+          text: 'O NFCore tem um monitor regulatório (Regulatory Watcher) que registra as mudanças normativas, como as da reforma tributária, organiza as evidências e encaminha propostas de atualização para revisão e aprovação. O core cognitivo transversal da FM apoia esse acompanhamento e reduz o erro humano.',
+          points: ['Acompanha a reforma tributária e fiscal', 'Atualizações com revisão e aprovação', 'A IA recomenda, a equipe aprova'] } }, kicker: 'Plataforma', title: 'Infraestrutura fiscal para os produtos da FM e para integrações.',
         lead: 'O NFCore não pertence a um produto só. O Kordena é o primeiro consumidor, e a arquitetura foi feita para atender os demais produtos do ecossistema.',
         items: [
           ['users', 'Várias empresas e unidades', 'Isolamento por empresa e por unidade, com perfis de acesso e escopo operacional.'],
