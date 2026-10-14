@@ -46,7 +46,7 @@ function footer(c) {
 
 function page(route, { title, desc, active, body, prod }) {
   const c = ctx(route);
-  const html = `<!doctype html><html lang="pt-BR"${route === '' ? ' class="home"' : ''}${prod ? ` data-p="${prod}"` : ''}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  const html = `<!doctype html><html lang="pt-BR"${prod ? ` data-p="${prod}"` : ''}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title><meta name="description" content="${esc(desc)}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="website"><meta property="og:image" content="https://${SITE.domain}/assets/brand/fm/compartilhar-1200x630.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/png" href="${c.up}assets/brand/fm/favicon.png"><link rel="apple-touch-icon" href="${c.up}assets/brand/fm/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="${c.up}assets/site.css"></head><body>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>${nav(c, active)}<main id="conteudo">${typeof body === 'function' ? body(c) : body}</main>${footer(c)}<script src="${c.up}assets/site.js"></script></body></html>`;
@@ -180,7 +180,7 @@ function productCard(p, c, big) {
   return `<a class="card pcard${big ? ' big' : ''}" style="${pcs(p.slug)}" href="${c.href('produtos/' + p.slug)}">${pill(p)}<div class="ic">${ic(ICON[p.slug])}</div><h3>${p.name}</h3><p>${esc(p.short)}</p><span class="go">${p.group === 'rnd' ? 'Explorar pesquisa' : 'Conhecer produto'} →</span></a>`;
 }
 page('', { title: `${SITE.name} — ${SITE.signature}`, desc: 'Tecnologia que conecta operação, dados e inteligência. Produtos inteligentes para transformar processos, acelerar decisões e preparar operações para crescer.', active: '', body: (c) => `
-<section class="hero"><div class="wrap"><div class="hgrid"><div class="t"><span class="eb"><i></i>${SITE.name} · IA · Automação · Software</span>
+<section class="hero hh"><div class="wrap"><div class="hgrid"><div class="t"><span class="eb"><i></i>${SITE.name} · IA · Automação · Software</span>
 <h1>Tecnologia que conecta <span class="grad">operação, dados e inteligência.</span></h1>
 <p class="lead">Desenvolvemos produtos inteligentes para transformar processos, acelerar decisões e preparar operações para crescer. A IA recomenda; você decide.</p>
 <div class="b"><a class="btn p l" href="${c.href('produtos')}">Conhecer produtos</a><a class="btn l" href="${c.href('contato')}">Falar com a FM</a></div>
