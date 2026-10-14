@@ -315,5 +315,11 @@ html[data-p] .hero+.sec,html[data-p] .phero+.sec{position:relative;background:#0
 html[data-p] .hero+.sec::before,html[data-p] .phero+.sec::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(var(--argb),.34) 0 1px,transparent 1px 56px),repeating-linear-gradient(90deg,rgba(var(--argb),.34) 0 1px,transparent 1px 56px);-webkit-mask:radial-gradient(80% 85% at 50% 40%,#000 25%,transparent);mask:radial-gradient(80% 85% at 50% 40%,#000 25%,transparent)}
 html[data-p] .hero+.sec>.wrap,html[data-p] .phero+.sec>.wrap{position:relative}
 html[data-p=atendevendeia]{--fpos:100% 50%;--fsz:122% auto}
+html[data-p=kordena]{--fpos:100% 50%;--fsz:130% auto}
+html[data-p=command]{--fpos:100% 50%;--fsz:130% auto}
+html[data-p=campaia]{--fpos:100% 50%;--fsz:135% auto}
+html[data-p=erp-core]{--fpos:100% 50%;--fsz:135% auto}
+html[data-p=super-core-extreme]{--fpos:100% 50%;--fsz:130% auto}
 .plogo{display:block;height:92px;width:auto;max-width:100%;margin:0 0 26px}
 @media(max-width:720px){.plogo{height:64px;margin-bottom:18px}html[data-p=atendevendeia]{--fpos:70% 50%;--fsz:cover}}
+@media(max-width:720px){html[data-p]{--fpos:70% 50%;--fsz:cover}}
