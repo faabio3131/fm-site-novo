@@ -307,10 +307,10 @@ html[data-p] .card:hover{border-color:rgba(var(--argb),.95);box-shadow:0 0 0 1px
  .cg-pill{padding:0 16px;gap:12px}.cg-ico{width:46px;height:46px}.cg-ring{width:260px}.cg-em{width:90px;height:90px}.cg-wm{font-size:21px}
  .cg-steps div{flex:1 1 100%}
 }
-/* NFCore: mapa-múndi de pontos com feixes de luz no fundo do topo */
-html[data-p=nfcore] .hero::before,html[data-p=nfcore] .phero::before{background:linear-gradient(90deg,rgba(0,0,0,.82) 0,rgba(0,0,0,.62) 30%,rgba(0,0,0,.12) 62%,rgba(0,0,0,0) 100%),linear-gradient(0deg,#000 0,rgba(0,0,0,0) 16%),linear-gradient(180deg,rgba(0,0,0,.45) 0,rgba(0,0,0,0) 14%),url(img/nfcore/mapa.webp) center/cover no-repeat;-webkit-mask:none;mask:none}
-html[data-p=nfcore] .hero,html[data-p=nfcore] .phero{background:#000}
-/* NFCore: quadriculado na cor da página na seção "O desafio fiscal" */
-html[data-p=nfcore] #desafio{position:relative;background:#000}
-html[data-p=nfcore] #desafio::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(var(--argb),.34) 0 1px,transparent 1px 56px),repeating-linear-gradient(90deg,rgba(var(--argb),.34) 0 1px,transparent 1px 56px);-webkit-mask:radial-gradient(80% 85% at 50% 40%,#000 25%,transparent);mask:radial-gradient(80% 85% at 50% 40%,#000 25%,transparent)}
-html[data-p=nfcore] #desafio>.wrap{position:relative}
+/* Topo de cada produto: fundo de pontos com feixes de luz (um desenho por produto) + quadriculado na 1ª seção, na cor do produto */
+html[data-p] .hero::before,html[data-p] .phero::before{background:linear-gradient(90deg,rgba(0,0,0,.82) 0,rgba(0,0,0,.62) 30%,rgba(0,0,0,.12) 62%,rgba(0,0,0,0) 100%),linear-gradient(0deg,#000 0,rgba(0,0,0,0) 16%),linear-gradient(180deg,rgba(0,0,0,.45) 0,rgba(0,0,0,0) 14%),var(--fundo) center/cover no-repeat;-webkit-mask:none;mask:none}
+html[data-p] .hero,html[data-p] .phero{background:#000}
+html[data-p=kordena]{--fundo:url(img/kordena/fundo.webp)}html[data-p=iron-fit]{--fundo:url(img/iron-fit/fundo.webp)}html[data-p=nfcore]{--fundo:url(img/nfcore/fundo.webp)}html[data-p=command]{--fundo:url(img/command/fundo.webp)}html[data-p=atendevendeia]{--fundo:url(img/atendevendeia/fundo.webp)}html[data-p=campaia]{--fundo:url(img/campaia/fundo.webp)}html[data-p=erp-core]{--fundo:url(img/erp-core/fundo.webp)}html[data-p=super-core-extreme]{--fundo:url(img/super-core-extreme/fundo.webp)}
+html[data-p] .hero+.sec,html[data-p] .phero+.sec{position:relative;background:#000}
+html[data-p] .hero+.sec::before,html[data-p] .phero+.sec::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(var(--argb),.34) 0 1px,transparent 1px 56px),repeating-linear-gradient(90deg,rgba(var(--argb),.34) 0 1px,transparent 1px 56px);-webkit-mask:radial-gradient(80% 85% at 50% 40%,#000 25%,transparent);mask:radial-gradient(80% 85% at 50% 40%,#000 25%,transparent)}
+html[data-p] .hero+.sec>.wrap,html[data-p] .phero+.sec>.wrap{position:relative}
