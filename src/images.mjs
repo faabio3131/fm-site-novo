@@ -34,7 +34,7 @@ export const IMAGES = {
     ambient_title: 'Para academias e estúdios',
   },
   nfcore: {
-    owner: { file: 'gestor.jpg', alt: 'Responsável fiscal acompanhando documentos em uma tela', brief: 'Profissional fiscal/contábil diante de tela com documentos e status, sem dados legíveis' },
+    owner: { native: 'nf-docs', file: 'gestor.jpg', alt: 'Ilustração de um painel do NFCore com documentos fiscais autorizados, em reconciliação e pendentes', brief: 'Profissional fiscal/contábil diante de tela com documentos e status, sem dados legíveis' },
     owner_text: { kicker: 'Visão fiscal', title: 'Quem responde pelo fiscal precisa de evidência.', lead: 'Documentos, eventos, reconciliação e auditoria em uma visão única, com a autoridade crítica sob controle.', bullets: ['Estado de cada documento acompanhado', 'Rastreabilidade para investigar divergências', 'Menos retrabalho operacional'] },
     ambient: [
       { file: 'equipe.jpg', alt: 'Equipe reunida em volta da mesa analisando relatórios e gráficos', brief: 'Equipe analisando documentos na tela' },

@@ -112,7 +112,13 @@ function sectionBase(s, p, c) {
 }
 
 
+function nfDocs(alt, cls) {
+  const rows = [['Nota de venda', 'Autorizada', 'ok'], ['Nota de serviço', 'Autorizada', 'ok'], ['Nota de devolução', 'Em reconciliação', 'wait'], ['Nota de venda', 'Autorizada', 'ok'], ['Cancelamento', 'Registrado', 'ok'], ['Nota de venda', 'Pendente', 'pend']];
+  return `<figure class="ph nfd ${cls}" role="img" aria-label="${alt}"><div class="nfd-in"><div class="nfd-top"><b></b><b></b><b></b><span>NFCore · Documentos fiscais</span></div><div class="nfd-body"><div class="nfd-sum"><div><small>Autorizadas</small><i style="--w:86%"></i></div><div><small>Em reconciliação</small><i style="--w:22%"></i></div><div><small>Pendentes</small><i style="--w:12%"></i></div></div><div class="nfd-list">${rows.map(([t, s, k]) => `<div class="nfd-r ${k}"><span class="d"></span><em>${t}</em><u>${ic('check')}${s}</u></div>`).join('')}</div></div><div class="nfd-foot">${ic('bot')}<span>Regras fiscais versionadas · você aprova</span></div></div><figcaption class="credit">Exemplo ilustrativo</figcaption></figure>`;
+}
+
 const fig = (slug, im, cls = '') => {
+  if (im.native === 'nf-docs') return nfDocs(esc(im.alt), cls);
   const has = fs.existsSync(path.join('assets/img', slug, im.file));
   return has
     ? `<figure class="ph ${cls}"><img src="@UP@assets/img/${slug}/${im.file}" alt="${esc(im.alt)}" loading="lazy"${im.pos ? ` style="object-position:${im.pos}"` : ''}>${CREDITS[slug + '/' + im.file]?.note ? `<figcaption class="credit">${esc(CREDITS[slug + '/' + im.file].note)}</figcaption>` : CREDITS[slug + '/' + im.file] ? `<figcaption class="credit">Foto: <a href="${CREDITS[slug + '/' + im.file].by_url}" target="_blank" rel="noopener">${esc(CREDITS[slug + '/' + im.file].by)}</a> · <a href="https://unsplash.com/?utm_source=fm_tecnologia&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption>` : ''}</figure>`
