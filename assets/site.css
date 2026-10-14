@@ -324,9 +324,10 @@ html[data-p=super-core-extreme]{--fpos:100% 50%;--fsz:130% auto}
 @media(max-width:720px){.plogo{height:64px;margin-bottom:18px}html[data-p=atendevendeia]{--fpos:70% 50%;--fsz:cover}}
 @media(max-width:720px){html[data-p]{--fpos:70% 50%;--fsz:cover}}
 /* Home: fundo do hero com o chip (roxo) */
-.hero.hh{--fundo:url(img/home/fundo.webp);--fpos:100% 40%;--fsz:100% auto;background:#000}
-.hero.hh::before{background:linear-gradient(90deg,rgba(0,0,0,.88) 0,rgba(0,0,0,.66) 34%,rgba(0,0,0,.3) 64%,rgba(0,0,0,.18) 100%),linear-gradient(0deg,#000 0,rgba(0,0,0,0) 18%),linear-gradient(180deg,rgba(0,0,0,.5) 0,rgba(0,0,0,0) 16%),var(--fundo) var(--fpos)/var(--fsz) no-repeat;-webkit-mask:none;mask:none}
-@media(max-width:720px){.hero.hh{--fpos:60% 50%;--fsz:cover}}
+/* Home: fundo preto com grade sutil e brilho ciano (cor do logo) atrás do painel */
+.hero.hh{--cy:40,190,235;background:#000}
+.hero.hh::before{background:linear-gradient(90deg,rgba(0,0,0,.5) 0,rgba(0,0,0,0) 46%),radial-gradient(46% 64% at 74% 46%,rgba(var(--cy),.34),rgba(var(--cy),.11) 46%,transparent 74%),radial-gradient(32% 42% at 98% 0%,rgba(var(--cy),.2),transparent 70%),repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 56px),repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px 56px);-webkit-mask:linear-gradient(180deg,#000 72%,transparent);mask:linear-gradient(180deg,#000 72%,transparent)}
+@media(max-width:720px){.hero.hh::before{background:radial-gradient(70% 40% at 70% 70%,rgba(var(--cy),.3),transparent 75%),repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 56px),repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px 56px)}}
 /* Home: faixa de produtos em cards com neon roxo */
 .bandsec{position:relative;padding:58px 0 64px;border-bottom:1px solid var(--ln);overflow:hidden;background:#000}
 .bandsec::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#000 0,rgba(0,0,0,.45) 34%,rgba(0,0,0,.45) 66%,#000 100%),linear-gradient(90deg,rgba(0,0,0,.6) 0,rgba(0,0,0,.15) 50%,rgba(0,0,0,.6) 100%),url(img/home/fundo.webp) center 46%/cover no-repeat}
