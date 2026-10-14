@@ -326,9 +326,9 @@ html[data-p=super-core-extreme]{--fpos:100% 50%;--fsz:130% auto}
 /* Home: fundo do hero com o chip (roxo) */
 .hero.hh{--fundo:url(img/home/fundo.webp);--fpos:100% 40%;--fsz:100% auto;background:#000}
 /* chip: um pedaço da imagem no canto superior direito, sem sombra por cima. O recorte é geométrico (--chip-clip) */
-.hero.hh{--fpos:100% 0%;--fsz:cover;--cw:52%;--ch:60%;--chip-clip:polygon(0 0,100% 0,100% 100%)}
+.hero.hh{--fpos:right -178px top -242px;--fsz:1300px auto;--cw:56%;--ch:64%;--chip-clip:polygon(0 0,100% 0,100% 100%)}
 .hero.hh::before{inset:0 0 auto auto;width:var(--cw);height:var(--ch);background:var(--fundo) var(--fpos)/var(--fsz) no-repeat;-webkit-mask:none;mask:none;-webkit-clip-path:var(--chip-clip);clip-path:var(--chip-clip)}
-@media(max-width:720px){.hero.hh{--cw:78%;--ch:30%}}
+@media(max-width:720px){.hero.hh{--cw:78%;--ch:30%;--fsz:900px auto;--fpos:right -321px top -156px}}
 /* Home: faixa de produtos em cards com neon roxo */
 .bandsec{position:relative;padding:58px 0 64px;border-bottom:1px solid var(--ln);overflow:hidden;background:#000}
 .bandsec::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#000 0,rgba(0,0,0,.45) 34%,rgba(0,0,0,.45) 66%,#000 100%),linear-gradient(90deg,rgba(0,0,0,.6) 0,rgba(0,0,0,.15) 50%,rgba(0,0,0,.6) 100%),url(img/home/fundo.webp) center 46%/cover no-repeat}
