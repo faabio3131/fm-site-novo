@@ -307,3 +307,6 @@ html[data-p] .card:hover{border-color:rgba(var(--argb),.95);box-shadow:0 0 0 1px
  .cg-pill{padding:0 16px;gap:12px}.cg-ico{width:46px;height:46px}.cg-ring{width:260px}.cg-em{width:90px;height:90px}.cg-wm{font-size:21px}
  .cg-steps div{flex:1 1 100%}
 }
+/* NFCore: mapa-múndi de pontos com feixes de luz no fundo do topo */
+html[data-p=nfcore] .hero::before,html[data-p=nfcore] .phero::before{background:linear-gradient(90deg,rgba(0,0,0,.82) 0,rgba(0,0,0,.62) 30%,rgba(0,0,0,.12) 62%,rgba(0,0,0,0) 100%),linear-gradient(0deg,#000 0,rgba(0,0,0,0) 16%),linear-gradient(180deg,rgba(0,0,0,.45) 0,rgba(0,0,0,0) 14%),url(img/nfcore/mapa.webp) center/cover no-repeat;-webkit-mask:none;mask:none}
+html[data-p=nfcore] .hero,html[data-p=nfcore] .phero{background:#000}
