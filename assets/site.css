@@ -331,7 +331,7 @@ html[data-p=super-core-extreme]{--fpos:100% 50%;--fsz:130% auto}
 @media(max-width:720px){.hero.hh{--cw:78%;--ch:30%;--fsz:900px auto;--fpos:right -321px top -156px}}
 /* Home: faixa de produtos em cards com neon roxo */
 .bandsec{position:relative;padding:58px 0 64px;border-bottom:1px solid var(--ln);overflow:hidden;background:#000}
-.bandsec::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#000 0,rgba(0,0,0,.45) 34%,rgba(0,0,0,.45) 66%,#000 100%),linear-gradient(90deg,rgba(0,0,0,.6) 0,rgba(0,0,0,.15) 50%,rgba(0,0,0,.6) 100%),url(img/home/fundo.webp) center 46%/cover no-repeat}
+.bandsec::before{content:none}
 .bandsec .wrap{position:relative}
 .bandk{display:block;text-align:center;font:600 12px var(--fb);letter-spacing:.16em;text-transform:uppercase;font-style:normal;color:var(--mu);margin-bottom:26px}
 .bandg{display:flex;flex-direction:column;gap:0;position:relative;-webkit-mask:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
