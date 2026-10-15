@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import { SITE, STATUS, wa } from './config.mjs';
 import { PRODUCTS, bySlug } from './products.mjs';
@@ -8,6 +9,7 @@ import { ironCore } from './iron-core.mjs';
 import { nfLogo } from './nf-logo.mjs';
 import { IMAGES } from './images.mjs';
 import { VIDEOS } from './videos.mjs';
+const CSSV = crypto.createHash('md5').update(fs.readFileSync(new URL('../assets/site.css', import.meta.url))).digest('hex').slice(0, 8);
 const wm = (up) => `<span class="wm"><img src="${up}assets/brand/fm/logo-fm.webp" width="626" height="114" alt="FM Tecnologia"><small>IA para melhorar hoje e evoluir o amanhã.</small></span>`;
 const CREDITS = fs.existsSync('src/credits.json') ? JSON.parse(fs.readFileSync('src/credits.json', 'utf8')) : {};
 
@@ -48,7 +50,7 @@ function page(route, { title, desc, active, body, prod }) {
   const c = ctx(route);
   const html = `<!doctype html><html lang="pt-BR"${prod ? ` data-p="${prod}"` : ''}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title><meta name="description" content="${esc(desc)}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="website"><meta property="og:image" content="https://${SITE.domain}/assets/brand/fm/compartilhar-1200x630.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/png" href="${c.up}assets/brand/fm/favicon.png"><link rel="apple-touch-icon" href="${c.up}assets/brand/fm/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="${c.up}assets/site.css"></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="${c.up}assets/site.css?v=${CSSV}"></head><body>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>${nav(c, active)}<main id="conteudo"${route === '' ? ' class="home"' : ''}>${typeof body === 'function' ? body(c) : body}</main>${footer(c)}<script src="${c.up}assets/site.js"></script></body></html>`;
   const file = path.join(OUT, route === '' ? 'index.html' : route + '.html');
   fs.mkdirSync(path.dirname(file), { recursive: true });
