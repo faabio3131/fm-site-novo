@@ -1,6 +1,7 @@
 import { wa } from './config.mjs';
 import { COPY } from './copy.mjs';
 import { IRON_SECTIONS } from './ironfit.mjs';
+import { NFCORE_SE_PREPARA } from './reforma.mjs';
 
 // Cada produto: status controla os botões. Quando o cadastro online existir,
 // preencha `signupUrl` e mude status para 'available'.
@@ -224,6 +225,10 @@ export const PRODUCTS = [
           ['chart', 'Arquivo e auditoria', 'Documentos, eventos e evidências preservados, com trilha para investigar qualquer divergência.'],
           ['mega', 'Eventos e webhooks', 'Os sistemas conectados recebem os eventos fiscais de forma assíncrona, com tentativas automáticas e registro de entrega.'],
         ] },
+      { kind: 'cards', id: 'reforma', kicker: 'Reforma tributária', title: 'Estrutura pronta para acompanhar a reforma tributária.',
+        lead: 'A reforma muda as notas fiscais em etapas, e as normas ainda estão sendo ajustadas. O NFCore foi desenhado para absorver essa mudança com regra versionada, evidência e revisão humana.',
+        items: NFCORE_SE_PREPARA,
+        link: { route: 'reforma-tributaria', label: 'Ver o guia da reforma tributária' } },
       { kind: 'cards', id: 'plataforma', figure: { file: 'chip.webp', alt: 'Chip com brilho roxo no centro de uma placa de circuitos, representando a infraestrutura fiscal do NFCore',
         overlay: { kicker: 'Core cognitivo transversal', title: 'Acompanha a evolução fiscal, com revisão humana.',
           text: 'O NFCore tem um monitor regulatório (Regulatory Watcher) que registra as mudanças normativas, como as da reforma tributária, organiza as evidências e encaminha propostas de atualização para revisão e aprovação. O core cognitivo transversal da FM apoia esse acompanhamento e reduz o erro humano.',
