@@ -1,3 +1,4 @@
+import { BRANDS } from './brands.mjs';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import path from 'node:path';
@@ -96,11 +97,21 @@ function section(s, p, c) {
   return html.replace(/<\/div><\/section>$/, `<figure class="dg${f.overlay ? ' dgo' : ''}"><img src="${c.up}assets/img/${p.slug}/${f.file}" alt="${esc(f.alt)}" loading="lazy">${ov}</figure></div></section>`);
 }
 
+/** Fileira de marcas de uma integração. Id conhecido em BRANDS = glifo na cor da marca; outro texto = só o nome (sem logo inventado). */
+function brandRow(logos) {
+  return `<div class="brands">${logos.map((b) => {
+    const brand = BRANDS[b];
+    return brand
+      ? `<span class="brand" style="--b:${brand.hex}"><svg viewBox="0 0 24 24" role="img" aria-label="${esc(brand.name)}"><path d="${brand.path}"/></svg><span>${esc(brand.name)}</span></span>`
+      : `<span class="brand txt"><span>${esc(b)}</span></span>`;
+  }).join('')}</div>`;
+}
+
 function sectionBase(s, p, c) {
   const wrap = (inner, cls = '') => `<section class="sec ${s.dark ? 'dark' : cls}" id="${s.id}"><div class="wrap">${inner}</div></section>`;
   switch (s.kind) {
     case 'flow': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="flow">${s.items.map(([a, b]) => `<div>${/^\d+$/.test(a) ? `<b>${a}</b>` : `<b>${esc(a).toUpperCase()}</b>`}<span>${esc(b)}</span></div>`).join('')}</div>`, 'soft');
-    case 'cards': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="grid ${s.items.length % 3 === 0 ? 'g3' : 'g4'}">${s.items.map(([i, t, d, tag]) => `<div class="card"><div class="ic">${ic(i)}</div>${tag ? `<span class="pill am" style="margin-top:14px">${esc(tag)}</span>` : ''}<h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div>${s.link ? `<p class="center" style="margin-top:32px"><a class="btn" href="${c.href(s.link.route)}">${esc(s.link.label)} →</a></p>` : ''}`);
+    case 'cards': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="grid ${s.items.length % 3 === 0 ? 'g3' : 'g4'}">${s.items.map(([i, t, d, tag, logos]) => `<div class="card">${logos ? brandRow(logos) : `<div class="ic">${ic(i)}</div>`}${tag ? `<span class="pill am" style="margin-top:14px">${esc(tag)}</span>` : ''}<h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div>${s.footnote ? `<p class="fnote">${esc(s.footnote)}</p>` : ''}${s.link ? `<p class="center" style="margin-top:32px"><a class="btn" href="${c.href(s.link.route)}">${esc(s.link.label)} →</a></p>` : ''}`);
     case 'split': return wrap(`<div class="split ${s.flip ? 'flip' : ''}"><div><span class="kick">${s.kicker}</span><h2 style="margin:14px 0 16px">${s.title}</h2><p class="sub">${s.lead}</p><ul>${s.bullets.map((b) => `<li>${ic('check')}<span>${esc(b)}</span></li>`).join('')}</ul>${s.note ? `<p style="margin-top:18px;font-size:14px;color:var(--t3)">${esc(s.note)}</p>` : ''}${s.ctaSlug ? `<p style="margin-top:26px"><a class="btn" href="${c.href('produtos/' + s.ctaSlug)}">${esc(s.ctaLabel)} →</a></p>` : ''}</div><div class="panel"><h4>${esc(s.side.title)}</h4><div class="steps">${s.side.steps.map((x, i) => `<div><i>${i + 1}</i>${esc(x)}</div>`).join('')}</div></div></div>`, s.flip ? 'soft' : '');
     case 'questions': return wrap(head(s.kicker, s.title, s.lead, true) + `<div class="qs">${s.items.map((q) => `<div>“${esc(q)}”</div>`).join('')}</div>`, 'soft');
     case 'faq': return wrap(head('Antes de começar', 'Perguntas frequentes', '', true) + `<div class="faq">${s.items.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div>`);
