@@ -62,7 +62,7 @@ export const COPY = {
   },
   nfcore: {
     title: 'Infraestrutura fiscal. Sob controle.',
-    lead: 'Menos erro humano, menos retrabalho e a gestão fiscal centralizada em uma infraestrutura coordenada pelo Core. O NFCore organiza regras, documentos, emissão, eventos, reconciliação e auditoria, e deixa a autoridade crítica nas mãos de serviços determinísticos, nunca da IA.',
+    lead: 'Menos erro humano, menos retrabalho e a gestão fiscal e contábil centralizada em uma infraestrutura coordenada pelo Core. O NFCore organiza regras, documentos, emissão, eventos, reconciliação e auditoria, e deixa a autoridade crítica nas mãos de serviços determinísticos, nunca da IA.',
     before: [
       { kind: 'contrast', id: 'desafio', kicker: 'O desafio fiscal', title: 'Fiscal não perdoa improviso. Pede regra, evidência e rastro.',
         lead: 'O NFCore foi desenhado para quem precisa reduzir fragmentação e trabalho manual sem abrir mão do controle.',
@@ -76,8 +76,8 @@ export const COPY = {
     overrides: {},
     after: [
       { kind: 'who', id: 'para-quem', kicker: 'Para quem é', title: 'Para operações que precisam de gestão fiscal com governança.',
-        lead: 'O NFCore é tratado como infraestrutura fiscal horizontal da FM Tecnologia, preparada para evoluir por capacidades, documentos e UFs.',
-        chips: ['Operações com emissão de documentos fiscais', 'Produtos do ecossistema FM', 'Equipes que precisam de auditoria e rastreabilidade'] },
+        lead: 'O NFCore é a infraestrutura fiscal da FM Tecnologia, preparada para evoluir por capacidades, documentos e UFs.',
+        chips: ['Empresas que emitem documentos fiscais', 'Áreas fiscais e contábeis', 'Equipes que precisam de auditoria e rastreabilidade'] },
     ],
   },
   campaia: {
