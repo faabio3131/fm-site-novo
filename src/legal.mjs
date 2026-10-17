@@ -123,7 +123,7 @@ export const termos = (S, href) => ({
       'Podemos atualizar estes termos a qualquer momento. A versão vigente é a publicada nesta página, com a data da última atualização no topo. Continuar usando o site depois de uma mudança significa que você concorda com a nova versão.',
     ] },
     { id: 'lei', t: 'Lei aplicável e foro', p: [
-      'Estes termos são regidos pelas leis do Brasil. Quando a relação for de consumo, fica garantido ao consumidor o foro do seu domicílio. Nos demais casos, as partes elegem o foro da comarca da sede da FM Tecnologia LTDA.',
+      'Estes termos são regidos pelas leis do Brasil. Quando a relação for de consumo, fica garantido ao consumidor o foro do seu domicílio. Nos demais casos, as partes elegem o foro da comarca de São Paulo, Estado de São Paulo.',
     ] },
     { id: 'contato', t: 'Contato', p: [
       `Dúvidas sobre estes termos: <a href="mailto:${S.email}">${S.email}</a> ou WhatsApp ${S.whatsappLabel}.`,
