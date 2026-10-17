@@ -50,6 +50,19 @@ function footer(c) {
 </div><div class="fb"><span>© ${new Date().getFullYear()} ${SITE.legalName}. Todos os direitos reservados. CNPJ ${SITE.cnpj}</span><span>${SITE.domain}</span></div></div></footer>`;
 }
 
+/**
+ * O HTML é gerado sem espaço entre as tags; quem lê só o texto (textContent, rastreadores simples, leitores de resumo)
+ * enxerga "ProdutosSoluçõesPreços" e "Você decideA IA recomenda". Aqui entra uma quebra de linha nas fronteiras de
+ * elementos de bloco, que não muda nada na tela (espaço entre blocos é ignorado). Script, estilo e SVG ficam como estão.
+ */
+const BLOCKS = 'div|p|li|ul|ol|h[1-6]|section|article|header|footer|nav|main|figure|figcaption|details|summary|table|thead|tbody|tr|td|th|blockquote|form|aside|dl|dt|dd';
+// Fim de elemento em linha seguido de outro elemento ("</a><a", "</b><span"): só entra a quebra se a tela não mudar (conferido por medição de layout).
+const INLINE_END = /(<\/(?:a|span|b|small|em|strong|i|button|label)>)(?=<[a-z])/g;
+function separateBlocks(html) {
+  return html.split(/(<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<svg[\s\S]*?<\/svg>)/i).map((part, i) => i % 2 ? part
+    : part.replace(new RegExp(`(<\\/(?:${BLOCKS})>)(?=<)`, 'g'), '$1\n').replace(new RegExp(`(>)(?=<(?:${BLOCKS})[\\s>/])`, 'g'), '$1\n').replace(/<br\s*\/?>(?=[^\s])/gi, (m) => `${m}\n`).replace(INLINE_END, '$1\n').replace(/(<\/i>)(?=[^<\s])/g, '$1\n').replace(new RegExp(`([^>\\s])(?=<(?:${BLOCKS})[\\s>/])`, 'g'), '$1\n').replace(new RegExp(`(<\\/(?:${BLOCKS})>)(?=[^<\\s])`, 'g'), '$1\n')).join('');
+}
+
 function page(route, { title, desc, active, body, prod }) {
   const c = ctx(route);
   const html = `<!doctype html><html lang="pt-BR"${prod ? ` data-p="${prod}"` : ''}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -58,7 +71,7 @@ function page(route, { title, desc, active, body, prod }) {
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>${nav(c, active)}<main id="conteudo"${route === '' ? ' class="home"' : ''}>${typeof body === 'function' ? body(c) : body}</main>${footer(c)}<a class="fab" href="${wa('Olá! Vim pelo site da FM Tecnologia e quero tirar uma dúvida.')}" target="_blank" rel="noopener" aria-label="Falar com a FM pelo WhatsApp">${ic('chat')}</a><script src="${c.up}assets/site.js"></script></body></html>`;
   const file = path.join(OUT, route === '' ? 'index.html' : route + '.html');
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, html);
+  fs.writeFileSync(file, separateBlocks(html));
 }
 
 const SHORT = { cobranca: 'Cobrança', documentos: 'Documentos', vantagens: 'Vantagens', reforma: 'Reforma', capacidades: 'Capacidades', plataforma: 'Plataforma', fiscal: 'Fiscal', delivery: 'Delivery', desafio: 'Desafio', 'para-quem': 'Para quem', 'como-comecar': 'Como começar', salao: 'Salão', atendente: 'Atendente IA', cozinha: 'Cozinha', demo: 'Demonstração', visao: 'Visão', ambiente: 'Ambiente', core: 'Core', recursos: 'Recursos', estoque: 'Estoque', financeiro: 'Financeiro', 'core-acao': 'Core em ação', integracoes: 'Integrações', seguranca: 'Segurança', planos: 'Planos', duvidas: 'Dúvidas', gestao: 'Gestão', aluno: 'Aluno', equipamentos: 'Equipamentos', inteligencia: 'Inteligência', hub: 'Hub', autoridade: 'Autoridade', capacidades: 'Capacidades', disponibilidade: 'Disponibilidade', arquitetura: 'Arquitetura', governanca: 'Governança', kordena: 'Kordena', rotina: 'Rotina' };
