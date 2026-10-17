@@ -11,3 +11,7 @@ Mesma estrutura: site da empresa, vitrine de produtos e uma landing page por pro
 
 ## Regras de conteúdo
 Sem clientes, números, resultados ou certificações inventados. Textos e preços vêm do site atual. O que ainda não existe aparece como "em desenvolvimento".
+
+## Hub da reforma tributária
+- `src/reforma.mjs`: guia, FAQ, **radar** (`RADAR`, uma entrada por mudança, com data e fonte) e materiais. Ao mudar a norma, atualize os textos e as datas `*_UPDATED`.
+- Os PDFs de `assets/materiais/` saem de `python3 scripts/pdfs.py` (usa `src/materiais-pdf.mjs` e Chromium). Regere sempre que o conteúdo de `reforma.mjs` mudar.
