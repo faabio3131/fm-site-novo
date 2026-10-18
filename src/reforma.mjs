@@ -12,10 +12,10 @@ export const ESSENCIAL = [
 ];
 
 export const CALENDARIO = [
-  ['3 de agosto de 2026', 'NF-e (modelo 55), NFC-e (modelo 65), CT-e, MDF-e, NF3-e (energia elétrica) e outros documentos de transporte.'],
-  ['1º de outubro de 2026', 'NFS-e de serviços sujeitos ao ISS da lista da LC 116/2003 (regra geral) e NFCom.'],
-  ['1º de dezembro de 2026', 'NFS-e de plataformas digitais, locações, condomínios e demais serviços não enquadrados antes, e NF-e de quem não é contribuinte do ICMS.'],
-  ['1º de janeiro de 2027', 'Todos os documentos para os optantes do Simples Nacional, NF-e de operações com tributação monofásica e importações (Duimp).'],
+  ['3 de agosto de 2026', 'NF-e (modelo 55), NFC-e (modelo 65), CT-e, MDF-e, NF3-e (energia elétrica) e outros documentos de transporte.', 'NF-e, NFC-e, CT-e, MDF-e, NF3-e e demais documentos de transporte.'],
+  ['1º de outubro de 2026', 'NFS-e de serviços sujeitos ao ISS da lista da LC 116/2003 (regra geral) e NFCom.', 'NFS-e de serviços sujeitos ao ISS pela regra geral da LC 116/2003 e NFCom.'],
+  ['1º de dezembro de 2026', 'NFS-e de plataformas digitais, locações, condomínios e demais serviços não enquadrados antes, e NF-e de quem não é contribuinte do ICMS.', 'NFS-e de plataformas digitais, locações, condomínios e outros serviços remanescentes, além da NF-e de não contribuinte do ICMS.'],
+  ['1º de janeiro de 2027', 'Todos os documentos para os optantes do Simples Nacional, NF-e de operações com tributação monofásica e importações (Duimp).', 'Documentos de optantes do Simples Nacional, NF-e com tributação monofásica e importações via DUIMP.'],
 ];
 
 export const NOTA_PEDE = [

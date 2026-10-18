@@ -1,0 +1,27 @@
+name: FM site static validation
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rebuild static site
+        run: npm run build
+      - name: Test NFCore spotlight copy, typography and guide links
+        run: npm test
+      - name: Reject generated-site drift
+        run: git diff --exit-code -- docs
