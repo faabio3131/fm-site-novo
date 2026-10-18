@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node src/build.mjs",
+    "test": "node --test tests/*.test.mjs",
     "build:preview": "LINKEXT=.html OUT=preview node src/build.mjs"
   }
 }
