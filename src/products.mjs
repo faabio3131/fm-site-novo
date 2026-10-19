@@ -185,6 +185,8 @@ export const PRODUCTS = [
   },
   {
     slug: 'nfcore', name: 'NFCore', group: 'main', status: 'launching', signupUrl: null,
+    // Login Web já existente. Não é rota de trial nem autoriza assinatura.
+    external: { url: 'https://nfcore-portal-production.up.railway.app/' },
     tag: 'Gestão fiscal',
     short: 'Reduz erros humanos, diminui o retrabalho operacional e centraliza a gestão fiscal no Core.',
     eyebrow: 'Infrastructure Mission Control · Gestão fiscal',
