@@ -4,8 +4,8 @@ export const SITE = {
   name: 'FM Tecnologia',
   signature: 'IA para melhorar hoje e evoluir o amanhã.',
   domain: 'fmtecnologiaia.com.br',
-  // Contato comercial atual. Trocar aqui quando houver e-mail corporativo.
-  email: 'fmtecnologia.comercial@gmail.com',
+  // E-mail comercial corporativo utilizado no rodapé e nos demais canais de contato do site.
+  email: 'comercial@fmtecnologiaia.com.br',
   whatsapp: '5511978350851',
   whatsappLabel: '(11) 97835-0851',
   // CNPJ da empresa, informado pelo diretor (dado público da empresa, exigido em sites que oferecem serviços).
