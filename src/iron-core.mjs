@@ -29,7 +29,7 @@ export function ironCore(alt) {
   return `<figure class="cg" role="group" aria-label="${alt}">
 <div class="cg-top">
 ${L.map((x, k) => pill(x, 'l', k + 1)).join('')}${R.map((x, k) => pill(x, 'r', k + 1)).join('')}
-<div class="cg-disc">${lines()}<div class="cg-ring"><div class="cg-in">${EMBLEM.replace('class="ii-em"', 'class="cg-em"').replace(/iig/g, 'icg')}<b class="cg-wm">IRON FIT <span>CORE</span></b><span class="cg-tg">INTELIGÊNCIA NO CENTRO.<br>EVOLUÇÃO EM MOVIMENTO.</span><span class="cg-by"><i></i>by FM Tecnologia</span></div></div></div>
+<div class="cg-disc">${lines()}<div class="cg-ring"><div class="cg-in">${EMBLEM.replace('class="ii-em"', 'class="cg-em"').replace(/iig/g, 'icg')}<b class="cg-wm">IRON FIT <span>CORE</span></b><span class="cg-tg">INTELIGÊNCIA NO CENTRO.<br>EVOLUÇÃO EM MOVIMENTO.</span><span class="cg-by"><i></i>by FM Tecnologia IA</span></div></div></div>
 </div>
 <div class="cg-steps">${STEPS.map((t) => `<div>${t}</div>`).join('<i aria-hidden="true">→</i>')}</div>
 </figure>`;

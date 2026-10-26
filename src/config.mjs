@@ -1,7 +1,7 @@
 // Configuração central do site. Para colocar um produto no ar, altere o `status`
 // e, quando existir, o `signupUrl` em src/products.mjs. Nada mais precisa mudar.
 export const SITE = {
-  name: 'FM Tecnologia',
+  name: 'FM Tecnologia IA',
   signature: 'IA para melhorar hoje e evoluir o amanhã.',
   domain: 'fmtecnologiaia.com.br',
   // E-mail comercial corporativo utilizado no rodapé e nos demais canais de contato do site.

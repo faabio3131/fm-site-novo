@@ -98,7 +98,7 @@ export const termos = (S, href) => ({
       'A contratação de qualquer produto da FM é regida pelo contrato e pelos termos específicos daquele produto, apresentados no momento da contratação. Em caso de diferença, vale o documento do produto.',
     ] },
     { id: 'propriedade', t: 'Propriedade intelectual', p: [
-      'Marcas, logotipos, textos, desenhos, telas, vídeos, código e demais conteúdos do site pertencem à FM Tecnologia ou a quem nos licenciou o uso, e são protegidos pela legislação de propriedade intelectual.',
+      'Marcas, logotipos, textos, desenhos, telas, vídeos, código e demais conteúdos do site pertencem à FM Tecnologia IA ou a quem nos licenciou o uso, e são protegidos pela legislação de propriedade intelectual.',
       'Algumas fotografias são de terceiros e trazem o crédito do autor, conforme a licença da origem.',
       'Você pode ver e compartilhar os links do site. Não é permitido copiar, modificar, distribuir ou usar o conteúdo, as marcas ou os logotipos para fins comerciais sem autorização prévia e por escrito.',
     ] },

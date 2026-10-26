@@ -30,7 +30,7 @@ h2{font-size:14px;margin:22px 0 8px}
 .box2{border:1px solid #dfe2e8;border-radius:10px;padding:13px 16px;margin-top:20px;color:#4b5260;font-size:12.5px}
 .ft{position:absolute;left:40px;right:40px;bottom:26px;font-size:10.5px;color:#6b7280;border-top:1px solid #dfe2e8;padding-top:10px;display:flex;justify-content:space-between;gap:20px}.ft span:last-child{white-space:nowrap}
 </style></head><body>
-<div class="top"><img src="file://${logo}" alt="FM Tecnologia"><span>${esc(SITE.domain)}/reforma-tributaria</span></div>
+<div class="top"><img src="file://${logo}" alt="FM Tecnologia IA"><span>${esc(SITE.domain)}/reforma-tributaria</span></div>
 <div class="pg"><div class="k">${esc(sub)}</div><h1>${esc(title)}</h1>${body}
 <div class="ft"><span>Conteúdo informativo, baseado nos atos oficiais e nas fontes do guia. Não substitui a orientação de um contador ou advogado. Atualizado em ${esc(REFORMA_UPDATED)}.</span><span>${esc(SITE.name)}</span></div></div></body></html>`;
 
