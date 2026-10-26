@@ -76,7 +76,7 @@ export const COPY = {
     overrides: {},
     after: [
       { kind: 'who', id: 'para-quem', kicker: 'Para quem é', title: 'Para operações que precisam de gestão fiscal com governança.',
-        lead: 'O NFCore é a infraestrutura fiscal da FM Tecnologia, preparada para evoluir por capacidades, documentos e UFs.',
+        lead: 'O NFCore é a infraestrutura fiscal da FM Tecnologia IA, preparada para evoluir por capacidades, documentos e UFs.',
         chips: ['Empresas que emitem documentos fiscais', 'Áreas fiscais e contábeis', 'Equipes que precisam de auditoria e rastreabilidade'] },
     ],
   },

@@ -28,7 +28,7 @@ export function ironInt(alt) {
 <div class="ii-top">
 <div class="ii-txt"><span class="ii-k"><i></i>IRON FIT CORE</span><h3>Inteligência para apoiar decisões. <em>Controle sempre humano.</em></h3><p>A Iron Intelligence foi desenhada para incorporar recursos inteligentes ao acompanhamento e à gestão sem tornar a IA uma dependência dos fluxos essenciais.</p><div class="ii-q"><b>O profissional continua no controle.</b><p>Treinos, avaliações, aprovações e decisões continuam sujeitos às regras e à supervisão profissional definidas pela operação.</p></div></div>
 ${card(CARDS[0], 'l1')}${card(CARDS[2], 'l2')}
-<div class="ii-disc"><i class="ii-cn a"></i><i class="ii-cn b"></i><i class="ii-cn c"></i><i class="ii-cn d"></i><div class="ii-ring"><div class="ii-in">${EMBLEM}<b class="ii-wm">IRON FIT <span>CORE</span></b><span class="ii-tg">INTELIGÊNCIA NO CENTRO.<br>EVOLUÇÃO EM MOVIMENTO.</span><span class="ii-by"><i></i>by FM Tecnologia</span></div></div></div>
+<div class="ii-disc"><i class="ii-cn a"></i><i class="ii-cn b"></i><i class="ii-cn c"></i><i class="ii-cn d"></i><div class="ii-ring"><div class="ii-in">${EMBLEM}<b class="ii-wm">IRON FIT <span>CORE</span></b><span class="ii-tg">INTELIGÊNCIA NO CENTRO.<br>EVOLUÇÃO EM MOVIMENTO.</span><span class="ii-by"><i></i>by FM Tecnologia IA</span></div></div></div>
 ${card(CARDS[1], 'r1')}${card(CARDS[3], 'r2')}
 </div>
 <div class="ii-chips">${CHIPS.map(([n, t]) => `<div><b>${n}</b><span>${t}</span></div>`).join('')}</div>
