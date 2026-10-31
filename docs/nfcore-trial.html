@@ -52,6 +52,7 @@ small{color:#9cb2c9}a:focus-visible,input:focus-visible,select:focus-visible,but
   const details = document.getElementById('plan-detail');
   const button = document.getElementById('submit');
   let offers = [];
+  let pendingAttempt = null; // Preserve key across network retries of identical payload.
 
   async function loadOffers() {
     try {
@@ -90,6 +91,16 @@ small{color:#9cb2c9}a:focus-visible,input:focus-visible,select:focus-visible,but
     button.disabled = true;
     result.textContent = 'Enviando solicitação...';
     result.className = 'status';
+    const payload = {
+      plan_id: offer.plan_id,
+      price_id: offer.price_id,
+      buyer_email: document.getElementById('buyer-email').value.trim(),
+      legal_name: document.getElementById('legal-name').value.trim()
+    };
+    const fingerprint = JSON.stringify(payload);
+    if (!pendingAttempt || pendingAttempt.fingerprint !== fingerprint) {
+      pendingAttempt = { fingerprint, key: crypto.randomUUID() };
+    }
     try {
       const response = await fetch(base + '/v1/public/trials', {
         method: 'POST',
@@ -98,16 +109,12 @@ small{color:#9cb2c9}a:focus-visible,input:focus-visible,select:focus-visible,but
         cache: 'no-store',
         headers: {
           'Content-Type': 'application/json',
-          'Idempotency-Key': crypto.randomUUID()
+          'Idempotency-Key': pendingAttempt.key
         },
-        body: JSON.stringify({
-          plan_id: offer.plan_id,
-          price_id: offer.price_id,
-          buyer_email: document.getElementById('buyer-email').value.trim(),
-          legal_name: document.getElementById('legal-name').value.trim()
-        })
+        body: fingerprint
       });
       if (!response.ok) throw new Error('request unavailable');
+      pendingAttempt = null;
       result.textContent = 'Solicitação recebida. Confira seu e-mail para a ativação, se disponível.';
       result.className = 'status success';
       form.hidden = true;
