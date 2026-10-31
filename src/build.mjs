@@ -202,7 +202,7 @@ function productPage(p) {
       parts.splice(at, 0, (VIDEOS[p.slug] ? videoSection(p, c) : '') + (IMAGES[p.slug] ? photoSections(p, c) : ''));
       
       const body = parts.join('');
-      const final = (p.minimal || p.noCta) ? '' : `<section class="sec"><div class="wrap"><div class="cta"><div><h2>${esc(p.name)}</h2><p>${esc(p.short)}</p></div><div class="b"><a class="btn w l" href="${k.url}">${esc(k.label)}</a><a class="btn gh l" href="mailto:${SITE.email}">Falar por e-mail</a></div></div></div></section>`;
+      const final = (p.minimal || p.noCta) ? '' : `<section class="sec"><div class="wrap"><div class="cta"><div><h2>${esc(p.name)}</h2><p>${esc(p.short)}</p></div><div class="b">${p.slug === "nfcore" ? `<a class="btn gh l" href="${c.href("nfcore-trial")}">Solicitar trial quando disponível</a>` : ""}<a class="btn w l" href="${k.url}">${esc(k.label)}</a><a class="btn gh l" href="mailto:${SITE.email}">Falar por e-mail</a></div></div></div></section>`;
       return subnav + hero + body + final;
     },
   });
@@ -346,4 +346,5 @@ page('ajuda', { title: `Central de ajuda — ${SITE.name}`, desc: 'Fale com a FM
 
 fs.mkdirSync('assets/img', { recursive: true });
 fs.cpSync('assets', path.join(OUT, 'assets'), { recursive: true });
+fs.copyFileSync('src/nfcore-trial.html', path.join(OUT, 'nfcore-trial.html'));
 console.log('ok', OUT);
