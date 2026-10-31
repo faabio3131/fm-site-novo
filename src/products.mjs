@@ -323,7 +323,7 @@ export const PRODUCTS = [
     eyebrow: 'Para quem vende pelo WhatsApp',
     title: 'Sua IA que atende, vende e recupera.',
     lead: 'O AtendeVendeIA responde seus clientes no WhatsApp, leva até o link de pagamento e retoma conversas e vendas paradas, sempre com o preço e o link que estão no seu cadastro.',
-    trial: { note: 'Demonstração assistida disponível. Contratação e pagamento automáticos ainda não estão liberados.' },
+    trial: { note: 'Assinatura pela Cakto, com 30% de desconto na 1ª mensalidade no lançamento. Demonstração assistida também disponível.' },
     trialMsg: 'Olá! Gostaria de agendar uma demonstração do AtendeVendeIA e conhecer os planos Essencial, Profissional e Escala.', ctaLabel: 'Agendar demonstração',
     talkMsg: 'Olá! Quero conhecer os planos e solicitar uma demonstração do AtendeVendeIA.',
     pricing: null,
@@ -336,12 +336,13 @@ export const PRODUCTS = [
         { h: 'Passagem para pessoa', p: 'Desconto, negociação ou reclamação vão para a sua equipe.', ai: true },
       ] },
     sections: [
-      { kind: 'groups', id: 'planos', kicker: 'Planos do AtendeVendeIA', title: 'Mesmas funcionalidades. Franquias para cada tamanho de negócio.',
-        lead: 'Valores mensais e limite conjunto de respostas da IA no WhatsApp, Instagram e Messenger. Contratação assistida pela FM Tecnologia IA, sujeita à ativação das integrações do cliente.',
-        groups: [
-          { name: 'Essencial — R$ 129,90/mês', items: [['check', '500 respostas de IA por mês', 'Franquia compartilhada entre todos os canais conectados.']] },
-          { name: 'Profissional — R$ 199,90/mês', items: [['check', '1.000 respostas de IA por mês', 'As mesmas funcionalidades do Essencial, com franquia maior.']] },
-          { name: 'Escala — R$ 399,90/mês', items: [['check', '3.000 respostas de IA por mês', 'As mesmas funcionalidades, com maior capacidade mensal.']] },
+      { kind: 'plans', id: 'planos', kicker: 'Planos do AtendeVendeIA', title: 'Mesmas funcionalidades. Franquias para cada tamanho de negócio.',
+        lead: 'Valores mensais e limite conjunto de respostas da IA no WhatsApp, Instagram e Messenger. A assinatura é feita pela Cakto, e o acesso ao painel chega no e-mail da compra.',
+        note: 'Promoção de lançamento: 30% de desconto na 1ª mensalidade com o cupom indicado em cada plano (digite o cupom na tela de pagamento). As renovações seguem o preço cheio. Cancele quando quiser.',
+        plans: [
+          { name: 'Essencial', price: 'R$ 129,90', promo: 'R$ 90,93', coupon: 'ESSENCIAL30', quota: '500 respostas de IA por mês', url: 'https://pay.cakto.com.br/jj4227r_1267143' },
+          { name: 'Profissional', price: 'R$ 199,90', promo: 'R$ 139,93', coupon: 'PROFISSIONAL30', quota: '1.000 respostas de IA por mês', url: 'https://pay.cakto.com.br/arhksgx_1267149', featured: true },
+          { name: 'Escala', price: 'R$ 399,90', promo: 'R$ 279,93', coupon: 'ESCALA30', quota: '3.000 respostas de IA por mês', url: 'https://pay.cakto.com.br/tcyybpo_1267156' },
         ] },
       { kind: 'flow', id: 'rotina', kicker: 'Da primeira mensagem ao pagamento', title: 'Conheça a rotina.',
         lead: 'Veja como uma conversa vira venda, e como a venda parada volta para a conversa, com a sua equipe no comando.',
@@ -391,7 +392,7 @@ export const PRODUCTS = [
       { kind: 'faq', id: 'duvidas', items: [
         ['A IA pode inventar preço ou condição?', 'Não. O preço, o nome da oferta e o link de pagamento vêm sempre da lista de ofertas que você cadastra. Se o cliente pede algo fora dela, a conversa passa para uma pessoa.'],
         ['Funciona com qual WhatsApp?', 'O painel oferece integração Evolution por QR Code e Meta Cloud API, com requisitos e aprovações diferentes. A conexão e os envios são habilitados por cliente conforme sua configuração.'], 
-        ['O AtendeVendeIA já está disponível?', 'O software já funciona na Web e passou por testes técnicos; o atendimento real está em piloto restrito. Demonstrações comerciais podem ser solicitadas à FM Tecnologia IA. A contratação automática, as integrações externas por cliente e a homologação completa ainda dependem de configuração e validação.'], 
+        ['O AtendeVendeIA já está disponível?', 'O software já funciona na Web e passou por testes técnicos; o atendimento real está em piloto restrito. Demonstrações comerciais podem ser solicitadas à FM Tecnologia IA. A assinatura já pode ser feita pela Cakto; as integrações externas por cliente e a homologação completa ainda dependem de configuração e validação.'], 
         ['Preciso de loja virtual ou checkout?', 'Não. Com checkout (Cakto), a IA recupera carrinho, Pix e boleto. Sem ele, você registra as oportunidades na mão, importa uma planilha ou deixa o sistema apontar as conversas que esfriaram.'],
         ['A IA entende áudio?', 'Sim. Ela transcreve o áudio do cliente e responde como se fosse texto, respeitando os mesmos limites de preço, link e passagem para uma pessoa.'],
         ['Quem paga as mensagens do WhatsApp?', 'O custo da IA é controlado pela franquia do plano. Tarifas de mensageria, quando aplicáveis à modalidade/provedor conectado, são distintas e devem ser verificadas antes da ativação.'], 
