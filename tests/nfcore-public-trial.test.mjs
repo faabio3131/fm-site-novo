@@ -9,6 +9,8 @@ test('NFCore trial page uses only published canonical offers', () => {
   assert.match(landing, /\/v1\/public\/trial-plans/);
   assert.match(landing, /\/v1\/public\/trials/);
   assert.match(landing, /Idempotency-Key/);
+  assert.match(landing, /pendingAttempt\.fingerprint !== fingerprint/);
+  assert.match(landing, /'Idempotency-Key': pendingAttempt\.key/);
   assert.match(landing, /credentials: 'omit'/);
   assert.match(landing, /https:\/\/api\.nfcore\.com\.br/);
   assert.doesNotMatch(landing, /railway\.app/i);
