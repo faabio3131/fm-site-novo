@@ -35,7 +35,7 @@ const video = () => { const has = (f) => fs.existsSync(path.join('assets/video/k
 const pricing = () => { const pr = P.pricing; return head('Planos e condições', 'Kordena', pr.note) + `<div class="price"><div class="card"><h3>Mensal</h3><div class="v">${pr.monthly}</div></div><div class="card"><h3>Anual</h3><div class="v">${pr.yearly}</div></div><div class="card"><h3>Enterprise</h3><div class="v">${pr.enterprise}</div></div></div><div class="center" style="margin-top:32px"><a class="btn p l" href="${msg(P.trialMsg)}" target="_blank" rel="noopener">Quero ser avisado do teste grátis</a></div>`; };
 
 function nav(active) {
-  const items = [['recursos', 'Recursos'], ['index#core', 'Gerente IA Core'], ['index#fiscal', 'Fiscal'], ['planos', 'Planos e dúvidas'], ['contato', 'Contato']];
+  const items = [['recursos', 'Recursos'], ['index#atendente', 'Atendente IA'], ['index#core', 'Gerente IA Core'], ['index#fiscal', 'Fiscal'], ['planos', 'Planos e dúvidas'], ['contato', 'Contato']];
   return `<header class="nav"><div class="wrap"><a class="brand" href="${href('')}"><span class="wm"><img src="assets/brand/fm/logo-fm.webp" width="626" height="114" alt="FM Tecnologia IA"><small>Kordena · Setor alimentício</small></span></a>
 <nav class="menu" id="menu" aria-label="Principal">${items.map(([r, t]) => `<a href="${r.includes('#') ? r.replace('index', href('')) : href(r)}" class="${active === r ? 'on' : ''}">${t}</a>`).join('')}</nav>
 <div class="nr"><a class="btn sm" href="${login}">Entrar</a><a class="btn sm k" href="${href('planos')}">Teste grátis</a><button class="burger" id="burger" aria-label="Menu">☰</button></div></div></header>`;
@@ -57,6 +57,24 @@ function page(route, { title, desc, active, body }) {
 }
 
 const hero = ({ kick, title, lead, ctas, note, img, alt }) => `<section class="phero"><div class="wrap"><div class="pg"><div><span class="eb"><i></i>${esc(kick)}</span><h1>${esc(title)}</h1><p class="lead">${esc(lead)}</p><div class="b">${ctas}</div>${note ? `<p class="note">${esc(note)}</p>` : ''}</div>${img ? `<div class="vis"><figure class="dg"><img src="assets/img/kordena/${img}" alt="${esc(alt)}"></figure></div>` : ''}</div></div></section>`;
+// Atendente IA: só o que o código do Kordena (Agente de Atendimento V1) comprova.
+// A IA interpreta a conversa; o Core valida cardápio, cliente, entrega e pagamento antes de qualquer efeito.
+const ATENDENTE_RACIOCINIO = [
+  ['chat', 'Entende o cliente', 'Lê o que o cliente escreve e também o que ele fala: o áudio do WhatsApp é transcrito e entendido como texto.'],
+  ['file', 'Vende só o que está no cardápio', 'Usa exclusivamente os produtos e os preços do seu cadastro. Não inventa item, preço, desconto nem disponibilidade.'],
+  ['box', 'Monta o pedido com o cliente', 'Organiza itens e quantidades, pergunta se é retirada ou entrega e devolve um resumo para o cliente conferir.'],
+  ['map', 'Calcula a entrega', 'Cota a entrega pelo endereço ou pelo CEP, com taxa, distância e tempo estimado pelo Google Maps.'],
+  ['users', 'Reconhece quem já é cliente', 'Entende pedidos como "o de sempre" e usa o último endereço salvo, sempre dentro do que o cliente autorizou.'],
+  ['card', 'Cuida do pagamento sem atropelar', 'Registra como o cliente quer pagar. O pedido só avança depois da confirmação dele, e a mesma confirmação nunca gera dois pedidos.'],
+  ['lock', 'Passa para a sua equipe na dúvida', 'Pedido ambíguo ou fora do cardápio vai para uma pessoa, com o contexto da conversa, em vez de a atendente arriscar um palpite.'],
+  ['eye', 'Deixa rastro', 'Cada consulta ao histórico do cliente e cada decisão ficam registradas para a equipe conferir.'],
+];
+const atendenteSecao = () => head('Atendente IA com o raciocínio do Core', 'Não é um chatbot. É uma atendente que raciocina com o Core.', 'Chatbot de menu segue um roteiro. A atendente do Kordena interpreta a conversa com IA e confere cada passo com o Core, que conhece o seu cardápio, os seus clientes, a sua entrega e o seu pagamento.')
+  + `<div class="split" style="margin-top:32px"><div class="card"><h3>O que a IA faz</h3><p>Interpreta a linguagem do cliente, em texto ou áudio, e entende o que ele quer pedir.</p></div><div class="card"><h3>O que o Core faz</h3><p>Valida o cardápio, o cliente, a entrega e o pagamento, e só libera o pedido depois da confirmação.</p></div></div>`
+  + `<h3 class="center" style="margin:40px 0 18px">O que a atendente faz no seu atendimento</h3>` + cards(ATENDENTE_RACIOCINIO)
+  + flow([['Cliente', 'Pede pelo WhatsApp, em texto ou áudio'], ['Atendente IA', 'Interpreta o pedido'], ['Core', 'Confere cardápio, entrega e pagamento'], ['Cliente', 'Confirma o resumo'], ['PDV e cozinha', 'O pedido cai direto, sem redigitar']])
+  + `<div class="notice" style="margin-top:28px">Em preparação: sugestão de complementos na hora do pedido (bebida, sobremesa). A sua equipe continua no comando e decide o que for importante.</div>`;
+
 const cta = `<a class="btn p l" href="${href('planos')}">Quero o teste grátis de 15 dias</a><a class="btn l" href="${login}">Já tem conta? Entrar →</a>`;
 const photo = (s, fl) => S(s.id, split({ ...s, flip: fl }), fl ? 'soft' : '');
 const owner = { kicker: I.owner_text.kicker, title: I.owner_text.title, lead: I.owner_text.lead, bullets: I.owner_text.bullets, ...I.owner };
@@ -67,11 +85,11 @@ page('', {
   desc: 'Kordena conecta pedidos, cozinha, estoque, delivery, marketing, fiscal e financeiro em uma plataforma coordenada pelo Gerente IA Core, para restaurantes, pizzarias, padarias e outros negócios de alimentação.',
   active: '',
   body: hero({ kick: P.eyebrow, title: P.title, lead: P.lead, ctas: cta, note: P.trial.note, img: 'restaurante.jpg', alt: 'Salão de restaurante com atendimento de mesa' })
+    + S('atendente', atendenteSecao())
     + S('core', head(sec('core').kicker, sec('core').title, sec('core').lead) + flow(sec('core').items), 'soft')
     + S('visao', split({ ...owner, flip: true }))
     + photo(I.splits[0], true)
     + photo(I.splits[1], false)
-    + S('atendente', head('Atendente IA', 'Mais que um chatbot: um gerente de atendimento.', I.splits[2].lead.replace(/\s+$/, '')) + `<ul class="chips" style="margin:24px auto 0;max-width:760px">${I.splits[2].bullets.map((b) => `<li style="list-style:none;display:flex;gap:10px;margin:8px 0">${ic('check')}<span>${esc(b)}</span></li>`).join('')}</ul>` + flow(I.splits[2].flow), 'soft')
     + S('estoque', split(sec('estoque')))
     + S('financeiro', split(sec('financeiro')), 'soft')
     + S('delivery', split(sec('delivery')))
