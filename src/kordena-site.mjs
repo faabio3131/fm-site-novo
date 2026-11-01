@@ -78,8 +78,8 @@ const atendenteSecao = () => head('Atendente IA com o raciocínio do Core', 'Nã
   + `<div class="split" style="margin-top:32px"><div class="card"><h3>O que a IA faz</h3><p>Interpreta a linguagem do cliente, em texto ou áudio, e entende o que ele quer pedir.</p></div><div class="card"><h3>O que o Core faz</h3><p>Valida o cardápio, o cliente, a entrega e o pagamento, e só libera o pedido depois da confirmação.</p></div></div>`
   + `<h3 class="center" style="margin:40px 0 18px">O que a atendente faz no seu atendimento</h3>` + cards(ATENDENTE_RACIOCINIO)
   + flow([['Cliente', 'Pede pelo WhatsApp, em texto ou áudio'], ['Atendente IA', 'Interpreta o pedido'], ['Core', 'Confere cardápio, entrega e pagamento'], ['Cliente', 'Confirma o resumo'], ['PDV e cozinha', 'O pedido cai direto, sem redigitar']])
-  + `<h3 class="center" style="margin:40px 0 18px">Vendendo mais em cada pedido</h3>` + `<div class="grid g3">${ATENDENTE_VENDA.map(([i, t, d]) => `<div class="card"><span class="pill" style="margin-bottom:12px">Em integração no atendimento</span><div class="ic">${ic(i)}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div>`
-  + `<div class="notice" style="margin-top:28px">A sugestão de complementos já foi construída no PDV do Kordena e está sendo integrada ao atendimento pelo WhatsApp. A sua equipe continua no comando e decide o que for importante.</div>`;
+  + `<h3 class="center" style="margin:40px 0 18px">Vendendo mais em cada pedido</h3>` + `<div class="grid g3">${ATENDENTE_VENDA.map(([i, t, d]) => `<div class="card"><div class="ic">${ic(i)}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div>`
+  + `<div class="notice" style="margin-top:28px">A sua equipe continua no comando e decide o que for importante.</div>`;
 
 const cta = `<a class="btn p l" href="${href('planos')}">Quero o teste grátis de 15 dias</a><a class="btn l" href="${login}">Já tem conta? Entrar →</a>`;
 const photo = (s, fl) => S(s.id, split({ ...s, flip: fl }), fl ? 'soft' : '');
