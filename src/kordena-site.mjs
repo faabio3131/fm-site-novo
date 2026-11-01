@@ -69,11 +69,17 @@ const ATENDENTE_RACIOCINIO = [
   ['lock', 'Passa para a sua equipe na dúvida', 'Pedido ambíguo ou fora do cardápio vai para uma pessoa, com o contexto da conversa, em vez de a atendente arriscar um palpite.'],
   ['eye', 'Deixa rastro', 'Cada consulta ao histórico do cliente e cada decisão ficam registradas para a equipe conferir.'],
 ];
+const ATENDENTE_VENDA = [
+  ['mega', 'Sugestão de complementos (upsell)', 'Na hora do pedido, sugere um acompanhamento, uma bebida ou um adicional a partir do que o cliente já escolheu.'],
+  ['layers', 'Venda cruzada (cross-sell)', 'Combina itens do cardápio que costumam sair juntos, sempre com produto e preço do seu cadastro.'],
+  ['check', 'Aceite e recusa registrados', 'O cliente aceita ou recusa a sugestão, e o pedido só é atualizado depois da confirmação dele.'],
+];
 const atendenteSecao = () => head('Atendente IA com o raciocínio do Core', 'Não é um chatbot. É uma atendente que raciocina com o Core.', 'Chatbot de menu segue um roteiro. A atendente do Kordena interpreta a conversa com IA e confere cada passo com o Core, que conhece o seu cardápio, os seus clientes, a sua entrega e o seu pagamento.')
   + `<div class="split" style="margin-top:32px"><div class="card"><h3>O que a IA faz</h3><p>Interpreta a linguagem do cliente, em texto ou áudio, e entende o que ele quer pedir.</p></div><div class="card"><h3>O que o Core faz</h3><p>Valida o cardápio, o cliente, a entrega e o pagamento, e só libera o pedido depois da confirmação.</p></div></div>`
   + `<h3 class="center" style="margin:40px 0 18px">O que a atendente faz no seu atendimento</h3>` + cards(ATENDENTE_RACIOCINIO)
   + flow([['Cliente', 'Pede pelo WhatsApp, em texto ou áudio'], ['Atendente IA', 'Interpreta o pedido'], ['Core', 'Confere cardápio, entrega e pagamento'], ['Cliente', 'Confirma o resumo'], ['PDV e cozinha', 'O pedido cai direto, sem redigitar']])
-  + `<div class="notice" style="margin-top:28px">Em preparação: sugestão de complementos na hora do pedido (bebida, sobremesa). A sua equipe continua no comando e decide o que for importante.</div>`;
+  + `<h3 class="center" style="margin:40px 0 18px">Vendendo mais em cada pedido</h3>` + `<div class="grid g3">${ATENDENTE_VENDA.map(([i, t, d]) => `<div class="card"><span class="pill" style="margin-bottom:12px">Em integração no atendimento</span><div class="ic">${ic(i)}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div>`
+  + `<div class="notice" style="margin-top:28px">A sugestão de complementos já foi construída no PDV do Kordena e está sendo integrada ao atendimento pelo WhatsApp. A sua equipe continua no comando e decide o que for importante.</div>`;
 
 const cta = `<a class="btn p l" href="${href('planos')}">Quero o teste grátis de 15 dias</a><a class="btn l" href="${login}">Já tem conta? Entrar →</a>`;
 const photo = (s, fl) => S(s.id, split({ ...s, flip: fl }), fl ? 'soft' : '');
