@@ -6,7 +6,7 @@ import crypto from 'node:crypto';
 import { SITE, wa } from './config.mjs';
 import { PRODUCTS } from './products.mjs';
 import { ic } from './icons.mjs';
-import { REFORMA_UPDATED, ESSENCIAL, CALENDARIO, NOTA_PEDE, PASSOS, NFCORE_SE_PREPARA, FAQ, FONTES } from './reforma.mjs';
+import { REFORMA_UPDATED, ESSENCIAL, CALENDARIO, NOTA_PEDE, PASSOS, FAQ, FONTES } from './reforma.mjs';
 
 const OUT = process.env.OUT ?? 'sites/nfcore';
 const EXT = process.env.LINKEXT ?? '.html';
@@ -50,12 +50,34 @@ function page(route, { title, desc, active, body }) {
 const hero = ({ kick, title, lead, ctas, note, img, alt }) => `<section class="phero"><div class="wrap"><div class="pg"><div><span class="eb"><i></i>${esc(kick)}</span><h1>${esc(title)}</h1><p class="lead">${esc(lead)}</p><div class="b">${ctas}</div>${note ? `<p class="note">${esc(note)}</p>` : ''}</div>${img ? `<div class="vis"><figure class="dg"><img src="assets/img/nfcore/${img}" alt="${esc(alt)}"></figure></div>` : ''}</div></div></section>`;
 const cta = `<a class="btn p l" href="${href('contato')}">Quero ser avisado do lançamento</a><a class="btn l" href="${esc(login)}">Já tem conta? Acessar NFCore Web →</a>`;
 
+// Funções da reforma tributária, separadas por estado. "Construído" = existe no código do NFCore (módulo de conformidade RTC,
+// motor fiscal e Portal). "Em construção" = ainda não entregue; nada daqui afirma homologação nem produção fiscal.
+const REFORMA_CONSTRUIDO = [
+  ['store', 'Enquadramento fiscal da unidade', 'Cadastro do regime da unidade emitente (Simples Nacional, Lucro Presumido ou Lucro Real) no Portal, gravado como registro imutável e auditado.'],
+  ['eye', 'Estado de adequação e bloqueios', 'O Portal mostra a situação de adequação à reforma e o motivo de cada bloqueio, lidos da fonte fiscal, sem número inventado.'],
+  ['layers', 'Regras com data de vigência', 'Obrigação legal e rejeição técnica tratadas separadamente, por regime, por estado e por município, cada uma a partir da sua data.'],
+  ['check', 'Classificação CST e cClassTrib', 'A classificação de IBS e CBS é conferida contra o catálogo oficial registrado com assinatura de integridade (SHA-256). Sem classificação válida, o NFCore bloqueia em vez de presumir.'],
+  ['file', 'IBS, CBS e IS em separado', 'Os três tributos ficam como componentes distintos no registro fiscal, cada um com a sua classificação e a versão da norma usada.'],
+  ['bot', 'Monitor regulatório', 'Registra as mudanças normativas, organiza as evidências e encaminha propostas de atualização para revisão e aprovação humana.'],
+];
+const REFORMA_CONSTRUCAO = [
+  ['chart', 'Cálculo de IBS, CBS e IS', 'Cálculo por item com as fórmulas e o arredondamento oficiais, créditos e reduções. Só entra com a norma verificada.'],
+  ['file', 'Campos novos na NF-e e na NFC-e', 'IBS, CBS e IS por item nos arquivos das notas, conforme o leiaute vigente da Receita, com validação do arquivo.'],
+  ['layers', 'NFS-e nacional e municipal', 'Campos de IBS e CBS na nota de serviço, respeitando o leiaute nacional e o de cada município atendido.'],
+  ['flow', 'Notas de débito e de crédito e novos eventos', 'Ajustes de IBS e CBS depois da emissão e os novos eventos da nota.'],
+  ['calendar', 'Transição 2026 a 2033', 'Convivência de ICMS, ISS, PIS e Cofins com IBS e CBS, ano a ano, preservando o histórico de cada nota.'],
+  ['shield', 'Homologação com os autorizadores', 'Testes oficiais com a Receita e as prefeituras. Depende de ambiente e credenciais reais e só será declarada com evidência.'],
+];
+const funcs = (items, pill, cls) => `<div class="grid g3">${items.map(([i, t, d]) => `<div class="card"><span class="pill ${cls}" style="margin-bottom:12px">${pill}</span><div class="ic">${ic(i)}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div>`;
+const reformaFuncoes = () => `<h3 class="center" style="margin:40px 0 18px">Já construído no NFCore</h3>${funcs(REFORMA_CONSTRUIDO, 'Construído', 'ok')}<h3 class="center" style="margin:40px 0 18px">Em construção</h3>${funcs(REFORMA_CONSTRUCAO, 'Em construção', '')}<div class="notice" style="margin-top:28px">As funções "em construção" ainda não estão disponíveis e não significam homologação nem produção fiscal. O estado de cada uma só muda quando houver evidência.</div>`;
+
 // Home
 page('', {
   title: 'NFCore — Infraestrutura fiscal com Core Cognitivo e preparada para a reforma tributária',
   desc: 'NFCore reúne regras, emissão de NFC-e, NF-e e NFS-e, reconciliação e auditoria, com Core Cognitivo que acompanha a evolução fiscal e a reforma tributária, sempre com revisão humana.',
   active: '',
-  body: hero({ kick: 'NFCore · Gestão fiscal', title: 'Infraestrutura fiscal. Sob controle.', lead: P.lead, ctas: cta, note: P.trial.note, img: 'chip.webp', alt: 'Chip com brilho roxo no centro de uma placa de circuitos, representando a infraestrutura fiscal do NFCore' })
+  body: hero({ kick: 'NFCore · Reforma tributária', title: 'Preparado para a reforma tributária.', lead: 'IBS e CBS chegam às notas fiscais em etapas, de 2026 a 2033. O NFCore já traz o enquadramento fiscal, as regras com data de vigência e a classificação conferida contra o catálogo oficial, e segue construindo o cálculo e as notas. A IA recomenda; a decisão fiscal fica com serviços determinísticos e com a sua equipe.', ctas: `<a class="btn p l" href="${href('reforma-tributaria')}">Ver o guia da reforma →</a><a class="btn l" href="${href('contato')}">Quero ser avisado do lançamento</a>`, note: P.trial.note, img: 'chip.webp', alt: 'Chip com brilho roxo no centro de uma placa de circuitos, representando a infraestrutura fiscal do NFCore' })
+    + S('reforma-funcoes', head('Reforma tributária', 'As funções do NFCore para a reforma.', 'O que já está construído e o que ainda está em construção, sem promessa além do que existe.') + reformaFuncoes() + `<div class="spot" style="margin-top:40px">${cal()}</div>`, 'soft')
     + S('destaques', head('Em destaque', 'Duas frentes que o NFCore leva a sério.', 'A inteligência que acompanha a evolução fiscal e a preparação para a reforma tributária.') + `<div class="grid g2"><a class="card pcard" href="${href('core-cognitivo')}"><span class="pill ok">Core Cognitivo</span><div class="ic">${ic('bot')}</div><h3>A IA recomenda, a equipe aprova.</h3><p>Monitor regulatório que registra as mudanças normativas, organiza as evidências e encaminha propostas de atualização para revisão e aprovação humana.</p><span class="go">Conhecer o Core Cognitivo →</span></a><a class="card pcard" href="${href('reforma-tributaria')}"><span class="pill ok">Reforma tributária</span><div class="ic">${ic('calendar')}</div><h3>Preparado para IBS e CBS.</h3><p>Calendário oficial por tipo de nota, regras com data de vigência e o guia para a sua empresa se preparar. Atualizado em ${REFORMA_UPDATED}.</p><span class="go">Ver o guia da reforma →</span></a></div>`, 'soft')
     + S('autoridade', head('Fluxo de autoridade', sec('autoridade').title, sec('autoridade').lead) + flow(sec('autoridade').items))
     + S('documentos', head('Documentos fiscais', sec('documentos').title, sec('documentos').lead) + cards(sec('documentos').items), 'soft')
@@ -96,7 +118,7 @@ page('reforma-tributaria', {
     + S('calendario', head('Calendário', 'Quando cada nota passa a exigir IBS e CBS.', '') + `<div class="spot">${cal()}</div>`)
     + S('nota-pede', head('O que a nota passa a pedir', 'Novos campos, notas e eventos.', '') + cards(NOTA_PEDE), 'soft')
     + S('passos', head('Como se preparar', 'Seis passos para a sua empresa.', '') + `<div class="grid g3">${passos.map(([n, t, d]) => `<div class="card"><div class="ic"><b>${esc(n)}</b></div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div>`)
-    + S('nfcore', head('No NFCore', 'Como o NFCore se prepara.', 'Só o que o código comprova.') + cards(NFCORE_SE_PREPARA), 'soft')
+    + S('nfcore', head('No NFCore', 'As funções do NFCore para a reforma.', 'O que já está construído e o que ainda está em construção.') + reformaFuncoes(), 'soft')
     + S('duvidas', head('Antes de começar', 'Perguntas frequentes', '') + `<div class="faq">${FAQ.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div>`)
     + S('fontes', head('Fontes', 'De onde vem cada informação.', '') + `<ul class="srcs">${FONTES.map((f) => `<li>${Array.isArray(f) ? (f[1] ? `<a href="${esc(f[1])}" rel="noopener">${esc(f[0])}</a>` : esc(f[0])) : esc(f.titulo ?? f.title ?? JSON.stringify(f))}</li>`).join('')}</ul>`, 'soft'),
 });
