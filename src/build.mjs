@@ -204,7 +204,8 @@ function productPage(p) {
       
       const body = parts.join('');
       const final = (p.minimal || p.noCta) ? '' : `<section class="sec"><div class="wrap"><div class="cta"><div><h2>${esc(p.name)}</h2><p>${esc(p.short)}</p></div><div class="b"><a class="btn w l" href="${k.url}">${esc(k.label)}</a><a class="btn gh l" href="mailto:${SITE.email}">Falar por e-mail</a></div></div></div></section>`;
-      return subnav + hero + body + final;
+      const manual = p.slug === 'iron-fit' ? `<section class="sec soft" id="manual-do-usuario"><div class="wrap"><h2>Manual do usuário</h2><p>Guia para gestores, recepção, professores e alunos.</p><div class="b"><a class="btn p" href="${c.up}assets/manuais/manual-iron-fit.html">Ler manual</a><a class="btn s" href="${c.up}assets/manuais/manual-iron-fit.pdf" download>Baixar PDF</a></div></div></section>` : '';
+      return subnav + hero + manual + body + final;
     },
   });
 }
