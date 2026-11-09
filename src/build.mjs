@@ -139,9 +139,9 @@ function sectionBase(s, p, c) {
     case 'pricing': {
       if (!p.pricing) return '';
       const pr = p.pricing; const k = ctas(p, c);
-      const hasCakto = Boolean(p.checkout?.monthly || p.checkout?.yearly);
-      const purchase = (link, label) => link ? `<p style="margin-top:16px"><a class="btn p" href="${esc(link)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a></p>` : '';
-      return wrap(head('Planos e condições', p.name, pr.note, true) + `<div class="price"><div class="card"><h3>Mensal</h3><div class="v">${pr.monthly}</div>${purchase(p.checkout?.monthly, 'Contratar mensal na Cakto')}</div><div class="card"><h3>Anual</h3><div class="v">${pr.yearly}</div>${purchase(p.checkout?.yearly, 'Contratar anual na Cakto')}</div><div class="card"><h3>Enterprise</h3><div class="v">${pr.enterprise}</div></div></div><div class="center" style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">${hasCakto ? '<p>Pagamento processado pela Cakto. A liberação do acesso depende da confirmação da compra.</p>' : ''}${k.primary}${k.secondary}</div>`, 'soft');
+      const ironOnboarding = p.slug === 'iron-fit' && p.status === 'available' && p.signupUrl;
+      const purchase = (label) => ironOnboarding ? `<p style="margin-top:16px"><a class="btn p" href="${esc(p.signupUrl)}" rel="noopener noreferrer">Escolher plano ${esc(label)} no IRON</a></p>` : '';
+      return wrap(head('Planos e condições', p.name, pr.note, true) + `<div class="price"><div class="card"><h3>Mensal</h3><div class="v">${pr.monthly}</div>${purchase('mensal')}</div><div class="card"><h3>Anual</h3><div class="v">${pr.yearly}</div>${purchase('anual')}</div><div class="card"><h3>Enterprise</h3><div class="v">${pr.enterprise}</div></div></div><div class="center" style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">${ironOnboarding ? '<p>Cadastre sua academia, acesse Assinatura IRON e selecione um plano. O checkout oficial Cakto será vinculado à fatura da sua academia. A licença só é ativada após confirmação do pagamento.</p>' : ''}${k.primary}${k.secondary}</div>`, 'soft');
     }
   }
   return '';
