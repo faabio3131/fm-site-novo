@@ -5,6 +5,10 @@ import { NFCORE_SE_PREPARA } from './reforma.mjs';
 
 // Cada produto: status controla os botões. Quando o cadastro online existir,
 // preencha `signupUrl` e mude status para 'available'.
+// IRON purchase starts at its canonical academy registration/session.
+// Do not publish public Cakto checkout URLs without a prepared Command invoice.
+const IRON_SIGNUP_URL = 'https://app.ironfitcore.com.br/';
+
 export const PRODUCTS = [
   {
     slug: 'kordena', name: 'Kordena', group: 'main', status: 'launching', signupUrl: null,
@@ -126,14 +130,14 @@ export const PRODUCTS = [
     ],
   },
   {
-    slug: 'iron-fit', name: 'Iron Fit Core', group: 'main', status: 'launching', signupUrl: null,
+    slug: 'iron-fit', name: 'Iron Fit Core', group: 'main', status: 'available', signupUrl: IRON_SIGNUP_URL,
     tag: 'Academias e fitness',
     short: 'Gestão, alunos, treinos, avaliações, agenda, acesso, equipamentos e financeiro em uma operação conectada.',
     eyebrow: 'Plataforma integrada para academias e operações fitness',
     title: 'Inteligência no centro. Evolução em movimento.',
     lead: 'Gestão, operação e jornada do aluno conectadas em uma única plataforma — do treino e acesso ao financeiro. A equipe acompanha a academia em um só ambiente; o aluno leva treinos, agenda, check-in, evolução e financeiro no aplicativo.',
-    trial: { note: 'Liberação comercial em preparação. Teste ainda não disponível para ativação.' },
-    ctaLabel: 'Quero ser avisado do lançamento',
+    trial: { days: 15, note: 'Teste grátis pelo cadastro oficial da academia; contratação de planos dentro do IRON com checkout Cakto vinculado à fatura.' },
+    ctaLabel: 'Começar teste grátis',
     trialMsg: 'Olá! Tenho interesse no Iron Fit Core. Quero ser avisado quando o teste estiver disponível.',
     talkMsg: 'Olá! Quero conhecer o Iron Fit Core. Podemos conversar sobre disponibilidade e implantação?',
     pricing: { monthly: 'R$ 269/mês', yearly: 'R$ 2.690/ano', enterprise: 'Sob consulta', note: 'Enterprise para redes, múltiplas unidades e necessidades comerciais específicas. Teste: política-base de 15 dias, sem cartão, até 15 alunos durante o teste — ativação depende da liberação comercial.' },

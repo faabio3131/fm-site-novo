@@ -47,7 +47,7 @@ function footer(c) {
 <div><h6>Em desenvolvimento</h6><ul>${li([...dev, ...rnd].map((p) => [p.name, c.href('produtos/' + p.slug)]))}</ul></div>
 <div><h6>Empresa</h6><ul>${li([['Quem somos', c.href('empresa') + '#quem-somos'], ['Soluções', c.href('solucoes')], ['Preços', c.href('precos')], ['Recursos', c.href('recursos')], ['Reforma tributária', c.href('reforma-tributaria')], ['Central de ajuda', c.href('ajuda')], ['Contato', c.href('contato')]])}<li><a href="mailto:${SITE.email}">${SITE.email}</a></li><li><a href="${wa('Olá! Quero conversar sobre os produtos da FM Tecnologia IA.')}">WhatsApp ${SITE.whatsappLabel}</a></li></ul></div>
 <div><h6>Legal</h6><ul>${li([['Segurança e privacidade', c.href('seguranca')], ['Política de privacidade', c.href('privacidade')], ['Termos de uso', c.href('termos')]])}</ul></div>
-</div><div class="fb"><span>© ${new Date().getFullYear()} ${SITE.legalName}. Todos os direitos reservados. CNPJ ${SITE.cnpj}</span><span>${SITE.domain}</span></div></div></footer>`;
+</div><div class="fb"><span>© ${new Date().getFullYear()} ${SITE.legalName}. Todos os direitos reservados. ${SITE.cnpj ? ` CNPJ ${esc(SITE.cnpj)}` : ` `}</span><span>${SITE.domain}</span></div></div></footer>`;
 }
 
 /**
@@ -139,7 +139,9 @@ function sectionBase(s, p, c) {
     case 'pricing': {
       if (!p.pricing) return '';
       const pr = p.pricing; const k = ctas(p, c);
-      return wrap(head('Planos e condições', p.name, pr.note, true) + `<div class="price"><div class="card"><h3>Mensal</h3><div class="v">${pr.monthly}</div></div><div class="card"><h3>Anual</h3><div class="v">${pr.yearly}</div></div><div class="card"><h3>Enterprise</h3><div class="v">${pr.enterprise}</div></div></div><div class="center" style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">${k.primary}${k.secondary}</div>`, 'soft');
+      const ironOnboarding = p.slug === 'iron-fit' && p.status === 'available' && p.signupUrl;
+      const purchase = (label) => ironOnboarding ? `<p style="margin-top:16px"><a class="btn p" href="${esc(p.signupUrl)}" rel="noopener noreferrer">Escolher plano ${esc(label)} no IRON</a></p>` : '';
+      return wrap(head('Planos e condições', p.name, pr.note, true) + `<div class="price"><div class="card"><h3>Mensal</h3><div class="v">${pr.monthly}</div>${purchase('mensal')}</div><div class="card"><h3>Anual</h3><div class="v">${pr.yearly}</div>${purchase('anual')}</div><div class="card"><h3>Enterprise</h3><div class="v">${pr.enterprise}</div></div></div><div class="center" style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">${ironOnboarding ? '<p>Cadastre sua academia, acesse Assinatura IRON e selecione um plano. O checkout oficial Cakto será vinculado à fatura da sua academia. A licença só é ativada após confirmação do pagamento.</p>' : ''}${k.primary}${k.secondary}</div>`, 'soft');
     }
   }
   return '';
