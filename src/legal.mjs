@@ -12,7 +12,9 @@ export const privacidade = (S, href) => ({
   lead: `Esta política explica quais dados pessoais a ${S.legalName} trata quando você visita o site ${S.domain} ou fala com a gente, para quê, com quem compartilhamos e como você exerce os seus direitos.`,
   sections: [
     { id: 'quem-somos', t: 'Quem somos e a quem esta política se aplica', p: [
-      `O controlador dos dados tratados neste site é a <b>${S.legalName}</b>, inscrita no CNPJ sob o nº ${S.cnpj}, que atua com a marca ${S.name}.`,
+      S.cnpj
+        ? `O controlador dos dados tratados neste site é a <b>${S.legalName}</b>, inscrita no CNPJ sob o nº ${S.cnpj}, que atua com a marca ${S.name}.`
+        : `O site institucional ${S.domain} é operado sob a marca <b>${S.name}</b>. Para solicitações relativas a dados pessoais, utilize os contatos indicados nesta política.`,
       `Esta política vale para o <b>site institucional</b> (${S.domain}): navegação, contato e pedidos de informação. Os produtos da FM (como Kordena, Iron Fit Core e NFCore) têm ambiente próprio, e o tratamento de dados dentro deles é explicado na seção 9.`,
     ] },
     { id: 'dados', t: 'Quais dados tratamos', p: ['O site é simples de propósito: não tem cadastro, área de login nem formulário. Tratamos apenas o que segue.'], l: [
@@ -74,7 +76,7 @@ export const privacidade = (S, href) => ({
     ] },
     { id: 'contato', t: 'Fale com a gente sobre privacidade', p: [
       `Para dúvidas, pedidos ou reclamações sobre o tratamento de dados pessoais, o canal é o e-mail <a href="mailto:${S.email}">${S.email}</a>. Se preferir, fale pelo WhatsApp ${S.whatsappLabel}.`,
-      `${S.legalName} · CNPJ ${S.cnpj}`,
+      `${S.legalName}${S.cnpj ? ` · CNPJ ${S.cnpj}` : ""}`,
     ] },
   ],
 });
@@ -86,7 +88,9 @@ export const termos = (S, href) => ({
   lead: `Ao acessar o site ${S.domain}, você concorda com estas regras de uso. Elas valem para o site institucional. A contratação de um produto da FM tem contrato e termos próprios.`,
   sections: [
     { id: 'aceite', t: 'Quem somos e aceite dos termos', p: [
-      `O site ${S.domain} é mantido pela <b>${S.legalName}</b>, CNPJ ${S.cnpj}, que atua com a marca ${S.name}.`,
+      S.cnpj
+        ? `O site ${S.domain} é mantido pela <b>${S.legalName}</b>, CNPJ ${S.cnpj}, que atua com a marca ${S.name}.`
+        : `O site ${S.domain} é mantido sob a marca <b>${S.name}</b>.`,
       'Se você não concorda com estes termos, pedimos que não use o site. Usar o site significa que você leu e aceitou o que está aqui.',
     ] },
     { id: 'finalidade', t: 'Para que serve o site', p: [
@@ -127,7 +131,7 @@ export const termos = (S, href) => ({
     ] },
     { id: 'contato', t: 'Contato', p: [
       `Dúvidas sobre estes termos: <a href="mailto:${S.email}">${S.email}</a> ou WhatsApp ${S.whatsappLabel}.`,
-      `${S.legalName} · CNPJ ${S.cnpj}`,
+      `${S.legalName}${S.cnpj ? ` · CNPJ ${S.cnpj}` : ""}`,
     ] },
   ],
 });
