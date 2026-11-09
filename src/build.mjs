@@ -47,7 +47,7 @@ function footer(c) {
 <div><h6>Em desenvolvimento</h6><ul>${li([...dev, ...rnd].map((p) => [p.name, c.href('produtos/' + p.slug)]))}</ul></div>
 <div><h6>Empresa</h6><ul>${li([['Quem somos', c.href('empresa') + '#quem-somos'], ['Soluções', c.href('solucoes')], ['Preços', c.href('precos')], ['Recursos', c.href('recursos')], ['Reforma tributária', c.href('reforma-tributaria')], ['Central de ajuda', c.href('ajuda')], ['Contato', c.href('contato')]])}<li><a href="mailto:${SITE.email}">${SITE.email}</a></li><li><a href="${wa('Olá! Quero conversar sobre os produtos da FM Tecnologia IA.')}">WhatsApp ${SITE.whatsappLabel}</a></li></ul></div>
 <div><h6>Legal</h6><ul>${li([['Segurança e privacidade', c.href('seguranca')], ['Política de privacidade', c.href('privacidade')], ['Termos de uso', c.href('termos')]])}</ul></div>
-</div><div class="fb"><span>© ${new Date().getFullYear()} ${SITE.legalName}. Todos os direitos reservados. CNPJ ${SITE.cnpj}</span><span>${SITE.domain}</span></div></div></footer>`;
+</div><div class="fb"><span>© ${new Date().getFullYear()} ${SITE.legalName}. Todos os direitos reservados. ${SITE.cnpj ? ` CNPJ ${esc(SITE.cnpj)}` : ` `}</span><span>${SITE.domain}</span></div></div></footer>`;
 }
 
 /**
