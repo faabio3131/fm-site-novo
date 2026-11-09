@@ -5,6 +5,19 @@ import { NFCORE_SE_PREPARA } from './reforma.mjs';
 
 // Cada produto: status controla os botões. Quando o cadastro online existir,
 // preencha `signupUrl` e mude status para 'available'.
+// Official hosted checkout links are public, but must be configured explicitly per offer.
+// Missing/invalid links never become fake buy buttons or point to another merchant.
+function caktoCheckoutUrl(envKey) {
+  const value = process.env[envKey]?.trim();
+  if (!value) return null;
+  let url;
+  try { url = new URL(value); } catch { throw new Error(envKey + ': checkout URL inválida'); }
+  if (url.protocol !== 'https:' || url.hostname !== 'pay.cakto.com.br' || url.username || url.password || url.hash || url.searchParams.has('callback')) {
+    throw new Error(envKey + ': checkout precisa apontar para URL oficial da Cakto sem callback');
+  }
+  return url.toString();
+}
+
 export const PRODUCTS = [
   {
     slug: 'kordena', name: 'Kordena', group: 'main', status: 'launching', signupUrl: null,
@@ -127,6 +140,7 @@ export const PRODUCTS = [
   },
   {
     slug: 'iron-fit', name: 'Iron Fit Core', group: 'main', status: 'launching', signupUrl: null,
+    checkout: { monthly: caktoCheckoutUrl('FM_IRON_CAKTO_MONTHLY_URL'), yearly: caktoCheckoutUrl('FM_IRON_CAKTO_YEARLY_URL') },
     tag: 'Academias e fitness',
     short: 'Gestão, alunos, treinos, avaliações, agenda, acesso, equipamentos e financeiro em uma operação conectada.',
     eyebrow: 'Plataforma integrada para academias e operações fitness',
