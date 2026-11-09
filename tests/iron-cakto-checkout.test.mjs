@@ -5,41 +5,42 @@ import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-const build = (overrides = {}) => {
-  const out = mkdtempSync(join(tmpdir(), 'iron-cakto-site-'));
-  const env = { ...process.env, OUT: out, FM_IRON_CAKTO_MONTHLY_URL: '', FM_IRON_CAKTO_YEARLY_URL: '', ...overrides };
-  const run = spawnSync(process.execPath, ['src/build.mjs'], { cwd: process.cwd(), env, encoding: 'utf8', timeout: 15_000 });
-  const html = run.status === 0 ? readFileSync(join(out, 'produtos', 'iron-fit.html'), 'utf8') : '';
-  rmSync(out, { recursive: true, force: true });
-  return { run, html };
-};
+function build(overrides = {}) {
+  const output = mkdtempSync(join(tmpdir(), 'iron-cakto-site-'));
+  try {
+    const run = spawnSync(process.execPath, ['src/build.mjs'], {
+      cwd: process.cwd(),
+      env: { ...process.env, OUT: output, ...overrides },
+      encoding: 'utf8', timeout: 15_000,
+    });
+    const html = run.status === 0
+      ? readFileSync(join(output, 'produtos', 'iron-fit.html'), 'utf8') : '';
+    return { run, html };
+  } finally { rmSync(output, { recursive: true, force: true }); }
+}
 
-test('without seller checkout links the Iron site never offers fake Cakto purchase buttons', () => {
+test('IRON public site leads to canonical academy registration and offers checkout only after billing identity', () => {
   const { run, html } = build();
   assert.equal(run.status, 0, run.stderr);
-  assert.doesNotMatch(html, /Contratar mensal na Cakto|Contratar anual na Cakto/);
+  assert.match(html, /https:\/\/app\.ironfitcore\.com\.br\//);
+  assert.match(html, /Escolher plano mensal no IRON/);
+  assert.match(html, /Escolher plano anual no IRON/);
+  assert.match(html, /checkout oficial Cakto será vinculado à fatura da sua academia/);
+  assert.doesNotMatch(html, /href="https:\/\/pay\.cakto\.com\.br/);
 });
 
-test('valid official checkout links appear in monthly and annual cards', () => {
+test('unbound Cakto URLs never become public checkout CTAs, even when injected into static build env', () => {
   const { run, html } = build({
-    FM_IRON_CAKTO_MONTHLY_URL: 'https://pay.cakto.com.br/offer_month',
-    FM_IRON_CAKTO_YEARLY_URL: 'https://pay.cakto.com.br/offer_year',
+    FM_IRON_CAKTO_MONTHLY_URL: 'https://pay.cakto.com.br/unsafe-monthly',
+    FM_IRON_CAKTO_YEARLY_URL: 'https://pay.cakto.com.br/unsafe-annual',
   });
   assert.equal(run.status, 0, run.stderr);
-  assert.match(html, /href="https:\/\/pay.cakto.com.br\/offer_month"[^>]*>Contratar mensal na Cakto/);
-  assert.match(html, /href="https:\/\/pay.cakto.com.br\/offer_year"[^>]*>Contratar anual na Cakto/);
-  assert.match(html, /A liberação do acesso depende da confirmação da compra/);
+  assert.doesNotMatch(html, /unsafe-monthly|unsafe-annual/);
+  assert.match(html, /https:\/\/app\.ironfitcore\.com\.br\//);
 });
 
-test('rejects injected or third-party checkout URLs', () => {
-  for (const candidate of [
-    'http://pay.cakto.com.br/notsecure',
-    'https://pay.cakto.com.br.evil.example/offer',
-    'https://evil.example/payment',
-    'https://pay.cakto.com.br/offer?callback=forged',
-    'javascript:alert(1)',
-  ]) {
-    const { run } = build({ FM_IRON_CAKTO_MONTHLY_URL: candidate });
-    assert.notEqual(run.status, 0, candidate);
-  }
+test('the FM site never advertises an invented CNPJ while FM legal registration is pending', () => {
+  const { run, html } = build();
+  assert.equal(run.status, 0, run.stderr);
+  assert.doesNotMatch(html, /07\.109\.248\/0001-57|FM Tecnologia LTDA/);
 });
