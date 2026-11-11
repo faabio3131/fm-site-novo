@@ -57,9 +57,6 @@ export const IRON_SECTIONS = [
   { kind: 'cards', id: 'seguranca', dark: true, kicker: 'Segurança, confiança e governança', title: 'Acesso controlado. Operação rastreável. Dados no contexto certo.',
     lead: 'Cada academia é isolada das outras, e o servidor decide a unidade ativa pela sessão do usuário, nunca por dados enviados pelo aplicativo. A arquitetura é validada por testes automatizados internos, sem apresentar certificações externas.',
     items: [['lock', 'Isolamento entre academias', 'Alunos, equipamentos e credenciais de uma academia nunca aparecem na outra.'], ['users', 'Papéis e permissões', 'Cada perfil acessa só o que o seu papel permite, com confirmação reforçada em financeiro e integrações.'], ['eye', 'Auditoria e consentimentos', 'Ações sensíveis ficam registradas, com valor anterior e novo, e os consentimentos são separados.'], ['shield', 'Conta protegida', 'Senha forte, autenticação em duas etapas, sessões revogáveis e credenciais de integração guardadas sem exibição posterior.']] },
-  { kind: 'flow', id: 'como-comecar', kicker: 'Como começar', title: 'Da inscrição à academia funcionando.',
-    lead: 'Clique em Testar grátis, cadastre sua academia e comece o período de 30 dias sem cartão. O próprio IRON cria a conta de proprietário e a assinatura de teste, pelo fluxo oficial.',
-    items: [['01', 'Clique em Testar grátis e abra o cadastro oficial'], ['02', 'Informe dados da academia, CNPJ e proprietário'], ['03', 'Entre com a conta que você acabou de criar'], ['04', 'Conclua a configuração inicial e comece a operação']] },
   { kind: 'pricing', id: 'planos' },
   { kind: 'faq', id: 'duvidas', items: [
     ['O Iron Fit Core é apenas um aplicativo para alunos?', 'Não. Ele conecta gestão, operação e experiência do aluno em uma plataforma para academias. O painel de gestão funciona na web, e o aluno usa o aplicativo.'],
