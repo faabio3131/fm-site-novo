@@ -55,9 +55,9 @@ export const COPY = {
       { kind: 'who', id: 'para-quem', kicker: 'Para quem é', title: 'Para academias e operações fitness que querem crescer com organização.',
         lead: 'Do estúdio à academia com várias unidades. A arquitetura suporta academias e unidades com contexto e isolamento próprios, preservando permissões e separação operacional.',
         chips: ['Academias', 'Estúdios', 'Operações fitness', 'Redes e múltiplas unidades (Enterprise)'] },
-      { kind: 'flow', id: 'como-comecar', kicker: 'Como começar', title: 'Da conversa à academia funcionando.',
-        lead: 'A liberação comercial está em preparação. Registre seu interesse e a equipe da FM avisa quando o teste estiver disponível.',
-        items: [['01', 'Fale com a FM e conte como é a sua academia'], ['02', 'Configuração da academia e das unidades'], ['03', 'Equipe e profissionais com acessos definidos'], ['04', 'Alunos no aplicativo, com treino, agenda e check-in']] },
+      { kind: 'flow', id: 'como-comecar', kicker: 'Como começar', title: 'Da inscrição à academia funcionando.',
+        lead: 'Comece o período gratuito de 30 dias pelo cadastro oficial do IRON. Informe os dados reais da academia e do proprietário, sem precisar de cartão. A contratação de um plano pago depende de confirmação financeira posterior.',
+        items: [['01', 'Clique em Testar grátis e abra o cadastro oficial'], ['02', 'Informe dados da academia, CNPJ e proprietário'], ['03', 'Entre com a conta que você acabou de criar'], ['04', 'Conclua a configuração inicial e comece a operação']] },
     ],
   },
   nfcore: {

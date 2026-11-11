@@ -7,7 +7,7 @@ import { NFCORE_SE_PREPARA } from './reforma.mjs';
 // preencha `signupUrl` e mude status para 'available'.
 // IRON purchase starts at its canonical academy registration/session.
 // Do not publish public Cakto checkout URLs without a prepared Command invoice.
-const IRON_SIGNUP_URL = 'https://app.ironfitcore.com.br/';
+const IRON_SIGNUP_URL = 'https://app.ironfitcore.com.br/?iniciar-teste=1';
 
 export const PRODUCTS = [
   {
@@ -138,7 +138,7 @@ export const PRODUCTS = [
     lead: 'Gestão, operação e jornada do aluno conectadas em uma única plataforma — do treino e acesso ao financeiro. A equipe acompanha a academia em um só ambiente; o aluno leva treinos, agenda, check-in, evolução e financeiro no aplicativo.',
     trial: { days: 30, note: '30 dias de teste grátis pela política comercial aprovada. Após cadastrar sua academia, a contratação de um plano ocorre por checkout Cakto vinculado à fatura.' },
     ctaLabel: 'Começar teste grátis',
-    trialMsg: 'Olá! Tenho interesse no Iron Fit Core. Quero ser avisado quando o teste estiver disponível.',
+    trialMsg: 'Olá! Quero iniciar o teste gratuito de 30 dias do IRON FIT CORE pelo cadastro oficial da minha academia.',
     talkMsg: 'Olá! Quero conhecer o Iron Fit Core. Podemos conversar sobre disponibilidade e implantação?',
     pricing: { monthly: 'Novos planos em preparação', yearly: 'Opções mensal e anual', enterprise: 'Sob consulta', note: 'Start, Growth, Scale e Enterprise estão em certificação comercial. Os preços só serão abertos após a implantação das cotas, ofertas e integração Cakto. Teste gratuito de 30 dias, até 15 alunos, conforme política comercial aprovada.' },
     external: { label: 'ironfitcore.com.br', url: 'https://ironfitcore.com.br' },
