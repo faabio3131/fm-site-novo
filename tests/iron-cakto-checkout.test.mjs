@@ -22,7 +22,9 @@ function build(overrides = {}) {
 test('IRON public site leads to canonical academy registration and offers checkout only after billing identity', () => {
   const { run, html } = build();
   assert.equal(run.status, 0, run.stderr);
-  assert.match(html, /https:\/\/app\.ironfitcore\.com\.br\//);
+  assert.match(html, /https:\/\/app\.ironfitcore\.com\.br\/\?iniciar-teste=1/);
+  assert.match(html, /Da inscrição à academia funcionando/);
+  assert.doesNotMatch(html, /A liberação comercial está em preparação/);
   assert.match(html, /Escolher plano mensal no IRON/);
   assert.match(html, /Escolher plano anual no IRON/);
   assert.match(html, /checkout oficial Cakto será vinculado à fatura da sua academia/);
