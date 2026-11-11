@@ -10,7 +10,8 @@ test('IRON public page follows the APPROVED commercial policy rather than an old
   assert.match(iron.pricing.note, /Start, Growth, Scale e Enterprise/);
   assert.doesNotMatch(iron.pricing.monthly, /R\$ 269/);
   assert.doesNotMatch(iron.pricing.yearly, /R\$ 2\.690/);
-  assert.match(iron.signupUrl, /^https:\/\/app\.ironfitcore\.com\.br\//);
+  assert.equal(iron.signupUrl, 'https://app.ironfitcore.com.br/?iniciar-teste=1');
+  assert.ok(iron.sections.some(section => section.id === 'como-comecar' && /CNPJ/.test(section.items?.[1]?.[1] ?? '')));
   assert.ok(!iron.signupUrl.includes('pay.cakto.com.br'), 'a public static checkout has no canonical invoice');
 });
 
