@@ -25,8 +25,10 @@ test('IRON public site leads to canonical academy registration and offers checko
   assert.match(html, /https:\/\/app\.ironfitcore\.com\.br\/\?iniciar-teste=1/);
   assert.match(html, /Da inscrição à academia funcionando/);
   assert.doesNotMatch(html, /A liberação comercial está em preparação/);
-  assert.match(html, /Escolher plano mensal no IRON/);
-  assert.match(html, /Escolher plano anual no IRON/);
+  assert.match(html, /Escolher plano Start no IRON/);
+  assert.match(html, /Escolher plano Growth no IRON/);
+  assert.match(html, /Escolher plano Scale no IRON/);
+  assert.match(html, /Escolher plano Enterprise no IRON/);
   assert.match(html, /checkout oficial Cakto será vinculado à fatura da sua academia/);
   assert.doesNotMatch(html, /href="https:\/\/pay\.cakto\.com\.br/);
 });

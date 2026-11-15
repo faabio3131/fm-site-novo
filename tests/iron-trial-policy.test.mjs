@@ -8,7 +8,8 @@ test('IRON public page follows the APPROVED commercial policy rather than an old
   assert.ok(iron);
   assert.equal(iron.trial.days, 30);
   assert.match(iron.pricing.note, /30 dias/);
-  assert.match(iron.pricing.note, /Start, Growth, Scale e Enterprise/);
+  assert.ok(Array.isArray(iron.pricing.tiers) && iron.pricing.tiers.length === 4, 'the four approved commercial tiers must be published');
+  assert.deepEqual(iron.pricing.tiers.map(t => t.name), ['Start', 'Growth', 'Scale', 'Enterprise']);
   assert.doesNotMatch(iron.pricing.monthly, /R\$ 269/);
   assert.doesNotMatch(iron.pricing.yearly, /R\$ 2\.690/);
   assert.equal(iron.signupUrl, 'https://app.ironfitcore.com.br/?iniciar-teste=1');
