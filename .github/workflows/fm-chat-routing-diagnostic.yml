@@ -34,3 +34,30 @@ jobs:
               except Exception as exc:
                   print(json.dumps({"site":site,"transport_error":type(exc).__name__,"detail":str(exc)[:160]},ensure_ascii=False))
           PY
+
+      - name: Verify CORS and exact FM questions
+        env:
+          ENDPOINT: https://app.atendevendeia.com.br/web/chat
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, urllib.error, uuid, os, time
+          url=os.environ["ENDPOINT"]
+          for origin in ("https://fmtecnologiaia.com.br","https://www.fmtecnologiaia.com.br"):
+              req=urllib.request.Request(url,method="OPTIONS",headers={"Origin":origin,"Access-Control-Request-Method":"POST","Access-Control-Request-Headers":"content-type"})
+              try:
+                  with urllib.request.urlopen(req,timeout=10) as resp:
+                      print(json.dumps({"method":"OPTIONS","origin":origin,"status":resp.status,"acao":resp.headers.get("access-control-allow-origin"),"acm":resp.headers.get("access-control-allow-methods"),"ach":resp.headers.get("access-control-allow-headers")}))
+              except urllib.error.HTTPError as exc:
+                  print(json.dumps({"method":"OPTIONS","origin":origin,"http":exc.code,"acao":exc.headers.get("access-control-allow-origin")}))
+              except Exception as exc: print(json.dumps({"method":"OPTIONS","origin":origin,"error":str(exc)[:150]}))
+          for question in ("Bom dia, o que a FM Tecnologia faz?","Quais os produtos da FM?"):
+              body=json.dumps({"site":"fm","message":question,"session_id":"fm-qa-"+str(uuid.uuid4())}).encode()
+              req=urllib.request.Request(url,data=body,method="POST",headers={"Origin":"https://fmtecnologiaia.com.br","Content-Type":"application/json"})
+              ts=time.monotonic()
+              try:
+                  with urllib.request.urlopen(req,timeout=25) as resp:
+                      response=json.loads(resp.read(10000))
+                      print(json.dumps({"question":question,"status":resp.status,"elapsed_seconds":round(time.monotonic()-ts,2),"acao":resp.headers.get("access-control-allow-origin"),"reply":str(response.get("reply",""))[:600],"handoff":response.get("handoff")},ensure_ascii=False))
+              except urllib.error.HTTPError as exc: print(json.dumps({"question":question,"http":exc.code,"elapsed_seconds":round(time.monotonic()-ts,2)}))
+              except Exception as exc: print(json.dumps({"question":question,"error":type(exc).__name__,"elapsed_seconds":round(time.monotonic()-ts,2),"details":str(exc)[:150]}))
+          PY
