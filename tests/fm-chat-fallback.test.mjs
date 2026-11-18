@@ -96,3 +96,20 @@ test('entrada do usuário é texto e não HTML interpretado', async () => {
   const result = await setup().ask('<img src=x onerror=alert(1)>');
   assert.ok(result.includes('<img src=x onerror=alert(1)>'));
 });
+
+
+test('FM: complementa resposta incompleta da IA com portfólio oficial', async () => {
+  const messages = await setup('fm', false).ask('Quais os produtos da FM?');
+  assert.ok(messages.some(m => m.includes('FM Command') && m.includes('CampaIA') && m.includes('ERP Core')));
+  assert.ok(messages.some(m => m.includes('Super Core Extreme') && m.includes('não comercializado')));
+});
+test('FM: www redireciona ao domínio autorizado pela API antes de iniciar widget', () => {
+  let redirected = '';
+  const window = {
+    FM_CHAT_CONFIG: {site:'fm'},
+    location: {hostname:'www.fmtecnologiaia.com.br',pathname:'/produtos',search:'?x=1',hash:'#chat',replace: v=>{redirected=v;}}
+  };
+  const document = {head:{appendChild:()=>{throw Error('Widget should not mount on blocked origin');}}};
+  vm.runInNewContext(source,{window,document,console},{timeout:2000});
+  assert.equal(redirected,'https://fmtecnologiaia.com.br/produtos?x=1#chat');
+});
