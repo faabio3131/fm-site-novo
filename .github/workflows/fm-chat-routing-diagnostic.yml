@@ -1,0 +1,36 @@
+name: Diagnostic FM chat routing (temporary)
+on:
+  push:
+    branches:
+      - diagnostic/fm-chat-backend-20261118
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Compare chat HTTP responses by site
+        env:
+          ENDPOINT: https://app.atendevendeia.com.br/web/chat
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, urllib.error, uuid, os
+          url=os.environ["ENDPOINT"]
+          for site in ("ironfit", "kordena", "nfcore", "fm"):
+              payload=json.dumps({"site":site,"message":"Olá! Pode explicar em uma frase qual o seu produto?","session_id":"fm-diag-"+str(uuid.uuid4())}).encode()
+              request=urllib.request.Request(url,data=payload,headers={"Content-Type":"application/json","Origin":"https://fmtecnologiaia.com.br"},method="POST")
+              try:
+                  with urllib.request.urlopen(request,timeout=12) as resp:
+                      data=resp.read(5000).decode("utf-8","replace")
+                      try:
+                          parsed=json.loads(data)
+                          print(json.dumps({"site":site,"http":resp.status,"reply_present":bool(parsed.get("reply")),"reply_length":len(str(parsed.get("reply",""))),"keys":list(parsed.keys()),"acao":"validar status sem expor conteudo"},ensure_ascii=False))
+                      except (json.JSONDecodeError,AttributeError):
+                          print(json.dumps({"site":site,"http":resp.status,"non_json":True,"length":len(data)}))
+              except urllib.error.HTTPError as exc:
+                  print(json.dumps({"site":site,"http":exc.code,"error_body_excerpt":exc.read(240).decode("utf-8","replace")},ensure_ascii=False))
+              except Exception as exc:
+                  print(json.dumps({"site":site,"transport_error":type(exc).__name__,"detail":str(exc)[:160]},ensure_ascii=False))
+          PY
