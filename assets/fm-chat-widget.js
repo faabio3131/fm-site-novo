@@ -31,6 +31,11 @@
   var API_BASE = (CFG.apiBase || "").replace(/\/$/, "");
   var WA_NUMBER = CFG.whatsappNumber || "";
   var WA_PREFILL = CFG.whatsappPrefill || ("Olá! Vim pelo site do " + PRODUCT + ".");
+  // API CORS permite o domínio canônico sem www. Evita origem bloqueada no navegador.
+  if (SITE === "fm" && window.location && window.location.hostname === "www.fmtecnologiaia.com.br") {
+    window.location.replace("https://fmtecnologiaia.com.br" + window.location.pathname + window.location.search + window.location.hash);
+    return;
+  }
   var SESSION_KEY = "fm_chat_session_" + SITE;
 
   function waLink(text) {
@@ -252,6 +257,11 @@
         hideTyping();
         if (typeof data.reply !== "string" || !data.reply.trim()) throw new Error("missing chat reply");
         addMsg(data.reply, "bot");
+        // O servidor da FM ainda pode fornecer catálogo incompleto (confirmado em teste real).
+        // Complemento estritamente baseado na página oficial, sem modificar outros tenants.
+        if (SITE === "fm" && /(?:quais|lista|mostre|todos|portfolio|portfólio).*produtos|produtos.*(?:fm|tecnologia)/i.test(text) && !/FM Command/i.test(data.reply)) {
+          addMsg("Complemento do catálogo oficial: além de Kordena, Iron Fit Core, NFCore e AtendeVendeIA, a FM apresenta o FM Command (central executiva, lançamento em preparação), CampaIA e ERP Core (em desenvolvimento), e Super Core Extreme (pesquisa e desenvolvimento, não comercializado). Detalhes: https://fmtecnologiaia.com.br/produtos", "bot");
+        }
         if (data.handoff) {
           addWaButton(data.handoff_message || text, "Continuar no WhatsApp com um atendente");
         }
