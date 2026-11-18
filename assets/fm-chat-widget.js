@@ -159,7 +159,7 @@
   function addMsg(text, who) {
     var el = document.createElement("div");
     el.className = "fmchat-msg " + who;
-    el.innerHTML = text;
+    el.textContent = String(text);
     body.appendChild(el);
     body.scrollTop = body.scrollHeight;
     return el;
@@ -205,6 +205,21 @@
     if (t) t.remove();
   }
 
+  // FAQ pública de contingência; não substitui a base central do AtendeVendeIA.
+  // Fontes: páginas oficiais da FM Tecnologia IA, revisão 2026-11-18.
+  var FM_PUBLIC_FAQ = [["empresa","A FM Tecnologia IA desenvolve software, automação e soluções de inteligência artificial para empresas. O foco é organizar operações, conectar dados e apoiar decisões com governança e controle humano. Conheça a empresa: https://fmtecnologiaia.com.br/empresa",["o que a fm tecnologia faz","o que e a fm tecnologia","quem e a fm tecnologia","sobre a fm tecnologia","o que a fm faz","sobre a empresa","quem somos"]],["produtos","Os produtos principais apresentados pela FM Tecnologia IA são Kordena (alimentação), Iron Fit Core (academias), NFCore (fiscal), FM Command (gestão executiva) e AtendeVendeIA (atendimento e vendas). CampaIA e ERP Core estão em desenvolvimento; Super Core Extreme é P&D, não está à venda. Veja: https://fmtecnologiaia.com.br/produtos",["quais os produtos","quais sao os produtos","produtos da fm","solucoes da fm","o que voces vendem","portfolio","catalogo de produtos"]],["kordena","O Kordena é a plataforma de gestão para restaurantes e outros negócios de alimentação. Reúne pedidos, salão, cozinha/KDS, estoque, clientes, financeiro e Gerente IA Core. O site informa lançamento em preparação e teste grátis de 15 dias quando liberado: https://kordenaia.com.br/",["kordena","restaurante","lanchonete","delivery","food service","gestao de alimentacao"]],["iron","O Iron Fit Core é voltado à gestão de academias e operações fitness: alunos, treinos, avaliações, agenda, acessos, equipamentos e financeiro. A Iron Intelligence apoia o profissional, que aprova as decisões relacionadas aos treinos. Veja as condições vigentes de teste no site: https://fmtecnologiaia.com.br/produtos/iron-fit",["iron fit","ironfit","academia","fitness","estudio de treino","gestao de alunos"]],["nfcore","O NFCore é uma plataforma fiscal B2B com motor próprio para NF-e, NFC-e e NFS-e, regras versionadas, assinatura, eventos e auditoria. Integrações e emissão dependem de credenciais, configuração e homologação aplicáveis; cobertura não é universal. Saiba mais: https://nfcore.com.br/",["nfcore","nota fiscal","emitir nota","nf-e","nfc-e","nfs-e","emissao fiscal","reforma tributaria"]],["command","O FM Command é uma central executiva em preparação que consolida indicadores dos produtos e da operação, preservando origem, período, qualidade e governança de cada informação. Não inventa métricas ausentes. Saiba mais: https://fmtecnologiaia.com.br/produtos/command",["fm command","command","painel executivo","dashboard gerencial","indicadores de empresa"]],["atende","O AtendeVendeIA é uma solução de atendimento e vendas por IA: conversa com clientes, apresenta ofertas e links de pagamento cadastrados e ajuda a retomar vendas interrompidas. A equipe mantém controle sobre negociações e casos sensíveis. A disponibilidade comercial deve ser confirmada: https://fmtecnologiaia.com.br/produtos/atendevendeia",["atendevendeia","atende vende","atendimento com ia","atendente de vendas","recuperar vendas","vender pelo whatsapp","whatsapp para vendas"]],["campa","O CampaIA está em desenvolvimento. A proposta é apoiar campanhas de marketing com briefing, estratégia, textos, imagens e revisão de políticas, mantendo a aprovação humana antes da publicação. Consulte disponibilidade: https://fmtecnologiaia.com.br/produtos/campaia",["campaia","campanhas de marketing","marketing digital","anuncios com ia","google ads"]],["erp","O ERP Core ainda está em desenvolvimento. Seu primeiro módulo planejado é estoque por lote e validade, com saída dos itens que vencem primeiro (FEFO). Não é anunciado como ERP completo disponível. Saiba mais: https://fmtecnologiaia.com.br/produtos/erp-core",["erp core","estoque por lote","controle de validade","fefo"]],["supercore","O Super Core Extreme é uma iniciativa de pesquisa e desenvolvimento da FM Tecnologia IA para uma arquitetura cognitiva horizontal, multiagente, multimodelo e governada por humanos. Não é um produto comercial disponível: https://fmtecnologiaia.com.br/produtos/super-core-extreme",["super core","supercore","cerebro cognitivo","multiagente","multimodelo"]],["ia","A FM integra IA a software, dados e regras de negócio. A inteligência ajuda a interpretar informações e recomendar ações, enquanto decisões críticas permanecem sob controle humano e validações determinísticas. Veja: https://fmtecnologiaia.com.br/empresa",["como funciona a ia","inteligencia artificial da fm","core cognitivo","automacao inteligente","a ia decide sozinha"]],["governanca","A FM adota a diretriz 'A IA recomenda; você decide'. Os produtos são desenhados com controle de acesso, rastreabilidade e validações adequadas ao risco. Não afirmamos certificações externas ou homologações sem comprovação: https://fmtecnologiaia.com.br/seguranca",["governanca","seguranca","privacidade","lgpd","auditoria","dados protegidos"]],["planos","Os preços e as condições comerciais variam conforme o produto e podem mudar. Para valores oficiais atualizados, consulte https://fmtecnologiaia.com.br/precos ou a página do produto; a equipe comercial pode confirmar elegibilidade, disponibilidade e contratação.",["quanto custa","qual o preco","precos","valores","planos","mensalidade","assinatura","orcamento"]],["teste","As condições de teste dependem de cada produto e da sua liberação comercial. Os sites anunciam teste de 15 dias para o Kordena após ativação, 30 dias conforme política do Iron Fit Core e 14 dias para o NFCore. Confirme a disponibilidade antes de contratar: https://fmtecnologiaia.com.br/precos",["teste gratis","periodo gratis","experimentar","avaliar produto","trial","sem cartao"]],["contratar","Para contratar ou solicitar demonstração, consulte os canais oficiais em https://fmtecnologiaia.com.br/contato. Nossa equipe verifica o produto, o estágio de disponibilidade e a necessidade do seu negócio.",["como contratar","quero contratar","fazer assinatura","assinar","solicitar demonstracao","agendar demonstracao"]],["contato","Contato comercial da FM Tecnologia IA: WhatsApp (11) 97835-0851 e e-mail comercial@fmtecnologiaia.com.br. Página oficial: https://fmtecnologiaia.com.br/contato",["telefone","whatsapp da fm","email","e-mail","contato da fm","falar com atendente","falar com especialista","falar com humano","suporte humano"]],["segmentos","A FM atende diferentes necessidades empresariais: alimentação e restaurantes com Kordena, academias com Iron Fit Core, operações fiscais com NFCore, gestão executiva com FM Command e atendimento/vendas com AtendeVendeIA. Cada produto tem escopo e disponibilidade próprios.",["para quem sao os produtos","quais segmentos","setores atendidos","tipo de empresa","quais negocios"]],["integracoes","As integrações variam de acordo com cada SaaS e com sua configuração. O Kordena apresenta canais de pedidos e delivery; o NFCore prevê integração com sistemas e provedores fiscais; o FM Command conecta fontes de dados governadas. Confirme cada conector e sua disponibilidade com a equipe.",["integracoes","integra com","api","webhook","conectar sistemas"]],["financeiro","Para rotinas financeiras do restaurante, conheça o Kordena. Para faturamento e cobrança da academia, veja Iron Fit Core. Para consolidação executiva de indicadores, conheça FM Command. São produtos diferentes; a disponibilidade deve ser verificada por solução.",["financeiro","faturamento","cobranca","recebimentos","contabilidade"]],["pessoal","Sou o atendimento digital da FM Tecnologia IA. Posso explicar a empresa, seus produtos, públicos atendidos e canais oficiais. Para propostas comerciais, informações específicas não publicadas ou suporte individual, posso direcionar à equipe.",["voce e humano","voce e uma ia","quem esta falando","voce e robo","quem e voce"]]];
+  function publicFaqAnswer(question) {
+    if (SITE !== "fm") return null;
+    var normalized = String(question || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
+    for (var i = 0; i < FM_PUBLIC_FAQ.length; i++) {
+      var triggers = FM_PUBLIC_FAQ[i][2];
+      for (var j = 0; j < triggers.length; j++) {
+        if (normalized.indexOf(triggers[j]) !== -1) return FM_PUBLIC_FAQ[i][1];
+      }
+    }
+    return null;
+  }
+
   function sendMessage() {
     var text = input.value.trim();
     if (!text) return;
@@ -213,8 +228,13 @@
 
     if (!API_BASE) {
       // Modo degradado: sem backend configurado ainda — oferece WhatsApp real, nunca finge automação.
-      addMsg("Ainda não tenho respostas automáticas configuradas aqui, mas posso te colocar direto com a nossa equipe:", "bot");
-      addWaButton(text);
+      var offlineAnswer = publicFaqAnswer(text);
+      if (offlineAnswer) {
+        addMsg("Informação pública da FM Tecnologia IA (modo de contingência): " + offlineAnswer, "bot");
+      } else {
+        addMsg("O atendimento automatizado está indisponível agora. Nossa equipe pode ajudar:", "bot");
+        addWaButton(text);
+      }
       return;
     }
 
@@ -230,15 +250,21 @@
       })
       .then(function (data) {
         hideTyping();
-        addMsg(data.reply || "Desculpe, não consegui responder agora.", "bot");
+        if (typeof data.reply !== "string" || !data.reply.trim()) throw new Error("missing chat reply");
+        addMsg(data.reply, "bot");
         if (data.handoff) {
           addWaButton(data.handoff_message || text, "Continuar no WhatsApp com um atendente");
         }
       })
       .catch(function () {
         hideTyping();
-        addMsg("Tive um problema para responder agora. Pode falar direto com a gente:", "bot");
-        addWaButton(text);
+        var offlineAnswer = publicFaqAnswer(text);
+        if (offlineAnswer) {
+          addMsg("Informação pública da FM Tecnologia IA (modo de contingência): " + offlineAnswer, "bot");
+        } else {
+          addMsg("O atendimento automatizado está temporariamente indisponível. Pode falar com nossa equipe:", "bot");
+          addWaButton(text);
+        }
       });
   }
 
