@@ -197,7 +197,7 @@ function videoSection(p, c) {
     const source = custom?.src || (has(f) ? `${base}${f}.mp4` : null);
     const poster = custom?.poster || `${base}${f}.jpg`;
     return source
-      ? `<figure class="vid ${cls}"><video controls preload="none" playsinline poster="${esc(poster)}" aria-label="${esc(label)}"><source src="${esc(source)}" type="video/mp4">Seu navegador não oferece reprodução de vídeo.</video></figure>`
+      ? `<figure class="vid ${cls}"><video controls preload="none" playsinline poster="${esc(poster)}" aria-label="${esc(label)}"><source src="${esc(source)}" type="video/mp4">${custom?.src ? 'Seu navegador não oferece reprodução de vídeo.' : ''}</video></figure>`
       : `<figure class="vid empty ${cls}"><figcaption><b>Vídeo em preparação</b><span>${esc(label)}</span></figcaption></figure>`;
   };
   return `<section class="sec dark" id="demo"><div class="wrap">${head(V.kicker, V.title, V.lead, true)}<div style="margin-top:44px">${player(V.main.file, V.main.label, 'main')}</div>${V.clips.length ? `<div class="grid ${V.clips.length % 3 === 0 ? 'g3' : 'g4'}" style="margin-top:24px">${V.clips.map((k) => `<div class="clip">${player(k.file, k.title)}<h3>${esc(k.title)}</h3><p>${esc(k.text)}</p></div>`).join('')}</div>` : ''}</div></section>`;
