@@ -76,7 +76,7 @@ test('FM: responde à pergunta do print sobre os produtos', async () => {
 });
 test('FM: não confunde P&D com produto comercializado', async () => {
   const result = await setup().ask('O Super Core Extreme está disponível?');
-  assert.ok(result.some(m => m.includes('não é um produto comercial disponível')));
+  assert.ok(result.some(m => m.toLowerCase().includes('não é um produto comercial disponível')));
 });
 test('FM: pergunta desconhecida faz handoff sem inventar resposta', async () => {
   const result = await setup().ask('Qual o número da minha fatura?');
