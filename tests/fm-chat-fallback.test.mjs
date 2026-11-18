@@ -31,6 +31,7 @@ function setup(site = 'fm', fail = true) {
       return this.queries.get(sel);
     }
     focus() {}
+    remove() { this.removed = true; }
     click() { this.handlers.click?.(); }
   }
   const body = new Node('body');
