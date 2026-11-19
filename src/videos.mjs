@@ -17,12 +17,7 @@ export const VIDEOS = {
     kicker: 'Demonstração do produto',
     title: 'Veja o Iron Fit Core funcionando como uma única plataforma.',
     lead: 'Uma visão prática de como gestão, operação e experiência do aluno se conectam no dia a dia.',
-    main: {
-      file: 'demo',
-      label: 'Apresentação em vídeo do IRON FIT CORE',
-      src: 'https://gcdn.picsart.com/picsart-mcp/21969df7-c943-496a-a359-b209b01b101d.mp4',
-      poster: 'https://gcdn.picsart.com/cloud-storage/f213ce31-de2d-4d93-9139-0ee5db643452.jpg',
-    },
+    main: { file: 'demo', label: 'Apresentação em vídeo do IRON FIT CORE' },
     clips: [],
   },
 };
