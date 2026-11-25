@@ -141,7 +141,7 @@ function sectionBase(s, p, c) {
       const pr = p.pricing; const k = ctas(p, c);
       const ironOnboarding = p.slug === 'iron-fit' && p.status === 'available' && p.signupUrl;
       const purchase = (label) => ironOnboarding ? `<p style="margin-top:16px"><a class="btn p" href="${esc(p.signupUrl)}" rel="noopener noreferrer">Escolher plano ${esc(label)} no IRON</a></p>` : '';
-      const tierCheckout = (t) => (t.url || t.yearlyUrl) ? `<div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">${t.url ? `<a class="btn sm p" style="flex:1" href="${esc(t.url)}" rel="noopener noreferrer">Assinar mensal</a>` : ''}${t.yearlyUrl ? `<a class="btn sm" style="flex:1" href="${esc(t.yearlyUrl)}" rel="noopener noreferrer">Assinar anual</a>` : ''}</div>` : purchase(t.name);
+      const tierCheckout = (t) => ironOnboarding ? purchase(t.name) : (t.url || t.yearlyUrl) ? `<div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">${t.url ? `<a class="btn sm p" style="flex:1" href="${esc(t.url)}" rel="noopener noreferrer">Assinar mensal</a>` : ''}${t.yearlyUrl ? `<a class="btn sm" style="flex:1" href="${esc(t.yearlyUrl)}" rel="noopener noreferrer">Assinar anual</a>` : ''}</div>` : purchase(t.name);
       if (pr.tiers && pr.tiers.length) {
         const cards = pr.tiers.map((t) => `<div class="card"><h3>${esc(t.name)}</h3><div class="v">${esc(t.monthly)}</div><p class="note" style="margin-top:4px">${esc(t.yearlyNote)}</p><p class="note">${esc(t.quota)}</p>${tierCheckout(t)}</div>`).join('');
         return wrap(head('Planos e condições', p.name, pr.note, true) + `<div class="price p4">${cards}</div><div class="center" style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">${k.primary}${k.secondary}</div>`, 'soft');
