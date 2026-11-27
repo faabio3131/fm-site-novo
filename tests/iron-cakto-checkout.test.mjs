@@ -27,7 +27,7 @@ test('IRON public site leads to canonical academy registration before any per-ac
   assert.doesNotMatch(html, /A liberação comercial está em preparação/);
   assert.doesNotMatch(html, /href="https:\/\/pay\.cakto\.com\.br\//);
   for (const name of ['Start', 'Growth', 'Scale', 'Enterprise']) {
-    assert.match(html, new RegExp('Escolher plano ' + name + ' no IRON'));
+    assert.match(html, new RegExp('aria-label="Escolher plano ' + name + ' no IRON"'));
   }
 });
 
